@@ -148,7 +148,7 @@ function Planes() {
           {/* Plan Emprendedor - DESTACADO */}
           <div className="plan-card plan-featured">
             <div className="plan-badge">Más Popular</div>
-            <h3>Plan Emprendedor</h3>
+            <h3>Plan Avazado</h3>
             <div className="plan-price">
               {formatearPrecio(precios.emprendedor.desarrollo)} <span>(mensual)</span>
             </div>
@@ -185,7 +185,7 @@ function Planes() {
 
           {/* Plan Profesional */}
           <div className="plan-card">
-            <h3>Plan Profesional</h3>
+            <h3>Plan Emprendedor</h3>
             <div className="plan-price">
               {formatearPrecio(precios.profesional.desarrollo)} <span>(mensual)</span>
             </div>
@@ -218,7 +218,7 @@ function Planes() {
 
           {/* Plan Tienda Online */}
           <div className="plan-card">
-            <h3>Plan Tienda Online</h3>
+            <h3>Plan Corporativo</h3>
             <div className="plan-price">
               {formatearPrecio(precios.tienda.desarrollo)} <span>(mensual)</span>
             </div>
