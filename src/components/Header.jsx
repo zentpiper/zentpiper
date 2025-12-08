@@ -147,7 +147,19 @@ function Header() {
           </div>
         </div>
       </div>
-
+       {/* Botón fijo para móviles */}
+<div className="header-save-btn-container">
+  <button
+    className="header-save-btn"
+    onClick={() => {
+      localStorage.setItem('paisSeleccionado', paisSeleccionado);
+      alert(`¡Tus preferencias de país (${paisSeleccionado}) han sido guardadas!`);
+    }}
+  >
+    Guardar Preferencias
+  </button>
+</div>
+     
 
     </header>
   );
