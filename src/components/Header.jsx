@@ -8,6 +8,7 @@ function Header() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [paisSeleccionado, setPaisSeleccionado] = useState("PE");
   const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   // Precios y contactos por país
   const preciosPorPais = {
@@ -48,43 +49,28 @@ function Header() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
         setIsHeaderVisible(false);
       } else {
         setIsHeaderVisible(true);
       }
-
       setLastScrollY(currentScrollY);
     };
-
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
-  const toggleCountryDropdown = () => {
-    setIsCountryDropdownOpen(!isCountryDropdownOpen);
-  };
+  const toggleCountryDropdown = () => setIsCountryDropdownOpen(!isCountryDropdownOpen);
 
   const seleccionarPais = (pais) => {
     setPaisSeleccionado(pais);
     setIsCountryDropdownOpen(false);
-    
-    // Guardar en localStorage para persistencia
     localStorage.setItem('paisSeleccionado', pais);
-    
-    // Emitir evento personalizado para que otras páginas se actualicen
     window.dispatchEvent(new CustomEvent('paisCambiado', { 
-      detail: { 
-        pais, 
-        precios: preciosPorPais[pais] 
-      } 
+      detail: { pais, precios: preciosPorPais[pais] } 
     }));
-    
-    console.log(`País cambiado a: ${pais}`, preciosPorPais[pais]);
   };
 
-  // Cargar país guardado al iniciar
   useEffect(() => {
     const paisGuardado = localStorage.getItem('paisSeleccionado');
     if (paisGuardado && (paisGuardado === 'PE' || paisGuardado === 'CL')) {
@@ -93,34 +79,21 @@ function Header() {
   }, []);
 
   const paises = [
-    { codigo: "PE", nombre: "Perú",  },
-    { codigo: "CL", nombre: "Chile",  }
+    { codigo: "PE", nombre: "Perú", bandera: "🇵🇪" },
+    { codigo: "CL", nombre: "Chile", bandera: "🇨🇱" }
   ];
 
-  const paisActual = paises.find(pais => pais.codigo === paisSeleccionado);
+  const paisActual = paises.find(p => p.codigo === paisSeleccionado);
   const preciosActuales = preciosPorPais[paisSeleccionado];
 
-  // NAVEGACIÓN COMÚN
   const navegacion = (
     <>
-      <NavLink to="/" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
-        INICIO
-      </NavLink>
-      <NavLink to="/portafolio" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
-        PORTAFOLIO
-      </NavLink>
-      <NavLink to="/planes" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
-        WEB
-      </NavLink>
-      <NavLink to="/mobile" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
-        MOBILE
-      </NavLink>
-      <NavLink to="/proyecto" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
-        PROYECTO
-      </NavLink>
-      <NavLink to="/contacto" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
-        CONTACTO
-      </NavLink>
+      <NavLink to="/" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>INICIO</NavLink>
+      <NavLink to="/portafolio" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>PORTAFOLIO</NavLink>
+      <NavLink to="/planes" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>WEB</NavLink>
+      <NavLink to="/mobile" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>MOBILE</NavLink>
+      <NavLink to="/proyecto" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>PROYECTO</NavLink>
+      <NavLink to="/contacto" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>CONTACTO</NavLink>
     </>
   );
 
@@ -142,7 +115,6 @@ function Header() {
 
         {/* Contacto y Country Selector */}
         <div className="header-right">
-          {/* Country Selector */}
           <div className="country-selector">
             <button 
               className="country-btn"
@@ -175,6 +147,8 @@ function Header() {
           </div>
         </div>
       </div>
+
+
     </header>
   );
 }

@@ -7,20 +7,20 @@ function Planes() {
   const navigate = useNavigate();
   const [paisSeleccionado, setPaisSeleccionado] = useState("PE");
   const [precios, setPrecios] = useState({
-    basico: { desarrollo: 1100, mantenimiento: 200 },
-    emprendedor: { desarrollo: 2200, mantenimiento: 200 },
-    profesional: { desarrollo: 4400, mantenimiento: 200 },
-    tienda: { desarrollo: 6600, mantenimiento: 200 }
+    basico: { desarrollo: 150, mantenimiento: 7 },
+    emprendedor: { desarrollo: 300, mantenimiento: 7 },
+    profesional: { desarrollo: 1200, mantenimiento: 70 },
+    tienda: { desarrollo: 1300, mantenimiento: 70 }
   });
 
   // Precios por país
   const preciosPorPais = {
     PE: {
-      moneda: "S/",
-      basico: { desarrollo: 1100, mantenimiento: 200 },
-      emprendedor: { desarrollo: 2200, mantenimiento: 200 },
-      profesional: { desarrollo: 4400, mantenimiento: 200 },
-      tienda: { desarrollo: 6600, mantenimiento: 200 }
+      moneda: "$",
+      basico: { desarrollo: 150, mantenimiento: 10 },
+      emprendedor: { desarrollo: 300, mantenimiento: 10 },
+      profesional: { desarrollo: 1200, mantenimiento: 70 },
+      tienda: { desarrollo: 1800, mantenimiento: 70 }
     },
     CL: {
       moneda: "CLP$",
