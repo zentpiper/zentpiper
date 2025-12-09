@@ -6,7 +6,9 @@ const projects = [
     id: 1,
     title: 'Cegrisa Import',
     description: 'Página Catálogo Para Empresa Vendedora De Cerámicas',
-    image: 'https://github.com/zentpiper/zentpiper/blob/main/public/cegrisa.png?raw=true',
+    image: '/cegrisa.webp',
+    width: 600,
+    height: 400,
     link: 'https://cegrisa.vercel.app',
     demo: 'https://cegrisa.vercel.app',
     github: 'https://github.com/zentpiper/cegrisa',
@@ -17,7 +19,9 @@ const projects = [
     id: 2,
     title: 'H Y G',
     description: 'Página de administración y control para Call Centers',
-    image: 'https://github.com/zentpiper/zentpiper/blob/main/public/HYG.png?raw=true',
+    image: '/HYG.webp',
+    width: 600,
+    height: 400,
     link: 'https://ventacenter.vercel.app/home',
     demo: 'https://ventacenter.vercel.app/home',
     github: '',
@@ -89,6 +93,8 @@ function Portfolio() {
                     alt={`Captura del proyecto ${project.title}`}
                     className="project-image"
                     loading="lazy"
+                    width={project.width}
+                    height={project.height}
                   />
                   <div className="project-overlay">
                     <div className="project-links">

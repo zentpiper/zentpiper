@@ -54,7 +54,7 @@ function Header() {
       <div className="header-content">
         {/* Logo */}
         <NavLink to="/" className="logo-container">
-          <img src="/logo-og.png" className="logo" alt="ZENTPIPER SOFTWARE" width="50" height="50" />
+          <img src="/logo-og.webp" className="logo" alt="ZENTPIPER SOFTWARE" width="50" height="50" />
           <div className="logo-text">
             <span className="logo-title">ZENTPIPER</span>
             <span className="logo-subtitle">SOFTWARE</span>
