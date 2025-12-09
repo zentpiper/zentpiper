@@ -54,6 +54,7 @@
 
 .logo {
   height: 50px;
+  width: auto;
   margin-right: 1rem;
   filter: drop-shadow(0 0 8px rgba(255, 193, 7, 0.6));
   transition: filter 0.3s ease;
@@ -400,7 +401,7 @@
   }
 
   .logo {
-    height: 35px;
+    height: 30px;
     margin-right: 0.6rem;
   }
 
@@ -442,7 +443,7 @@
   }
 
   .logo {
-    height: 32px;
+    height: 26px;
   }
 
   .logo-title {
