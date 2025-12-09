@@ -2,6 +2,7 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Layout from "./components/Layout";
+import ScrollRestoration from "./components/ScrollRestoration";
 
 // Lazy loading de páginas para mejor rendimiento
 const Home = lazy(() => import("./pages/Home"));
@@ -29,6 +30,7 @@ const LoadingFallback = () => (
 function App() {
   return (
     <Layout>
+      <ScrollRestoration />
       <Suspense fallback={<LoadingFallback />}>
         <Routes>
           <Route path="/" element={<Home />} />
