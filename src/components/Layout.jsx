@@ -1,19 +1,19 @@
 import Header from "./Header";
 import Footer from "./Footer";
-import FooterAlt from "./FooterAlt";
 import ScrollToTop from "./ScrollToTop";
-import { useLocation } from "react-router-dom";
+import WhatsAppButton from "./WhatsAppButton";
+import Breadcrumbs from "./Breadcrumbs";
 import "./Layout.css";
 
 function Layout({ children }) {
-  const location = useLocation();
-
   return (
     <div className="app-container">
       <Header />
+      <Breadcrumbs />
       <main>{children}</main>
-      {location.pathname === "/contacto" ? <FooterAlt /> : <Footer />}
+      <Footer />
       <ScrollToTop />
+      <WhatsAppButton />
     </div>
   );
 }

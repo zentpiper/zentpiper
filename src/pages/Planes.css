@@ -16,7 +16,8 @@
 
 .planes-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 columnas fijas */
+  grid-template-columns: repeat(4, 1fr);
+  /* 4 columnas fijas */
   gap: 1.5rem;
   align-items: start;
 }
@@ -151,6 +152,33 @@
   line-height: 1.3;
 }
 
+/* Mantenimiento con promoción */
+.plan-maintenance {
+  font-size: 0.85rem;
+  color: var(--text-color);
+  opacity: 0.8;
+  margin-bottom: 1rem;
+}
+
+.plan-maintenance-promo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  background: rgba(255, 193, 7, 0.1);
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px dashed rgba(255, 193, 7, 0.3);
+}
+
+.promo-text {
+  font-size: 0.7rem;
+  color: var(--accent-color);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
 .plan-details {
   flex: 1;
   margin-bottom: 2rem;
@@ -231,15 +259,15 @@
     max-width: 1100px;
     padding: 2rem 1rem;
   }
-  
+
   .planes-grid {
     gap: 1.2rem;
   }
-  
+
   .plan-card {
     padding: 1.8rem 1.2rem;
   }
-  
+
   .plan-price {
     font-size: 1.6rem;
   }
@@ -249,29 +277,29 @@
   .planes-container {
     max-width: 900px;
   }
-  
+
   .planes-grid {
     gap: 1rem;
   }
-  
+
   .plan-card {
     padding: 1.5rem 1rem;
   }
-  
+
   .plan-icon {
     width: 45px;
     height: 45px;
     font-size: 1.2rem;
   }
-  
+
   .plan-card h3 {
     font-size: 1.1rem;
   }
-  
+
   .plan-price {
     font-size: 1.5rem;
   }
-  
+
   .plan-details li {
     font-size: 0.7rem;
   }
@@ -283,20 +311,20 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
   }
-  
+
   .planes-title {
     font-size: 1.75rem;
     margin-bottom: 2rem;
   }
-  
+
   .plan-card {
     padding: 2rem 1.5rem;
   }
-  
+
   .plan-price {
     font-size: 1.75rem;
   }
-  
+
   .plan-details li {
     font-size: 0.8rem;
   }
@@ -308,23 +336,115 @@
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
-  
+
   .planes-container {
     padding: 1rem 0.5rem;
   }
-  
+
   .plan-card {
     padding: 1.8rem 1.2rem;
   }
-  
+
   .plan-badge {
     font-size: 0.7rem;
     padding: 0.4rem 1.2rem;
   }
-  
+
   .plan-icon {
     width: 40px;
     height: 40px;
     font-size: 1.1rem;
+  }
+}
+
+/* CTA Section - Botón único de contactar */
+.planes-cta {
+  margin-top: 4rem;
+  text-align: center;
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, rgba(255, 193, 7, 0.05) 0%, rgba(255, 193, 7, 0.1) 100%);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 193, 7, 0.2);
+}
+
+.planes-cta-title {
+  font-size: 1.8rem;
+  color: var(--accent-color);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.planes-cta-text {
+  font-size: 1rem;
+  color: var(--text-color);
+  opacity: 0.9;
+  margin-bottom: 2rem;
+}
+
+.btn-cta-planes {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  background: linear-gradient(135deg, var(--accent-color), #e6b000);
+  color: var(--bg-color);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(255, 193, 7, 0.3);
+}
+
+.btn-cta-planes:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 35px rgba(255, 193, 7, 0.5);
+}
+
+.btn-cta-planes .arrow {
+  transition: transform 0.3s ease;
+}
+
+.btn-cta-planes:hover .arrow {
+  transform: translateX(5px);
+}
+
+@media (max-width: 768px) {
+  .planes-cta {
+    margin-top: 3rem;
+    padding: 2rem 1.5rem;
+  }
+
+  .planes-cta-title {
+    font-size: 1.5rem;
+  }
+
+  .btn-cta-planes {
+    padding: 0.9rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .planes-cta {
+    margin-top: 2rem;
+    padding: 1.5rem 1rem;
+  }
+
+  .planes-cta-title {
+    font-size: 1.3rem;
+  }
+
+  .planes-cta-text {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .btn-cta-planes {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.95rem;
+    width: 100%;
+    justify-content: center;
   }
 }

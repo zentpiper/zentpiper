@@ -1,81 +1,22 @@
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { usePais } from "../contexts/PaisContext";
+import { formatearPrecio } from "../data/precios";
 import SEO from "../components/SEO";
 import "./Planes.css";
 
 function Planes() {
   const navigate = useNavigate();
-  const [paisSeleccionado, setPaisSeleccionado] = useState("PE");
-  const [precios, setPrecios] = useState({
-    basico: { desarrollo: 150, mantenimiento: 7 },
-    emprendedor: { desarrollo: 300, mantenimiento: 7 },
-    profesional: { desarrollo: 1200, mantenimiento: 70 },
-    tienda: { desarrollo: 1300, mantenimiento: 70 }
-  });
+  const { paisSeleccionado, planesWeb, moneda } = usePais();
 
-  // Precios por país
-  const preciosPorPais = {
-    PE: {
-      moneda: "$",
-      basico: { desarrollo: 150, mantenimiento: 10 },
-      emprendedor: { desarrollo: 300, mantenimiento: 10 },
-      profesional: { desarrollo: 1200, mantenimiento: 70 },
-      tienda: { desarrollo: 1800, mantenimiento: 70 }
-    },
-    CL: {
-      moneda: "CLP$",
-      basico: { desarrollo: 270000, mantenimiento: 65000 }, // Aprox conversión
-      emprendedor: { desarrollo: 540000, mantenimiento: 65000 },
-      profesional: { desarrollo: 1080000, mantenimiento: 65000 },
-      tienda: { desarrollo: 1620000, mantenimiento: 65000 }
-    }
-  };
-
-  // Escuchar cambios de país y recargar
-  useEffect(() => {
-    const handlePaisCambiado = (event) => {
-      const { pais } = event.detail;
-      window.location.reload();
-    };
-
-    // Cargar país inicial desde localStorage
-    const paisGuardado = localStorage.getItem('paisSeleccionado') || 'PE';
-    setPaisSeleccionado(paisGuardado);
-    setPrecios(preciosPorPais[paisGuardado]);
-
-    window.addEventListener('paisCambiado', handlePaisCambiado);
-    
-    return () => {
-      window.removeEventListener('paisCambiado', handlePaisCambiado);
-    };
-  }, []);
-
-  // También escuchar cambios en localStorage
-  useEffect(() => {
-    const handleStorageChange = () => {
-      const paisGuardado = localStorage.getItem('paisSeleccionado') || 'PE';
-      if (paisGuardado !== paisSeleccionado) {
-        window.location.reload();
-      }
-    };
-
-    window.addEventListener('storage', handleStorageChange);
-    
-    return () => {
-      window.removeEventListener('storage', handleStorageChange);
-    };
-  }, [paisSeleccionado]);
-
-  const handleCotizar = (planName) => {
+  const handleCotizar = () => {
     navigate("/contacto", {
       state: {
-        asunto: "Creación de página web",
-        plan: planName,
+        asunto: "Página Web",
         pais: paisSeleccionado,
-        moneda: preciosPorPais[paisSeleccionado].moneda
+        moneda: moneda
       },
     });
-    
+
     setTimeout(() => {
       const formElement = document.getElementById("contacto-form-container");
       if (formElement) {
@@ -85,15 +26,6 @@ function Planes() {
         });
       }
     }, 100);
-  };
-
-  const formatearPrecio = (precio) => {
-    const moneda = preciosPorPais[paisSeleccionado].moneda;
-    if (paisSeleccionado === 'CL') {
-      return `${moneda} ${precio.toLocaleString('es-CL')}`;
-    } else {
-      return `${moneda} ${precio.toLocaleString('es-PE')}`;
-    }
   };
 
   return (
@@ -107,19 +39,17 @@ function Planes() {
 
       <div className="planes-container">
         <h2 className="planes-title">Nuestros Planes</h2>
-        
-        {/* Indicador de País Actual */}
-        
 
         <div className="planes-grid">
           {/* Plan Básico */}
           <div className="plan-card">
             <h3>Plan Básico</h3>
             <div className="plan-price">
-              {formatearPrecio(precios.basico.desarrollo)} <span>(mesual)</span>
+              {formatearPrecio(planesWeb.basico.desarrollo, paisSeleccionado)}
             </div>
-            <div className="plan-maintenance">
-              Mantenimiento: {formatearPrecio(precios.basico.mantenimiento)}/Mes
+            <div className="plan-maintenance plan-maintenance-promo">
+              Mantenimiento: {formatearPrecio(planesWeb.basico.mantenimiento, paisSeleccionado)}/Mes
+              <span className="promo-text">Primer año incluido</span>
             </div>
             <div className="plan-details">
               <ul>
@@ -132,28 +62,22 @@ function Planes() {
             </div>
             <button
               className="btn btn-secondary"
-              onClick={() => handleCotizar("Plan Básico")}
+              onClick={() => window.location.href = "https://cegrisa.vercel.app"}
             >
-              Contactar
-            </button>
-            <br></br>
-            <button
-              className="btn btn-secondary"
-             onClick={() => window.location.href = "https://cegrisa.vercel.app"}
-            >
-              Ejemplo
+              Ver Ejemplo
             </button>
           </div>
 
-          {/* Plan Emprendedor - DESTACADO */}
+          {/* Plan Avanzado - DESTACADO */}
           <div className="plan-card plan-featured">
             <div className="plan-badge">Más Popular</div>
-            <h3>Plan Avazado</h3>
+            <h3>Plan Avanzado</h3>
             <div className="plan-price">
-              {formatearPrecio(precios.emprendedor.desarrollo)} <span>(mensual)</span>
+              {formatearPrecio(planesWeb.emprendedor.desarrollo, paisSeleccionado)}
             </div>
-            <div className="plan-maintenance">
-              Mantenimiento: {formatearPrecio(precios.emprendedor.mantenimiento)}/Mes
+            <div className="plan-maintenance plan-maintenance-promo">
+              Mantenimiento: {formatearPrecio(planesWeb.emprendedor.mantenimiento, paisSeleccionado)}/Mes
+              <span className="promo-text">Primer año incluido</span>
             </div>
             <div className="plan-details">
               <ul>
@@ -166,31 +90,21 @@ function Planes() {
             </div>
             <button
               className="btn btn-secondary"
-              onClick={() => handleCotizar("Plan Básico")}
-            >
-              Contactar
-            </button>
-            <br></br>
-            <button
-              className="btn btn-secondary"
               onClick={() => window.location.href = "https://limamoscow.ru/#special"}
             >
-              Ejemplo
+              Ver Ejemplo
             </button>
-         
-         
-         
-         
           </div>
 
-          {/* Plan Profesional */}
+          {/* Plan Emprendedor */}
           <div className="plan-card">
             <h3>Plan Emprendedor</h3>
             <div className="plan-price">
-              {formatearPrecio(precios.profesional.desarrollo)} <span>(mensual)</span>
+              {formatearPrecio(planesWeb.profesional.desarrollo, paisSeleccionado)}
             </div>
-            <div className="plan-maintenance">
-              Mantenimiento: {formatearPrecio(precios.profesional.mantenimiento)}/Mes
+            <div className="plan-maintenance plan-maintenance-promo">
+              Mantenimiento: {formatearPrecio(planesWeb.profesional.mantenimiento, paisSeleccionado)}/Mes
+              <span className="promo-text">Primer año incluido</span>
             </div>
             <div className="plan-details">
               <ul>
@@ -203,27 +117,21 @@ function Planes() {
             </div>
             <button
               className="btn btn-secondary"
-              onClick={() => handleCotizar("Plan Básico")}
-            >
-              Contactar
-            </button>
-            <br></br>
-            <button
-              className="btn btn-secondary"
               onClick={() => window.location.href = "https://www.autonoma.pe"}
             >
-              Ejemplo
+              Ver Ejemplo
             </button>
           </div>
 
-          {/* Plan Tienda Online */}
+          {/* Plan Corporativo */}
           <div className="plan-card">
             <h3>Plan Corporativo</h3>
             <div className="plan-price">
-              {formatearPrecio(precios.tienda.desarrollo)} <span>(mensual)</span>
+              {formatearPrecio(planesWeb.tienda.desarrollo, paisSeleccionado)}
             </div>
-            <div className="plan-maintenance">
-              Mantenimiento: {formatearPrecio(precios.tienda.mantenimiento)}/Mes
+            <div className="plan-maintenance plan-maintenance-promo">
+              Mantenimiento: {formatearPrecio(planesWeb.tienda.mantenimiento, paisSeleccionado)}/Mes
+              <span className="promo-text">Primer año incluido</span>
             </div>
             <div className="plan-details">
               <ul>
@@ -234,20 +142,26 @@ function Planes() {
                 <li>Soporte técnico prioritario</li>
               </ul>
             </div>
-           <button
-              className="btn btn-secondary"
-              onClick={() => handleCotizar("Plan Básico")}
-            >
-              Contactar
-            </button>
-            <br></br>
             <button
               className="btn btn-secondary"
               onClick={() => window.location.href = "https://celestinaperu.com"}
             >
-              Ejemlo
+              Ver Ejemplo
             </button>
           </div>
+        </div>
+
+        {/* Botón de contactar único al final */}
+        <div className="planes-cta">
+          <h3 className="planes-cta-title">¿Listo para comenzar?</h3>
+          <p className="planes-cta-text">Contáctanos y te ayudamos a elegir el plan perfecto para tu negocio</p>
+          <button
+            className="btn btn-primary btn-cta-planes"
+            onClick={handleCotizar}
+          >
+            <span>Contactar Ahora</span>
+            <i className="arrow">→</i>
+          </button>
         </div>
       </div>
     </>

@@ -1,34 +1,32 @@
-import React from 'react';
+import SEO from '../components/SEO';
 import './Portfolio.css';
 
 const projects = [
   {
     id: 1,
     title: 'Cegrisa Import',
-    description: 'Pagina Catalogo Para Empresa Vendedora De Ceramicas',
+    description: 'Página Catálogo Para Empresa Vendedora De Cerámicas',
     image: 'https://github.com/zentpiper/zentpiper/blob/main/public/cegrisa.png?raw=true',
     link: 'https://cegrisa.vercel.app',
     demo: 'https://cegrisa.vercel.app',
     github: 'https://github.com/zentpiper/cegrisa',
-    tags: ['React', 'Django', 'Postgrest',],
+    tags: ['React', 'Django', 'PostgreSQL'],
     featured: true
   },
-
   {
     id: 2,
-    title: 'H Y G ',
-    description: 'Pagina de administracion y control para Call Centers',
+    title: 'H Y G',
+    description: 'Página de administración y control para Call Centers',
     image: 'https://github.com/zentpiper/zentpiper/blob/main/public/HYG.png?raw=true',
     link: 'https://ventacenter.vercel.app/home',
     demo: 'https://ventacenter.vercel.app/home',
     github: '',
-    tags: ['React', 'Excel', 'Json'],
+    tags: ['React', 'Excel', 'JSON'],
     featured: true
   },
- 
 ];
 
-// Componente para iconos (puedes reemplazar con tu librería de iconos preferida)
+// Componente para iconos SVG
 const Icon = ({ name }) => {
   const icons = {
     external: (
@@ -56,98 +54,105 @@ const Icon = ({ name }) => {
 
 function Portfolio() {
   return (
-    <section className="portfolio-section" aria-labelledby="portfolio-title">
-      <div className="portfolio-container">
-        <header className="portfolio-header">
-          <div className="header-content">
-            <h1 id="portfolio-title" className="portfolio-title">
-              Nuestro Portafolio
-            </h1>
+    <>
+      <SEO
+        title="Portafolio | Zentpiper - Proyectos Web y Móviles"
+        description="Conoce nuestros proyectos de diseño web, aplicaciones móviles y desarrollo de software. Casos de éxito de clientes satisfechos."
+        keywords="portafolio web, proyectos desarrollo, diseño web ejemplos, aplicaciones móviles, casos de éxito, zentpiper proyectos"
+        canonical="https://zentpiper.com/portafolio"
+      />
 
-            <div className="header-decoration">
-              <div className="decoration-line"></div>
+      <section className="portfolio-section" aria-labelledby="portfolio-title">
+        <div className="portfolio-container">
+          <header className="portfolio-header">
+            <div className="header-content">
+              <h1 id="portfolio-title" className="portfolio-title">
+                Nuestro Portafolio
+              </h1>
+
+              <div className="header-decoration">
+                <div className="decoration-line"></div>
+              </div>
             </div>
+          </header>
+
+          <div className="projects-grid">
+            {projects.map((project, index) => (
+              <article
+                key={project.id}
+                className={`project-card ${project.featured ? 'project-card--featured' : ''}`}
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="project-image-container">
+                  <img
+                    src={project.image}
+                    alt={`Captura del proyecto ${project.title}`}
+                    className="project-image"
+                    loading="lazy"
+                  />
+                  <div className="project-overlay">
+                    <div className="project-links">
+                      {project.demo && (
+                        <a
+                          href={project.demo}
+                          className="project-link project-link--demo"
+                          aria-label={`Ver demo de ${project.title}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Icon name="external" />
+                        </a>
+                      )}
+                      {project.github && (
+                        <a
+                          href={project.github}
+                          className="project-link project-link--github"
+                          aria-label={`Ver código de ${project.title} en GitHub`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Icon name="github" />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="project-content">
+                  <div className="project-header">
+                    <h3 className="project-title">{project.title}</h3>
+                    <p className="project-description">{project.description}</p>
+                  </div>
+
+                  <div className="project-footer">
+                    <div className="project-tags">
+                      {project.tags.map(tag => (
+                        <span key={tag} className="tag">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="project-actions">
+                      <a
+                        href={project.link}
+                        className="project-cta"
+                        aria-label={`Ver detalles del proyecto ${project.title}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span>Explorar proyecto</span>
+                        <Icon name="arrow" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            ))}
           </div>
-        </header>
-
-        <div className="projects-grid">
-          {projects.map((project, index) => (
-            <article 
-              key={project.id} 
-              className={`project-card ${project.featured ? 'project-card--featured' : ''}`}
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              
-              
-              <div className="project-image-container">
-                <img 
-                  src={project.image}
-                  alt={`Captura del proyecto ${project.title}`}
-                  className="project-image"
-                  loading="lazy"
-                />
-                <div className="project-overlay">
-                  <div className="project-links">
-                    {project.demo && (
-                      <a 
-                        href={project.demo} 
-                        className="project-link project-link--demo"
-                        aria-label={`Ver demo de ${project.title}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Icon name="external" />
-                      </a>
-                    )}
-                    {project.github && (
-                      <a 
-                        href={project.github} 
-                        className="project-link project-link--github"
-                        aria-label={`Ver código de ${project.title} en GitHub`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Icon name="github" />
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
-              
-              <div className="project-content">
-                <div className="project-header">
-                  <h3 className="project-title">{project.title}</h3>
-                  <p className="project-description">{project.description}</p>
-                </div>
-                
-                <div className="project-footer">
-                  <div className="project-tags">
-                    {project.tags.map(tag => (
-                      <span key={tag} className="tag">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  
-                  <div className="project-actions">
-                    <a 
-                      href={project.link} 
-                      className="project-cta"
-                      aria-label={`Ver detalles del proyecto ${project.title}`}
-                    >
-                      <span>Explorar proyecto</span>
-                      <Icon name="arrow" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </article>
-          ))}
         </div>
-
-        
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
 

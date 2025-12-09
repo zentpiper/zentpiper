@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom";
+import { usePais } from "../contexts/PaisContext";
 import "./NotFound.css";
 
 function NotFound() {
   const navigate = useNavigate();
+  const { paisData } = usePais();
 
   const handleGoHome = () => {
     navigate("/");
@@ -47,13 +49,13 @@ function NotFound() {
           <h3>¿Necesitas ayuda?</h3>
           <p>Puedes contactarnos directamente:</p>
           <div className="contact-info">
-            <a href="tel:+51988490319" className="contact-link">
+            <a href={`tel:${paisData.telefono.replace(/\s/g, '')}`} className="contact-link">
               <i className="bi bi-telephone"></i>
-              988 490 319
+              {paisData.telefono}
             </a>
-            <a href="mailto:zentpiper@gmail.com" className="contact-link">
+            <a href={`mailto:${paisData.email}`} className="contact-link">
               <i className="bi bi-envelope"></i>
-              zentpiper@gmail.com
+              {paisData.email}
             </a>
           </div>
         </div>

@@ -33,11 +33,11 @@ function Home() {
   return (
     <>
       <SEO
-  title="Zentpiper - Sitios Web Profesionales en Perú | Diseño Web, Hosting y SEO"
-  description="Creamos sitios web profesionales, rápidos y optimizados para SEO. Incluye hosting, dominio y diseño responsive. Planes desde S/500 para tu negocio en Perú."
-  keywords="diseño web Perú, desarrollo web profesional, páginas web optimizadas, SEO, hosting, dominio, diseño responsive, tiendas online, Zentpiper"
-  canonical="https://zentpiper.com/"
-/>
+        title="Zentpiper - Sitios Web Profesionales en Perú | Diseño Web, Hosting y SEO"
+        description="Creamos sitios web profesionales, rápidos y optimizados para SEO. Incluye hosting, dominio y diseño responsive. Planes desde S/500 para tu negocio en Perú."
+        keywords="diseño web Perú, desarrollo web profesional, páginas web optimizadas, SEO, hosting, dominio, diseño responsive, tiendas online, Zentpiper"
+        canonical="https://zentpiper.com/"
+      />
       {/* Hero Section */}
       <section className="hero-section">
         <h1
@@ -62,69 +62,69 @@ function Home() {
             onClick={handleHablarConNosotros}
           >
             <span>Habla con nosotros</span>
-            
+
           </button>
         </div>
       </section>
 
 
-       {/* Mobile Apps Section */}
-<section className="apps-section">
-  <div className="apps-content">
-    <h1 className="apps-title">
-      <span className="title-main">Aplicaciones Móviles</span>
-      <span className="title-sub">para Android & iOS</span>
-    </h1>
-    <p className="apps-subtitle">
-      Desarrollamos apps nativas e híbridas con el mejor diseño, 
-      rendimiento y experiencia de usuario para ambos sistemas operativos.
-    </p>
-    
-    <div className="platforms-badge">
-      <div className="platform android">
-        <span className="platform-name">Android</span>
-      </div>
-      <div className="platform ios">
-        <span className="platform-name">iOS</span>
-      </div>
-    </div>
+      {/* Mobile Apps Section */}
+      <section className="apps-section">
+        <div className="apps-content">
+          <h1 className="apps-title">
+            <span className="title-main">Aplicaciones Móviles</span>
+            <span className="title-sub">para Android & iOS</span>
+          </h1>
+          <p className="apps-subtitle">
+            Desarrollamos apps nativas e híbridas con el mejor diseño,
+            rendimiento y experiencia de usuario para ambos sistemas operativos.
+          </p>
 
-    <div className="features-grid-mini">
-      <div className="feature-mini">
-        <div className="feature-icon-mini"></div>
-        <div className="feature-text-mini">Máximo rendimiento</div>
-      </div>
-      <div className="feature-mini">
-        <div className="feature-icon-mini"></div>
-        <div className="feature-text-mini">Diseño intuitivo</div>
-      </div>
-      <div className="feature-mini">
-        <div className="feature-icon-mini"></div>
-        <div className="feature-text-mini">Seguridad integrada</div>
-      </div>
-    </div>
+          <div className="platforms-badge">
+            <div className="platform android">
+              <span className="platform-name">Android</span>
+            </div>
+            <div className="platform ios">
+              <span className="platform-name">iOS</span>
+            </div>
+          </div>
 
-    <div className="cta-buttons">
-      <button
-        className="btn btn-primary btn-apps"
-        onClick={handleVerMobile}
-      >
-        <span>Ver Planes Mobile</span>
-        <i className="arrow">→</i>
-      </button>
-      <button
-        className="btn btn-secondary btn-apps"
-        onClick={handleHablarConNosotros}
-      >
-        <span>Cotizar Proyecto</span>
-        <i className="arrow"></i>
-      </button>
-    </div>
-  </div>
-</section>
+          <div className="features-grid-mini">
+            <div className="feature-mini">
+              <div className="feature-icon-mini"></div>
+              <div className="feature-text-mini">Máximo rendimiento</div>
+            </div>
+            <div className="feature-mini">
+              <div className="feature-icon-mini"></div>
+              <div className="feature-text-mini">Diseño intuitivo</div>
+            </div>
+            <div className="feature-mini">
+              <div className="feature-icon-mini"></div>
+              <div className="feature-text-mini">Seguridad integrada</div>
+            </div>
+          </div>
 
-      
-        {/* Soluciones Digitales Section - COMPACTA */}
+          <div className="cta-buttons">
+            <button
+              className="btn btn-primary btn-apps"
+              onClick={handleVerMobile}
+            >
+              <span>Ver Planes Mobile</span>
+              <i className="arrow">→</i>
+            </button>
+            <button
+              className="btn btn-secondary btn-apps"
+              onClick={handleHablarConNosotros}
+            >
+              <span>Cotizar Proyecto</span>
+              <i className="arrow"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+
+
+      {/* Soluciones Digitales Section - COMPACTA */}
       <section className="solutions-section">
         <div className="solutions-content">
           <h1 className="solutions-title">
@@ -134,7 +134,7 @@ function Home() {
           <p className="solutions-subtitle">
             Desarrollamos cualquier tipo de sistema adaptado a tus necesidades específicas
           </p>
-          
+
 
           <div className="features-grid-mini">
             <div className="feature-mini">
@@ -157,14 +157,7 @@ function Home() {
               onClick={handleHablarConNosotros}
             >
               <span>Consultar Proyecto</span>
-              
-            </button>
-            <button
-              className="btn btn-secondary btn-apps"
-              onClick={handleHablarConNosotros}
-            >
-              <span>Más Información</span>
-              
+              <i className="arrow">→</i>
             </button>
           </div>
         </div>
@@ -282,8 +275,8 @@ function Home() {
         </div>
       </section>
 
-    
-      
+
+
       {/* Call to Action Section */}
       <section className="cta-section">
         <div className="triangle-pattern">
@@ -302,7 +295,7 @@ function Home() {
           onClick={handleSolicitarInformacion}
         >
           <span>Solicitar Información</span>
-          <i className="arrow">✨</i>
+          <i className="arrow">→</i>
         </button>
       </section>
     </>

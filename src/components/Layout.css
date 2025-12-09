@@ -4,18 +4,34 @@
   flex-direction: column;
   min-height: 100vh;
   background-color: var(--bg-color);
+  width: 100%;
 }
 
 /* Main Content */
 main {
   flex: 1;
-  margin-top: 140px; /* Espacio para el header fijo */
-  padding: 2rem 0;
+  margin-top: 80px;
+  padding: 1.5rem 0;
+  width: 100%;
 }
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
+
+  .app-container,
   main {
-    margin-top: 180px; /* Más espacio para header en móvil */
+    overflow-x: hidden;
+  }
+
+  main {
+    margin-top: 100px;
+    padding: 1rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    margin-top: 95px;
+    padding: 0.5rem 0;
   }
 }

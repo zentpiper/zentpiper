@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { usePais } from "../contexts/PaisContext";
 import SEO from "../components/SEO";
 import "./Contacto.css";
 
 function Contacto() {
   const location = useLocation();
-  const [paisSeleccionado, setPaisSeleccionado] = useState("PE");
+  const { paisSeleccionado, paisData } = usePais();
+
   const [formData, setFormData] = useState({
     nombre: "",
     email: "",
@@ -14,50 +16,13 @@ function Contacto() {
     mensaje: "",
   });
 
-  // Contactos por país
-  const contactosPorPais = {
-    PE: {
-      telefono: "+51 945 935 080",
-      whatsapp: "51945935080",
-      email: "zentpiper@gmail.com"
-    },
-    CL: {
-      telefono: "+56 9 3660 4464", 
-      whatsapp: "56936604464",
-      email: "zentpiper@gmail.com"
-    }
-  };
-
-  // Escuchar cambios de país
-  useEffect(() => {
-    const handlePaisCambiado = (event) => {
-      const { pais } = event.detail;
-      setPaisSeleccionado(pais);
-    };
-
-    // Cargar país inicial desde localStorage
-    const paisGuardado = localStorage.getItem('paisSeleccionado') || 'PE';
-    setPaisSeleccionado(paisGuardado);
-
-    window.addEventListener('paisCambiado', handlePaisCambiado);
-    
-    return () => {
-      window.removeEventListener('paisCambiado', handlePaisCambiado);
-    };
-  }, []);
-
-  const contactoActual = contactosPorPais[paisSeleccionado];
-
   // Efecto para cargar datos desde la navegación
   useEffect(() => {
     if (location.state) {
       setFormData((prevState) => ({
         ...prevState,
         asunto: location.state.asunto || "",
-        plan: location.state.plan || "",
-        // Agregar país y moneda si vienen del state
-        ...(location.state.pais && { pais: location.state.pais }),
-        ...(location.state.moneda && { moneda: location.state.moneda })
+        plan: location.state.plan || location.state.servicio || "",
       }));
     }
   }, [location.state]);
@@ -73,25 +38,28 @@ function Contacto() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const phoneNumber = contactoActual.whatsapp;
+    const phoneNumber = paisData.whatsapp;
 
     // Crear el mensaje formateado para WhatsApp
-    let message = `*📩 Contacto desde Web Zentpiper*%0A%0A*🌎 País:* ${paisSeleccionado === 'PE' ? 'Perú 🇵🇪' : 'Chile 🇨🇱'}%0A*👤 Nombre:* ${formData.nombre}%0A*✉️ Email:* ${formData.email}%0A*📝 Asunto:* ${formData.asunto}`;
+    let message = `*Contacto desde Web Zentpiper*\n\n`;
+    message += `*País:* ${paisSeleccionado === 'PE' ? 'Perú' : 'Chile'}\n`;
+    message += `*Nombre:* ${formData.nombre}\n`;
+    message += `*Email:* ${formData.email}\n`;
+    message += `*Asunto:* ${formData.asunto}\n`;
 
-    // Agregar plan si está seleccionado
+    // Agregar plan/servicio si está seleccionado
     if (formData.plan) {
-      message += `%0A*📋 Plan:* ${formData.plan}`;
+      message += `*Plan/Servicio:* ${formData.plan}\n`;
     }
 
-    // Agregar moneda si viene del state (desde planes/mobile)
-    if (location.state?.moneda) {
-      message += `%0A*💰 Moneda seleccionada:* ${location.state.moneda}`;
-    }
+    // Agregar moneda
+    message += `*Moneda:* ${paisData.moneda}\n`;
 
-    message += `%0A*💬 Mensaje:* ${formData.mensaje}`;
+    // Agregar mensaje
+    message += `*Mensaje:* ${formData.mensaje}`;
 
-    // Crear la URL de WhatsApp
-    const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${message}`;
+    // Crear la URL de WhatsApp con el mensaje codificado
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
 
     // Abrir WhatsApp en una nueva pestaña
     window.open(whatsappUrl, "_blank");
@@ -101,37 +69,37 @@ function Contacto() {
     <>
       <SEO
         title={`Contacto | Zentpiper - Cotiza tu Proyecto en ${paisSeleccionado === 'PE' ? 'Perú' : 'Chile'}`}
-        description={`¿Listo para impulsar tu negocio online? Contáctanos y recibe una cotización gratuita. Teléfono: ${contactoActual.telefono} · Email: ${contactoActual.email} · Atención en ${paisSeleccionado === 'PE' ? 'Perú' : 'Chile'}.`}
+        description={`¿Listo para impulsar tu negocio online? Contáctanos y recibe una cotización gratuita. Teléfono: ${paisData.telefono} · Email: ${paisData.email} · Atención en ${paisSeleccionado === 'PE' ? 'Perú' : 'Chile'}.`}
         keywords={`contacto Zentpiper, cotización sitio web, diseño web ${paisSeleccionado === 'PE' ? 'Perú' : 'Chile'}, crear página web, desarrollo web, consulta gratuita diseño web`}
         canonical="https://zentpiper.com/contacto"
       />
-      
+
       <div className="contacto-container">
         <h1 className="contacto-title">Contáctanos</h1>
 
         <div className="contacto-info">
           <div className="contacto-card">
             <div className="contacto-icon">
-              <i className="fas fa-phone"></i>
+              <i className="bi bi-telephone-fill"></i>
             </div>
             <h3>Teléfono</h3>
-            <p>{contactoActual.telefono}</p>
+            <p>{paisData.telefono}</p>
             <small>{paisSeleccionado === 'PE' ? 'Perú' : 'Chile'}</small>
           </div>
 
           <div className="contacto-card">
             <div className="contacto-icon">
-              <i className="fas fa-envelope"></i>
+              <i className="bi bi-envelope-fill"></i>
             </div>
             <h3>Correo Electrónico</h3>
-            <p>{contactoActual.email}</p>
+            <p>{paisData.email}</p>
           </div>
         </div>
 
         <div className="contacto-form-container" id="contacto-form-container">
           <h2>Envíanos un mensaje</h2>
           <div className="pais-indicator-contacto">
-            Estás contactando desde: <strong>{paisSeleccionado === 'PE' ? 'Perú 🇵🇪' : 'Chile 🇨🇱'}</strong>
+            Estás contactando desde: <strong>{paisSeleccionado === 'PE' ? 'Perú' : 'Chile'}</strong>
           </div>
           <form className="contacto-form" onSubmit={handleSubmit}>
             <div className="form-group">
@@ -191,9 +159,30 @@ function Contacto() {
                 >
                   <option value="">Selecciona un plan</option>
                   <option value="Plan Básico">Plan Básico</option>
+                  <option value="Plan Avanzado">Plan Avanzado</option>
                   <option value="Plan Emprendedor">Plan Emprendedor</option>
-                  <option value="Plan Profesional">Plan Profesional</option>
-                  <option value="Plan Tienda Online">Plan Tienda Online</option>
+                  <option value="Plan Corporativo">Plan Corporativo</option>
+                </select>
+              </div>
+            )}
+
+            {/* Campo Servicio - Solo se muestra si el asunto es "Aplicación Mobile" */}
+            {formData.asunto === "Aplicación Mobile" && (
+              <div className="form-group">
+                <label htmlFor="plan">Servicio</label>
+                <select
+                  id="plan"
+                  name="plan"
+                  value={formData.plan}
+                  onChange={handleChange}
+                  required
+                  className="select-plan"
+                >
+                  <option value="">Selecciona un servicio</option>
+                  <option value="App Android">App Android</option>
+                  <option value="App iOS">App iOS</option>
+                  <option value="App Flutter">App Flutter</option>
+                  <option value="App Nativa Full">App Nativa Full</option>
                 </select>
               </div>
             )}
@@ -211,6 +200,7 @@ function Contacto() {
             </div>
 
             <button type="submit" className="submit-button">
+              <i className="bi bi-whatsapp"></i>
               Enviar a WhatsApp {paisSeleccionado === 'PE' ? '(Perú)' : '(Chile)'}
             </button>
           </form>

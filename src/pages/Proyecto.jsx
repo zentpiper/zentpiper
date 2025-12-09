@@ -12,7 +12,7 @@ function Proyecto() {
         servicio: servicio,
       },
     });
-    
+
     setTimeout(() => {
       const formElement = document.getElementById("contacto-form-container");
       if (formElement) {
@@ -29,84 +29,84 @@ function Proyecto() {
       nombre: "Python",
       descripcion: "Desarrollo backend robusto para aplicaciones web, análisis de datos, inteligencia artificial y automatización de procesos.",
       uso: "Backend, Data Science, IA, Automatización",
-      
+
     },
     {
       nombre: "Swift",
       descripcion: "Desarrollo nativo para iOS y macOS con máximo rendimiento y experiencia de usuario fluida.",
       uso: "Apps iOS/macOS, Aplicaciones nativas",
-     
+
     },
     {
       nombre: "JavaScript",
       descripcion: "Desarrollo full-stack para aplicaciones web modernas, interactivas y de alto rendimiento.",
       uso: "Frontend, Backend, Aplicaciones web",
-      
+
     },
     {
       nombre: "Java",
       descripcion: "Aplicaciones empresariales escalables, sistemas Android y soluciones corporativas robustas.",
       uso: "Enterprise, Android, Sistemas corporativos",
-      
+
     },
     {
       nombre: "Kotlin",
       descripcion: "Desarrollo moderno para Android con código más limpio, seguro y productivo.",
       uso: "Apps Android, Desarrollo móvil",
-      
+
     },
     {
       nombre: "C++",
       descripcion: "Aplicaciones de alto rendimiento, sistemas embebidos y software que requiere máxima eficiencia.",
       uso: "Alto rendimiento, Sistemas, Juegos",
-      
-    },
-    
-    {
-       nombre: "Flutter",
-       descripcion: "Desarrollo cross-platform de alta calidad para iOS y Android desde una única base de código, con rendimiento nativo y diseño consistente.",
-        uso: "Apps multiplataforma, MVP rápidos, UI/UX consistentes",
-  
+
     },
 
-];
+    {
+      nombre: "Flutter",
+      descripcion: "Desarrollo cross-platform de alta calidad para iOS y Android desde una única base de código, con rendimiento nativo y diseño consistente.",
+      uso: "Apps multiplataforma, MVP rápidos, UI/UX consistentes",
+
+    },
+
+  ];
 
   const areasEspecializacion = [
     {
       titulo: "Sistemas Corporativos",
       descripcion: "Desarrollamos soluciones empresariales completas para administración, finanzas, recursos humanos y gestión de procesos.",
       proyectos: ["ERP", "CRM", "Sistemas de gestión"],
-      icono: "🏢"
+      icono: ""
     },
     {
       titulo: "Puntos de Venta",
       descripcion: "Sistemas POS integrales para restaurantes, retail y comercios con control de inventario y facturación electrónica.",
       proyectos: ["POS Restaurantes", "Retail", "E-commerce"],
-      icono: "💳"
+      icono: ""
     },
     {
       titulo: "Aplicaciones Móviles",
       descripcion: "Apps nativas e híbridas para iOS y Android con diseño intuitivo y máximo rendimiento.",
       proyectos: ["Apps nativas", "Cross-platform", "Progressive Web Apps"],
-      icono: "📲"
+      icono: ""
     },
     {
       titulo: "Optimización y Analytics",
       descripcion: "Sistemas de análisis de datos, dashboards interactivos y herramientas para toma de decisiones basada en datos.",
       proyectos: ["Dashboards", "Business Intelligence", "Reportes automáticos"],
-      icono: "📈"
+      icono: ""
     },
     {
       titulo: "Automatización",
       descripcion: "Soluciones que automatizan procesos repetitivos, aumentando la eficiencia y reduciendo errores.",
       proyectos: ["RPA", "Workflows", "Integraciones"],
-      icono: "🤖"
+      icono: ""
     },
     {
       titulo: "Chatbots & IA",
       descripcion: "Asistentes virtuales inteligentes y sistemas de chat automatizados para atención al cliente 24/7.",
       proyectos: ["Chatbots", "Asistentes virtuales", "Sistemas de soporte"],
-      icono: "💬"
+      icono: ""
     }
   ];
 
@@ -126,7 +126,7 @@ function Proyecto() {
             Tecnologías y <span className="accent-text">Soluciones</span>
           </h1>
           <p className="proyecto-hero-subtitle">
-            Utilizamos las mejores tecnologías para desarrollar soluciones 
+            Utilizamos las mejores tecnologías para desarrollar soluciones
             personalizadas que impulsan tu negocio al siguiente nivel.
           </p>
           <button
@@ -134,7 +134,7 @@ function Proyecto() {
             onClick={() => handleCotizar("Proyecto Personalizado")}
           >
             <span>¡Cotiza Ya!</span>
-            
+
           </button>
         </div>
       </section>
@@ -146,7 +146,7 @@ function Proyecto() {
           <p className="section-subtitle">
             Utilizamos las herramientas más modernas y eficientes para cada proyecto
           </p>
-          
+
           <div className="tecnologias-grid">
             {tecnologias.map((tech, index) => (
               <div key={index} className="tech-card">
@@ -169,7 +169,7 @@ function Proyecto() {
           <p className="section-subtitle">
             Desarrollamos soluciones para diversas industrias y necesidades empresariales
           </p>
-          
+
           <div className="especializacion-grid">
             {areasEspecializacion.map((area, index) => (
               <div key={index} className="area-card">
@@ -205,7 +205,7 @@ function Proyecto() {
             onClick={() => handleCotizar("Consulta de Proyecto")}
           >
             <span>¡Cotiza Tu Proyecto Ahora!</span>
-           
+
           </button>
         </div>
       </section>

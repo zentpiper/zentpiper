@@ -3,15 +3,15 @@ import { useLocation } from "react-router-dom";
 
 /**
  * Componente SEO
- * Actualiza dinámicamente las etiquetas meta y Open Graph.
+ * Actualiza dinámicamente las etiquetas meta, Open Graph y Twitter Cards.
  */
 const SEO = ({
-  title = "Zentpiper",
-  description = "Potencia tu negocio con soluciones digitales inteligentes.",
-  keywords = "software, inteligencia artificial, automatización, desarrollo web, zentpiper",
+  title = "Zentpiper - Sitios Web Profesionales",
+  description = "Creamos sitios web profesionales, rápidos y optimizados para SEO. Diseño responsive, hosting incluido, dominio gratis.",
+  keywords = "diseño web, desarrollo web, SEO, hosting, dominio, zentpiper, páginas web, aplicaciones móviles",
   canonical,
-  image = "/assets/logo.png", // ruta desde /public o servida por tu build
-  favicon = "/favicon.ico",
+  image = "https://zentpiper.com/logo-og.png",
+  type = "website",
 }) => {
   const location = useLocation();
 
@@ -29,12 +29,14 @@ const SEO = ({
       element.setAttribute("content", content);
     };
 
-    // 🔹 Title
+    // Title
     document.title = title;
 
-    // 🔹 Descripción, keywords y canonical
+    // Basic Meta Tags
     setMetaTag("name", "description", description);
     setMetaTag("name", "keywords", keywords);
+    setMetaTag("name", "robots", "index, follow");
+    setMetaTag("name", "author", "Zentpiper");
 
     // Canonical link
     let canonicalLink = document.querySelector('link[rel="canonical"]');
@@ -45,29 +47,23 @@ const SEO = ({
     }
     canonicalLink.setAttribute("href", currentUrl);
 
-    // 🔹 Favicon
-    let faviconLink = document.querySelector('link[rel="icon"]');
-    if (!faviconLink) {
-      faviconLink = document.createElement("link");
-      faviconLink.setAttribute("rel", "icon");
-      document.head.appendChild(faviconLink);
-    }
-    faviconLink.setAttribute("href", favicon);
-
-    // 🔹 Open Graph
+    // Open Graph
     setMetaTag("property", "og:title", title);
     setMetaTag("property", "og:description", description);
-    setMetaTag("property", "og:type", "website");
+    setMetaTag("property", "og:type", type);
     setMetaTag("property", "og:url", currentUrl);
     setMetaTag("property", "og:image", image);
+    setMetaTag("property", "og:site_name", "Zentpiper");
+    setMetaTag("property", "og:locale", "es_PE");
 
-    // 🔹 Twitter Cards
+    // Twitter Cards
     setMetaTag("name", "twitter:card", "summary_large_image");
     setMetaTag("name", "twitter:title", title);
     setMetaTag("name", "twitter:description", description);
     setMetaTag("name", "twitter:image", image);
     setMetaTag("name", "twitter:url", currentUrl);
-  }, [title, description, keywords, canonical, image, favicon, location]);
+
+  }, [title, description, keywords, canonical, image, type, location]);
 
   return null;
 };

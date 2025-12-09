@@ -1,14 +1,28 @@
+# Zentpiper - Robots.txt
 User-agent: *
 Allow: /
 Crawl-delay: 1
 
-# Important pages
+# Pages
 Allow: /planes
+Allow: /mobile
+Allow: /portafolio
+Allow: /proyecto
 Allow: /contacto
+
+# Disallow admin/private routes
+Disallow: /admin
+Disallow: /api
 
 # Sitemap location
 Sitemap: https://zentpiper.com/sitemap.xml
 
-# Additional crawling hints
+# Google bot specific
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 0
+
+# Bing bot
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
