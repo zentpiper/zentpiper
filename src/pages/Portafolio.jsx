@@ -28,6 +28,19 @@ const projects = [
     tags: ['React', 'Excel', 'JSON'],
     featured: true
   },
+  {
+    id: 3,
+    title: 'Spanglish Academy',
+    description: 'Escuela de idiomas en Rusia',
+    image: '/Af-academy.png',
+    width: 600,
+    height: 400,
+    link: 'https://af-academy.vercel.app',
+    demo: 'https://af-academy.vercel.app',
+    github: '',
+    tags: ['React', 'Next.js', 'Tailwind'],
+    featured: true
+  },
 ];
 
 // Componente para iconos SVG

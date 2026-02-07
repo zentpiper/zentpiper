@@ -53,15 +53,20 @@
 }
 
 .logo {
-  height: 50px;
+  height: 75px;
+  /* Significantly increased size */
   width: auto;
   margin-right: 1rem;
-  filter: drop-shadow(0 0 8px rgba(255, 193, 7, 0.6));
-  transition: filter 0.3s ease;
+  /* Enhanced glow effect for transparent PNG */
+  filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.6)) drop-shadow(0 0 10px rgba(255, 193, 7, 0.4));
+  transition: filter 0.3s ease, transform 0.3s ease;
 }
 
 .logo-container:hover .logo {
-  filter: drop-shadow(0 0 12px rgba(255, 193, 7, 0.8));
+  /* Powerful interactive glow on hover: much brighter and larger radius */
+  filter: drop-shadow(0 0 15px rgba(255, 215, 0, 1)) drop-shadow(0 0 30px rgba(255, 120, 0, 0.8));
+  transform: scale(1.15);
+  /* More noticeable pop effect */
 }
 
 .logo-text {
@@ -296,7 +301,8 @@
   }
 
   .logo {
-    height: 45px;
+    height: 65px;
+    /* Increased from 55px */
   }
 
   .logo-title {
@@ -334,7 +340,8 @@
   }
 
   .logo {
-    height: 40px;
+    height: 60px;
+    /* Increased from 50px */
   }
 
   .logo-title {
@@ -401,7 +408,8 @@
   }
 
   .logo {
-    height: 30px;
+    height: 48px;
+    /* Increased from 38px */
     margin-right: 0.6rem;
   }
 
@@ -443,7 +451,8 @@
   }
 
   .logo {
-    height: 26px;
+    height: 42px;
+    /* Increased from 34px */
   }
 
   .logo-title {
