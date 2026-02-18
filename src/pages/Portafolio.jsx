@@ -35,8 +35,8 @@ const projects = [
     image: '/Af-academy.png',
     width: 600,
     height: 400,
-    link: 'https://af-academy.vercel.app',
-    demo: 'https://af-academy.vercel.app',
+    link: 'https://www.spanglishac.com',
+    demo: 'https://www.spanglishac.com',
     github: '',
     tags: ['React', 'Next.js', 'Tailwind'],
     featured: true
