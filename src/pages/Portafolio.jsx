@@ -3,6 +3,19 @@ import './Portfolio.css';
 
 const projects = [
   {
+    id: 4,
+    title: 'Naim Marchionni',
+    description: 'Sitio Web Para DJ & Productor de Tech House',
+    image: '/Naim pág',
+    width: 600,
+    height: 400,
+    link: 'https://www.naimmarchionni.com',
+    demo: 'https://www.naimmarchionni.com',
+    github: '',
+    tags: ['Next.js', 'React', 'CSS Modules'],
+    featured: true
+  },
+  {
     id: 1,
     title: 'Cegrisa Import',
     description: 'Página Catálogo Para Empresa Vendedora De Cerámicas',
