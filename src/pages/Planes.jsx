@@ -62,7 +62,7 @@ function Planes() {
             </div>
             <button
               className="btn btn-secondary"
-              onClick={() => window.location.href = "https://cegrisa.vercel.app"}
+              onClick={() => window.open("https://www.naimmarchionni.com", "_blank")}
             >
               Ver Ejemplo
             </button>
@@ -90,7 +90,7 @@ function Planes() {
             </div>
             <button
               className="btn btn-secondary"
-              onClick={() => window.location.href = "https://limamoscow.ru/#special"}
+              onClick={() => window.open("https://cegrisa-one.vercel.app", "_blank")}
             >
               Ver Ejemplo
             </button>
@@ -117,7 +117,7 @@ function Planes() {
             </div>
             <button
               className="btn btn-secondary"
-              onClick={() => window.location.href = "https://www.autonoma.pe"}
+              onClick={() => window.open("https://www.spanglishac.com", "_blank")}
             >
               Ver Ejemplo
             </button>
@@ -144,7 +144,7 @@ function Planes() {
             </div>
             <button
               className="btn btn-secondary"
-              onClick={() => window.location.href = "https://celestinaperu.com"}
+              onClick={() => window.open("https://ventacenter.vercel.app/home", "_blank")}
             >
               Ver Ejemplo
             </button>

@@ -35,8 +35,8 @@ export const preciosPorPais = {
         nombre: "Chile",
         bandera: "CL",
         moneda: "CLP$",
-        telefono: "+56 9 3660 4464",
-        whatsapp: "56936604464",
+        telefono: "+51 945 935 080",
+        whatsapp: "51945935080",
         email: "zentpiper@gmail.com",
 
         // Planes Web

@@ -22,8 +22,8 @@ const projects = [
     image: '/cegrisa.webp',
     width: 600,
     height: 400,
-    link: 'https://cegrisa.vercel.app',
-    demo: 'https://cegrisa.vercel.app',
+    link: 'https://cegrisa-one.vercel.app',
+    demo: 'https://cegrisa-one.vercel.app',
     github: 'https://github.com/zentpiper/cegrisa',
     tags: ['React', 'Django', 'PostgreSQL'],
     featured: true
@@ -50,6 +50,32 @@ const projects = [
     height: 400,
     link: 'https://www.spanglishac.com',
     demo: 'https://www.spanglishac.com',
+    github: '',
+    tags: ['React', 'Next.js', 'Tailwind'],
+    featured: true
+  },
+  {
+    id: 5,
+    title: 'Peruana en Rusia',
+    description: 'Blog y comunidad para peruanos residentes en Rusia',
+    image: '/peruanoenrusia_portada.jpg',
+    width: 600,
+    height: 400,
+    link: 'https://www.peruanaenrusia.com',
+    demo: 'https://www.peruanaenrusia.com',
+    github: '',
+    tags: ['React', 'Next.js', 'CSS Modules'],
+    featured: true
+  },
+  {
+    id: 6,
+    title: 'Lima Moscow',
+    description: 'Plataforma de servicios y comunidad peruano-rusa',
+    image: '/Restaurantelimamoscow_imagen_portada.jpg',
+    width: 600,
+    height: 400,
+    link: 'https://limamoscow.ru',
+    demo: 'https://limamoscow.ru',
     github: '',
     tags: ['React', 'Next.js', 'Tailwind'],
     featured: true
