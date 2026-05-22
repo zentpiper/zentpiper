@@ -280,7 +280,7 @@ function Home() {
       {/* Call to Action Section */}
       <section className="cta-section">
         <div className="triangle-pattern">
-          {Array.from({ length: 36 }, (_, i) => (
+          {Array.from({ length: 12 }, (_, i) => (
             <div key={i} className="triangle"></div>
           ))}
         </div>

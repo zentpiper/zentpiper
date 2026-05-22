@@ -438,7 +438,7 @@
 
 /* Optimización para móviles - reducir triángulos */
 @media (max-width: 768px) {
-  .cta-section .triangle:nth-child(n+9) {
+  .cta-section .triangle:nth-child(n+7) {
     display: none;
   }
   
@@ -462,46 +462,19 @@
   }
 }
 
-/* Posicionamiento de triángulos en patrón */
+/* Posicionamiento de triángulos en patrón - 12 triángulos */
 .cta-section .triangle:nth-child(1) { top: 10%; left: 5%; }
 .cta-section .triangle:nth-child(2) { top: 15%; left: 15%; }
-.cta-section .triangle:nth-child(3) { top: 8%; left: 25%; }
-.cta-section .triangle:nth-child(4) { top: 20%; left: 35%; }
-.cta-section .triangle:nth-child(5) { top: 12%; left: 45%; }
-.cta-section .triangle:nth-child(6) { top: 18%; left: 55%; }
-.cta-section .triangle:nth-child(7) { top: 10%; left: 65%; }
-.cta-section .triangle:nth-child(8) { top: 16%; left: 75%; }
-.cta-section .triangle:nth-child(9) { top: 14%; left: 85%; }
-.cta-section .triangle:nth-child(10) { top: 9%; left: 95%; }
-
-.cta-section .triangle:nth-child(11) { top: 35%; left: 8%; }
-.cta-section .triangle:nth-child(12) { top: 40%; left: 18%; }
-.cta-section .triangle:nth-child(13) { top: 32%; left: 28%; }
-.cta-section .triangle:nth-child(14) { top: 38%; left: 38%; }
-.cta-section .triangle:nth-child(15) { top: 36%; left: 48%; }
-.cta-section .triangle:nth-child(16) { top: 42%; left: 58%; }
-.cta-section .triangle:nth-child(17) { top: 34%; left: 68%; }
-.cta-section .triangle:nth-child(18) { top: 39%; left: 78%; }
-.cta-section .triangle:nth-child(19) { top: 37%; left: 88%; }
-
-.cta-section .triangle:nth-child(20) { top: 60%; left: 5%; }
-.cta-section .triangle:nth-child(21) { top: 65%; left: 15%; }
-.cta-section .triangle:nth-child(22) { top: 58%; left: 25%; }
-.cta-section .triangle:nth-child(23) { top: 62%; left: 35%; }
-.cta-section .triangle:nth-child(24) { top: 66%; left: 45%; }
-.cta-section .triangle:nth-child(25) { top: 59%; left: 55%; }
-.cta-section .triangle:nth-child(26) { top: 63%; left: 65%; }
-.cta-section .triangle:nth-child(27) { top: 61%; left: 75%; }
-.cta-section .triangle:nth-child(28) { top: 67%; left: 85%; }
-
-.cta-section .triangle:nth-child(29) { top: 85%; left: 8%; }
-.cta-section .triangle:nth-child(30) { top: 82%; left: 18%; }
-.cta-section .triangle:nth-child(31) { top: 88%; left: 28%; }
-.cta-section .triangle:nth-child(32) { top: 84%; left: 38%; }
-.cta-section .triangle:nth-child(33) { top: 86%; left: 48%; }
-.cta-section .triangle:nth-child(34) { top: 83%; left: 58%; }
-.cta-section .triangle:nth-child(35) { top: 87%; left: 68%; }
-.cta-section .triangle:nth-child(36) { top: 85%; left: 78%; }
+.cta-section .triangle:nth-child(3) { top: 8%; left: 30%; }
+.cta-section .triangle:nth-child(4) { top: 20%; left: 45%; }
+.cta-section .triangle:nth-child(5) { top: 12%; left: 60%; }
+.cta-section .triangle:nth-child(6) { top: 18%; left: 75%; }
+.cta-section .triangle:nth-child(7) { top: 55%; left: 10%; }
+.cta-section .triangle:nth-child(8) { top: 60%; left: 30%; }
+.cta-section .triangle:nth-child(9) { top: 65%; left: 50%; }
+.cta-section .triangle:nth-child(10) { top: 58%; left: 70%; }
+.cta-section .triangle:nth-child(11) { top: 85%; left: 20%; }
+.cta-section .triangle:nth-child(12) { top: 82%; left: 60%; }
 
 /* Variaciones de delay para efecto escalonado */
 .cta-section .triangle:nth-child(odd) {
@@ -512,15 +485,14 @@
   transition-delay: 0.1s;
 }
 
-.cta-section .triangle:nth-child(3n) {
-  transition-delay: 0.15s;
-}
-
 /* Optimización adicional para móviles */
 @media (max-width: 768px) {
+  .cta-section .triangle:nth-child(n+7) {
+    display: none;
+  }
+  
   .cta-section .triangle:nth-child(odd),
-  .cta-section .triangle:nth-child(even),
-  .cta-section .triangle:nth-child(3n) {
+  .cta-section .triangle:nth-child(even) {
     transition-delay: 0s;
   }
 }
@@ -730,6 +702,8 @@
   color: var(--text-color);
   position: relative;
   overflow: hidden;
+  min-height: 400px;
+  contain: layout style;
   border-top: 2px solid var(--accent-color);
   border-bottom: 2px solid var(--accent-color);
 }

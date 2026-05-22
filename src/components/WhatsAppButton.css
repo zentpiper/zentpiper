@@ -24,9 +24,32 @@
     0 8px 30px rgba(0, 0, 0, 0.4);
 
   transition: all 0.3s ease;
+}
 
-  /* Animación de pulso */
-  animation: whatsappPulse 2s infinite;
+/* Animación de pulso compuesta (transform + opacity) */
+.whatsapp-float::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 193, 7, 0.4);
+  animation: whatsappPulseComposite 2s infinite;
+  pointer-events: none;
+}
+
+@keyframes whatsappPulseComposite {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
 }
 
 .whatsapp-float:hover {
@@ -91,30 +114,6 @@
   transform: translateX(0);
 }
 
-/* Animación de pulso */
-@keyframes whatsappPulse {
-  0% {
-    box-shadow:
-      0 4px 15px rgba(255, 193, 7, 0.3),
-      0 8px 30px rgba(0, 0, 0, 0.4),
-      0 0 0 0 rgba(255, 193, 7, 0.4);
-  }
-
-  50% {
-    box-shadow:
-      0 4px 15px rgba(255, 193, 7, 0.3),
-      0 8px 30px rgba(0, 0, 0, 0.4),
-      0 0 0 15px rgba(255, 193, 7, 0);
-  }
-
-  100% {
-    box-shadow:
-      0 4px 15px rgba(255, 193, 7, 0.3),
-      0 8px 30px rgba(0, 0, 0, 0.4),
-      0 0 0 0 rgba(255, 193, 7, 0);
-  }
-}
-
 /* Responsive */
 @media (max-width: 768px) {
   .whatsapp-float {
@@ -136,7 +135,8 @@
 
 /* Reducir motion para usuarios que lo prefieren */
 @media (prefers-reduced-motion: reduce) {
-  .whatsapp-float {
+  .whatsapp-float,
+  .whatsapp-float::after {
     animation: none;
   }
 

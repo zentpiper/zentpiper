@@ -44,15 +44,23 @@
     content="Creamos sitios web profesionales, rápidos y optimizados para SEO. Diseño responsive, hosting incluido, dominio gratis. Planes desde $150." />
   <meta name="twitter:image" content="https://zentpiper.com/logo-og.png" />
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0L8037Y84K"></script>
+  <!-- Google Analytics - Carga diferida para mejor rendimiento -->
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
+    function gtag() { dataLayer.push(arguments); }
+    function loadGA() {
+      var s = document.createElement('script');
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-0L8037Y84K';
+      s.async = true;
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('config', 'G-0L8037Y84K');
     }
-    gtag("js", new Date());
-    gtag("config", "G-0L8037Y84K");
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(loadGA);
+    } else {
+      setTimeout(loadGA, 3500);
+    }
   </script>
 
   <!-- Structured Data - Organization -->
@@ -204,7 +212,14 @@
       rel="stylesheet" />
   </noscript>
 
-  <!-- Bootstrap Icons -->
+  <!-- Bootstrap Icons - con font-display swap para evitar FOIT -->
+  <style>
+    @font-face {
+      font-family: 'bootstrap-icons';
+      font-display: swap;
+      src: url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/fonts/bootstrap-icons.woff2?71415112f40fd498cfee8e6b13f5e9f2') format('woff2');
+    }
+  </style>
   <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" as="style"
     onload="this.onload=null;this.rel='stylesheet'" />
   <noscript>
