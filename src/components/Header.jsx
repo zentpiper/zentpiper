@@ -1,34 +1,41 @@
 import { NavLink } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { usePais } from "../contexts/PaisContext";
 import { paisesDisponibles, preciosPorPais } from "../data/precios";
-// Logo desde public (isotipo)
 import "./Header.css";
 
 function Header() {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
+  const lastScrollY = useRef(0);
 
-  // Usar el context centralizado
   const { paisSeleccionado, paisData, cambiarPais } = usePais();
 
-  // Efecto para ocultar/mostrar header al hacer scroll
+  // Throttled scroll handler — runs at most once per rAF instead of every scroll event
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setIsHeaderVisible(false);
-      } else {
-        setIsHeaderVisible(true);
-      }
-      setLastScrollY(currentScrollY);
+      if (ticking) return;
+      ticking = true;
+
+      requestAnimationFrame(() => {
+        const currentScrollY = window.scrollY;
+        if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+          setIsHeaderVisible(false);
+        } else {
+          setIsHeaderVisible(true);
+        }
+        lastScrollY.current = currentScrollY;
+        ticking = false;
+      });
     };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
-  // Cerrar dropdown al hacer click fuera
+  // Close dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (!e.target.closest('.country-selector')) {
@@ -39,15 +46,15 @@ function Header() {
     return () => document.removeEventListener('click', handleClickOutside);
   }, []);
 
-  const toggleCountryDropdown = (e) => {
+  const toggleCountryDropdown = useCallback((e) => {
     e.stopPropagation();
-    setIsCountryDropdownOpen(!isCountryDropdownOpen);
-  };
+    setIsCountryDropdownOpen(prev => !prev);
+  }, []);
 
-  const seleccionarPais = (pais) => {
+  const seleccionarPais = useCallback((pais) => {
     cambiarPais(pais);
     setIsCountryDropdownOpen(false);
-  };
+  }, [cambiarPais]);
 
   return (
     <header className={`header ${isHeaderVisible ? "header-visible" : "header-hidden"}`}>
@@ -61,7 +68,7 @@ function Header() {
           </div>
         </NavLink>
 
-        {/* Navigation - visible en todas las pantallas */}
+        {/* Navigation */}
         <nav className="navbar-desktop">
           <NavLink to="/" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>INICIO</NavLink>
           <NavLink to="/portafolio" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>PORTAFOLIO</NavLink>
@@ -71,9 +78,8 @@ function Header() {
           <NavLink to="/contacto" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>CONTACTO</NavLink>
         </nav>
 
-        {/* Header Right: Country Selector */}
+        {/* Country Selector */}
         <div className="header-right">
-          {/* Country Selector */}
           <div className="country-selector">
             <button
               className="country-btn"
