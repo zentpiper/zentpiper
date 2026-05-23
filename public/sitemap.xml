@@ -3,48 +3,48 @@
 
   <!-- Página principal -->
   <url>
-    <loc>https://zentpiper.com/</loc>
-    <lastmod>2025-12-09</lastmod>
+    <loc>https://www.zentpiper.com/</loc>
+    <lastmod>2026-05-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <!-- Planes Web -->
   <url>
-    <loc>https://zentpiper.com/planes</loc>
-    <lastmod>2025-12-09</lastmod>
+    <loc>https://www.zentpiper.com/planes</loc>
+    <lastmod>2026-05-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <!-- Servicios Mobile -->
   <url>
-    <loc>https://zentpiper.com/mobile</loc>
-    <lastmod>2025-12-09</lastmod>
+    <loc>https://www.zentpiper.com/mobile</loc>
+    <lastmod>2026-05-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <!-- Portafolio -->
   <url>
-    <loc>https://zentpiper.com/portafolio</loc>
-    <lastmod>2025-12-09</lastmod>
+    <loc>https://www.zentpiper.com/portafolio</loc>
+    <lastmod>2026-05-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Proyecto -->
   <url>
-    <loc>https://zentpiper.com/proyecto</loc>
-    <lastmod>2025-12-09</lastmod>
+    <loc>https://www.zentpiper.com/proyecto</loc>
+    <lastmod>2026-05-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <!-- Contacto -->
   <url>
-    <loc>https://zentpiper.com/contacto</loc>
-    <lastmod>2025-12-09</lastmod>
+    <loc>https://www.zentpiper.com/contacto</loc>
+    <lastmod>2026-05-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
