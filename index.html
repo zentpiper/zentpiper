@@ -214,39 +214,104 @@
 
 
 
-  <!-- Critical CSS inline to prevent CLS -->
+  <!-- Critical CSS: covers entire above-fold so FCP doesn't need external CSS -->
   <style>
-    /* Reserve space for header to prevent layout shift */
-    .header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      min-height: 80px;
+    /* CSS Variables */
+    :root {
+      --primary-color: #ffc107;
+      --accent-color: #ffc107;
+      --text-color: #fff;
+      --bg-color: #121212;
     }
-    main {
-      margin-top: 120px;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #121212;
+      color: #fff;
+      -webkit-font-smoothing: antialiased;
     }
-    /* Reserve logo dimensions */
-    .logo {
-      width: 66px;
-      height: 75px;
-    }
-    /* Prevent FOUC */
+    /* Layout */
     .app-container {
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      background-color: #121212;
+      width: 100%;
     }
+    main { flex: 1; margin-top: 120px; padding: 1.5rem 0; width: 100%; }
+    /* Header */
+    .header {
+      background: rgba(0, 0, 0, 0.98);
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      min-height: 80px;
+      border-bottom: 2px solid #ffc107;
+      padding: 1.5rem 0;
+    }
+    .header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+    }
+    .logo-container { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+    .logo { width: 66px; height: 75px; aspect-ratio: 66/75; }
+    .logo-title { color: #ffc107; font-weight: 800; font-size: 1.3rem; display: block; }
+    .logo-subtitle { color: #fff; font-size: 0.65rem; letter-spacing: 3px; display: block; }
+    /* Hero */
+    .hero-section {
+      padding: 5rem 2rem;
+      text-align: center;
+      color: #fff;
+      background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(30,30,30,0.8));
+    }
+    .hero-title {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      color: #ffc107;
+      line-height: 1.2;
+      font-weight: 800;
+    }
+    .hero-subtitle {
+      font-size: 1.3rem;
+      margin-bottom: 3rem;
+      line-height: 1.6;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.9;
+    }
+    .cta-buttons { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+    .btn { border: none; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; }
+    .btn-primary { background-color: #ffc107; color: #000; }
+    .btn-secondary { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.3); }
+    .btn-hero {
+      padding: 1rem 2.5rem;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border-radius: 50px;
+      gap: 0.8rem;
+      min-width: 200px;
+      justify-content: center;
+      text-transform: uppercase;
+    }
+    /* Mobile */
     @media (max-width: 768px) {
-      .header { min-height: 100px; }
-      main { margin-top: 130px; }
+      .header { min-height: 100px; backdrop-filter: none; }
+      main { margin-top: 130px; padding: 1rem 0; }
       .logo { width: 48px; height: 54px; }
+      .hero-section { padding: 3rem 1rem; }
+      .hero-title { font-size: 2.2rem; }
+      .hero-subtitle { font-size: 1.1rem; margin-bottom: 2rem; }
+      .btn-hero { padding: 0.8rem 1.5rem; font-size: 0.95rem; min-width: 160px; }
     }
     @media (max-width: 480px) {
       main { margin-top: 125px; }
       .logo { width: 42px; height: 47px; }
+      .hero-title { font-size: 1.8rem; }
     }
   </style>
 </head>
