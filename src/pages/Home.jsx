@@ -135,7 +135,7 @@ function Home() {
       </section>
 
       {/* Below-fold sections — deferred rendering to reduce TBT */}
-      <LazySection>
+      <LazySection minHeight="520px">
         <section className="apps-section">
           <div className="apps-content">
             <h2 className="apps-title">
@@ -184,7 +184,7 @@ function Home() {
         </section>
       </LazySection>
 
-      <LazySection>
+      <LazySection minHeight="420px">
         <section className="solutions-section">
           <div className="solutions-content">
             <h2 className="solutions-title">
@@ -220,7 +220,7 @@ function Home() {
         </section>
       </LazySection>
 
-      <LazySection>
+      <LazySection minHeight="800px">
         <section className="features-section">
           <div className="features-header">
             <h2 className="section-title">
@@ -235,7 +235,7 @@ function Home() {
         </section>
       </LazySection>
 
-      <LazySection>
+      <LazySection minHeight="300px">
         <section className="cta-section">
           <h2 className="cta-title">
             ¿Listo para comenzar?

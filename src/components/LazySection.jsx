@@ -2,9 +2,9 @@ import { useState, useEffect, useRef } from 'react';
 
 /**
  * LazySection - Renders children only when the section enters the viewport.
- * This reduces TBT by deferring the rendering of below-the-fold content.
+ * Uses min-height to reserve space and prevent CLS.
  */
-function LazySection({ children, className, rootMargin = '200px' }) {
+function LazySection({ children, minHeight = '400px', rootMargin = '200px' }) {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef(null);
 
@@ -12,7 +12,6 @@ function LazySection({ children, className, rootMargin = '200px' }) {
     const el = ref.current;
     if (!el) return;
 
-    // If IntersectionObserver is not supported, render immediately
     if (!('IntersectionObserver' in window)) {
       setIsVisible(true);
       return;
@@ -33,7 +32,7 @@ function LazySection({ children, className, rootMargin = '200px' }) {
   }, [rootMargin]);
 
   return (
-    <div ref={ref} className={className}>
+    <div ref={ref} style={isVisible ? undefined : { minHeight }}>
       {isVisible ? children : null}
     </div>
   );

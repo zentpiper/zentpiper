@@ -248,11 +248,44 @@
       main { margin-top: 125px; }
       .logo { width: 42px; height: 47px; }
     }
+    /* Critical hero CSS for instant LCP */
+    .hero-shell {
+      padding: 5rem 2rem;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(30,30,30,0.8));
+      margin-top: 120px;
+    }
+    .hero-shell h1 {
+      font-size: 3rem;
+      color: #ffc107;
+      font-weight: 800;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+    .hero-shell p {
+      font-size: 1.3rem;
+      color: #fff;
+      opacity: 0.9;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    @media (max-width: 768px) {
+      .hero-shell { margin-top: 130px; padding: 3rem 1rem; }
+      .hero-shell h1 { font-size: 2.2rem; }
+      .hero-shell p { font-size: 1.1rem; }
+    }
   </style>
 </head>
 
 <body>
-  <div id="root"></div>
+  <div id="root">
+    <!-- Hero shell for instant LCP — React replaces this on mount -->
+    <div class="hero-shell" aria-hidden="true">
+      <h1>Sitios web profesionales para tu negocio</h1>
+      <p>Diseño moderno, rápido y optimizado para que tu empresa destaque.</p>
+    </div>
+  </div>
   <script type="module" src="/src/main.jsx"></script>
 </body>
 
