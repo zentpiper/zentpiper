@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { usePais } from "../contexts/PaisContext";
+import Icons from "../components/Icons";
 import "./NotFound.css";
 
 function NotFound() {
@@ -22,7 +23,7 @@ function NotFound() {
     <div className="notfound-container">
       <div className="notfound-content">
         <div className="notfound-icon">
-          <i className="bi bi-exclamation-triangle"></i>
+          {Icons.exclamationTriangle}
         </div>
         <h1 className="notfound-title">404</h1>
         <h2 className="notfound-subtitle">Página no encontrada</h2>
@@ -32,15 +33,15 @@ function NotFound() {
 
         <div className="notfound-actions">
           <button className="btn btn-primary" onClick={handleGoHome}>
-            <i className="bi bi-house"></i>
+            {Icons.house}
             Ir al Inicio
           </button>
           <button className="btn btn-secondary" onClick={handleGoToPlanes}>
-            <i className="bi bi-card-list"></i>
+            {Icons.cardList}
             Ver Planes
           </button>
           <button className="btn btn-secondary" onClick={handleGoToContacto}>
-            <i className="bi bi-envelope"></i>
+            {Icons.envelope}
             Contacto
           </button>
         </div>
@@ -50,11 +51,11 @@ function NotFound() {
           <p>Puedes contactarnos directamente:</p>
           <div className="contact-info">
             <a href={`tel:${paisData.telefono.replace(/\s/g, '')}`} className="contact-link">
-              <i className="bi bi-telephone"></i>
+              {Icons.telephone}
               {paisData.telefono}
             </a>
             <a href={`mailto:${paisData.email}`} className="contact-link">
-              <i className="bi bi-envelope"></i>
+              {Icons.envelope}
               {paisData.email}
             </a>
           </div>

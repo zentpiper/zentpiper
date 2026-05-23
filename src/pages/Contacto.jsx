@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { usePais } from "../contexts/PaisContext";
 import SEO from "../components/SEO";
+import Icons from "../components/Icons";
 import "./Contacto.css";
 
 function Contacto() {
@@ -80,7 +81,7 @@ function Contacto() {
         <div className="contacto-info">
           <div className="contacto-card">
             <div className="contacto-icon">
-              <i className="bi bi-telephone-fill"></i>
+              {Icons.telephoneFill}
             </div>
             <h3>Teléfono</h3>
             <p>{paisData.telefono}</p>
@@ -89,7 +90,7 @@ function Contacto() {
 
           <div className="contacto-card">
             <div className="contacto-icon">
-              <i className="bi bi-envelope-fill"></i>
+              {Icons.envelopeFill}
             </div>
             <h3>Correo Electrónico</h3>
             <p>{paisData.email}</p>
@@ -200,7 +201,7 @@ function Contacto() {
             </div>
 
             <button type="submit" className="submit-button">
-              <i className="bi bi-whatsapp"></i>
+              {Icons.whatsapp}
               Enviar a WhatsApp {paisSeleccionado === 'PE' ? '(Perú)' : '(Chile)'}
             </button>
           </form>

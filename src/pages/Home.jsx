@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import SEO from "../components/SEO";
+import Icons from "../components/Icons";
 import "./Home.css";
 
 function Home() {
@@ -179,7 +180,7 @@ function Home() {
         <div className="features-grid">
           <div className="feature-card">
             <div className="feature-icon">
-              <i className="bi bi-palette"></i>
+              {Icons.palette}
             </div>
             <h3 className="feature-title">Diseño Personalizado</h3>
             <p className="feature-description">
@@ -191,7 +192,7 @@ function Home() {
 
           <div className="feature-card">
             <div className="feature-icon">
-              <i className="bi bi-rocket-takeoff"></i>
+              {Icons.rocketTakeoff}
             </div>
             <h3 className="feature-title">SEO Optimizado</h3>
             <p className="feature-description">
@@ -203,7 +204,7 @@ function Home() {
 
           <div className="feature-card">
             <div className="feature-icon">
-              <i className="bi bi-globe"></i>
+              {Icons.globe}
             </div>
             <h3 className="feature-title">Hosting + Dominio</h3>
             <p className="feature-description">
@@ -215,7 +216,7 @@ function Home() {
 
           <div className="feature-card">
             <div className="feature-icon">
-              <i className="bi bi-phone"></i>
+              {Icons.phone}
             </div>
             <h3 className="feature-title">Diseño Responsive</h3>
             <p className="feature-description">
@@ -227,7 +228,7 @@ function Home() {
 
           <div className="feature-card">
             <div className="feature-icon">
-              <i className="bi bi-lightning-charge"></i>
+              {Icons.lightningCharge}
             </div>
             <h3 className="feature-title">Carga Ultra Rápida</h3>
             <p className="feature-description">
@@ -239,7 +240,7 @@ function Home() {
 
           <div className="feature-card">
             <div className="feature-icon">
-              <i className="bi bi-shield-check"></i>
+              {Icons.shieldCheck}
             </div>
             <h3 className="feature-title">Seguridad SSL</h3>
             <p className="feature-description">
@@ -251,7 +252,7 @@ function Home() {
 
           <div className="feature-card">
             <div className="feature-icon">
-              <i className="bi bi-graph-up"></i>
+              {Icons.graphUp}
             </div>
             <h3 className="feature-title">Analytics Integrado</h3>
             <p className="feature-description">
@@ -263,7 +264,7 @@ function Home() {
 
           <div className="feature-card">
             <div className="feature-icon">
-              <i className="bi bi-envelope-at"></i>
+              {Icons.envelopeAt}
             </div>
             <h3 className="feature-title">Formularios de Contacto</h3>
             <p className="feature-description">

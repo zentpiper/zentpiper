@@ -275,77 +275,68 @@
   color: var(--accent-color);
 }
 
-.feature-icon i {
+.feature-icon svg {
   display: block;
-  background: linear-gradient(135deg, var(--accent-color), #e6b000);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  width: 1em;
+  height: 1em;
+  margin: 0 auto;
   filter: drop-shadow(0 0 8px rgba(255, 193, 7, 0.3));
 }
 
 /* Colores específicos para cada icono */
-.feature-card:nth-child(1) .feature-icon i {
-  background: linear-gradient(135deg, #ff6b6b, #ee5a52);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.feature-card:nth-child(1) .feature-icon {
+  color: #ff6b6b;
+}
+.feature-card:nth-child(1) .feature-icon svg {
   filter: drop-shadow(0 0 8px rgba(255, 107, 107, 0.3));
 }
 
-.feature-card:nth-child(2) .feature-icon i {
-  background: linear-gradient(135deg, #4ecdc4, #44a08d);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.feature-card:nth-child(2) .feature-icon {
+  color: #4ecdc4;
+}
+.feature-card:nth-child(2) .feature-icon svg {
   filter: drop-shadow(0 0 8px rgba(78, 205, 196, 0.3));
 }
 
-.feature-card:nth-child(3) .feature-icon i {
-  background: linear-gradient(135deg, #45b7d1, #3498db);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.feature-card:nth-child(3) .feature-icon {
+  color: #45b7d1;
+}
+.feature-card:nth-child(3) .feature-icon svg {
   filter: drop-shadow(0 0 8px rgba(69, 183, 209, 0.3));
 }
 
-.feature-card:nth-child(4) .feature-icon i {
-  background: linear-gradient(135deg, #96ceb4, #85c1a3);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.feature-card:nth-child(4) .feature-icon {
+  color: #96ceb4;
+}
+.feature-card:nth-child(4) .feature-icon svg {
   filter: drop-shadow(0 0 8px rgba(150, 206, 180, 0.3));
 }
 
-.feature-card:nth-child(5) .feature-icon i {
-  background: linear-gradient(135deg, #feca57, #ff9ff3);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.feature-card:nth-child(5) .feature-icon {
+  color: #feca57;
+}
+.feature-card:nth-child(5) .feature-icon svg {
   filter: drop-shadow(0 0 8px rgba(254, 202, 87, 0.3));
 }
 
-.feature-card:nth-child(6) .feature-icon i {
-  background: linear-gradient(135deg, #a8e6cf, #88d8a3);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.feature-card:nth-child(6) .feature-icon {
+  color: #a8e6cf;
+}
+.feature-card:nth-child(6) .feature-icon svg {
   filter: drop-shadow(0 0 8px rgba(168, 230, 207, 0.3));
 }
 
-.feature-card:nth-child(7) .feature-icon i {
-  background: linear-gradient(135deg, #ff8a80, #ff5722);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.feature-card:nth-child(7) .feature-icon {
+  color: #ff8a80;
+}
+.feature-card:nth-child(7) .feature-icon svg {
   filter: drop-shadow(0 0 8px rgba(255, 138, 128, 0.3));
 }
 
-.feature-card:nth-child(8) .feature-icon i {
-  background: linear-gradient(135deg, #81c784, #66bb6a);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.feature-card:nth-child(8) .feature-icon {
+  color: #81c784;
+}
+.feature-card:nth-child(8) .feature-icon svg {
   filter: drop-shadow(0 0 8px rgba(129, 199, 132, 0.3));
 }
 
