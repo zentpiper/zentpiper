@@ -16,7 +16,6 @@
   .features-section,
   .cta-section {
     contain: layout style paint;
-    content-visibility: auto;
   }
   
   /* Reducir complejidad de animaciones */
@@ -702,7 +701,7 @@
   color: var(--text-color);
   position: relative;
   overflow: hidden;
-  min-height: 400px;
+  min-height: 500px;
   contain: layout style;
   border-top: 2px solid var(--accent-color);
   border-bottom: 2px solid var(--accent-color);
@@ -950,6 +949,7 @@
 @media (max-width: 768px) {
   .apps-section {
     padding: 3rem 1rem;
+    min-height: 520px;
   }
   
   .apps-title {
@@ -1010,6 +1010,7 @@
   color: var(--text-color);
   position: relative;
   overflow: hidden;
+  min-height: 400px;
   border-top: 2px solid var(--accent-color);
   border-bottom: 2px solid var(--accent-color);
 }
@@ -1260,6 +1261,7 @@
 @media (max-width: 768px) {
   .solutions-section {
     padding: 3rem 1rem;
+    min-height: 420px;
     background: linear-gradient(135deg, rgba(2, 2, 2, 0.99), rgba(6, 6, 6, 0.98));
   }
   

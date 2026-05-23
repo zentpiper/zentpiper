@@ -123,6 +123,10 @@
     height: 55px;
   }
 
+  .whatsapp-float::after {
+    animation-iteration-count: 3;
+  }
+
   .whatsapp-icon {
     width: 28px;
     height: 28px;

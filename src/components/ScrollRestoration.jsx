@@ -1,41 +1,25 @@
-import { useLayoutEffect } from "react";
+import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 function ScrollRestoration() {
     const { pathname } = useLocation();
 
-    useLayoutEffect(() => {
-        // 1. Manejo del historial nativo
+    useEffect(() => {
+        // Manejo del historial nativo
         if ('scrollRestoration' in window.history) {
             window.history.scrollRestoration = 'manual';
         }
 
-        // 2. Función reset agresiva
-        const resetScroll = () => {
-            // Window y Document
-            window.scrollTo(0, 0);
-            document.documentElement.scrollTop = 0;
-            document.body.scrollTop = 0;
+        // Usar solo window.scrollTo que no fuerza reflow
+        // Evitar leer propiedades geométricas como scrollTop
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
 
-            // Contenedores potenciales (si el scroll está atrapado en un div)
-            const scrollableSelectors = ['#root', '.app-container', 'main'];
-            scrollableSelectors.forEach(selector => {
-                const el = document.querySelector(selector);
-                if (el) el.scrollTop = 0;
-            });
-        };
+        // Un solo retry para móviles lentos, sin leer scrollTop
+        const timer = setTimeout(() => {
+            window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        }, 50);
 
-        // 3. Ejecutar inmediatamente
-        resetScroll();
-
-        // 4. Ejecutar después de un pequeño delay para móviles lentos o transiciones
-        // Esto es crucial para móviles donde el render puede tardar unos ms
-        const timers = [
-            setTimeout(resetScroll, 10),
-            setTimeout(resetScroll, 100)
-        ];
-
-        return () => timers.forEach(clearTimeout);
+        return () => clearTimeout(timer);
 
     }, [pathname]);
 

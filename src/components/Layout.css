@@ -10,7 +10,7 @@
 /* Main Content */
 main {
   flex: 1;
-  margin-top: 80px;
+  margin-top: 120px;
   padding: 1.5rem 0;
   width: 100%;
 }
@@ -24,14 +24,14 @@ main {
   }
 
   main {
-    margin-top: 100px;
+    margin-top: 130px;
     padding: 1rem 0;
   }
 }
 
 @media (max-width: 480px) {
   main {
-    margin-top: 95px;
+    margin-top: 125px;
     padding: 0.5rem 0;
   }
 }

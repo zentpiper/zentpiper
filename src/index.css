@@ -58,5 +58,10 @@ button {
 
 img {
   max-width: 100%;
+}
+
+/* Prevent CLS: let images with explicit width/height reserve space */
+img[width][height] {
   height: auto;
+  aspect-ratio: attr(width) / attr(height);
 }

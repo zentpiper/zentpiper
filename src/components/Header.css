@@ -54,8 +54,8 @@
 
 .logo {
   height: 75px;
-  /* Significantly increased size */
-  width: auto;
+  width: 66px;
+  aspect-ratio: 66 / 75;
   margin-right: 1rem;
   /* Enhanced glow effect for transparent PNG */
   filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.6)) drop-shadow(0 0 10px rgba(255, 193, 7, 0.4));
@@ -302,7 +302,8 @@
 
   .logo {
     height: 65px;
-    /* Increased from 55px */
+    width: 58px;
+    aspect-ratio: 66 / 75;
   }
 
   .logo-title {
@@ -341,7 +342,8 @@
 
   .logo {
     height: 60px;
-    /* Increased from 50px */
+    width: 53px;
+    aspect-ratio: 66 / 75;
   }
 
   .logo-title {
@@ -409,7 +411,8 @@
 
   .logo {
     height: 48px;
-    /* Increased from 38px */
+    width: 42px;
+    aspect-ratio: 66 / 75;
     margin-right: 0.6rem;
   }
 
@@ -452,7 +455,8 @@
 
   .logo {
     height: 42px;
-    /* Increased from 34px */
+    width: 37px;
+    aspect-ratio: 66 / 75;
   }
 
   .logo-title {
