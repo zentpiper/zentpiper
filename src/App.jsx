@@ -3,9 +3,9 @@ import { Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Layout from "./components/Layout";
 import ScrollRestoration from "./components/ScrollRestoration";
+import Home from "./pages/Home";
 
-// Lazy loading de páginas para mejor rendimiento
-const Home = lazy(() => import("./pages/Home"));
+// Lazy loading solo para páginas secundarias
 const Planes = lazy(() => import("./pages/Planes"));
 const Contacto = lazy(() => import("./pages/Contacto"));
 const NotFound = lazy(() => import("./pages/NotFound"));
