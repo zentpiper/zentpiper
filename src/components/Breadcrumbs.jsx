@@ -31,13 +31,13 @@ function Breadcrumbs() {
                 "@type": "ListItem",
                 "position": 1,
                 "name": "Inicio",
-                "item": "https://zentpiper.com/"
+                "item": "https://www.zentpiper.com/"
             },
             ...pathParts.map((part, index) => ({
                 "@type": "ListItem",
                 "position": index + 2,
                 "name": routeNames[part] || part,
-                "item": `https://zentpiper.com/${pathParts.slice(0, index + 1).join("/")}`
+                "item": `https://www.zentpiper.com/${pathParts.slice(0, index + 1).join("/")}`
             }))
         ]
     };

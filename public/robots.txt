@@ -15,7 +15,7 @@ Disallow: /admin
 Disallow: /api
 
 # Sitemap location
-Sitemap: https://zentpiper.com/sitemap.xml
+Sitemap: https://www.zentpiper.com/sitemap.xml
 
 # Google bot specific
 User-agent: Googlebot
