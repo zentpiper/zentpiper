@@ -110,18 +110,18 @@ function Home() {
     <>
       <SEO
         title="Zentpiper - Diseño Web, Hosting y SEO en Perú"
-        description="Creamos sitios web profesionales, rápidos y optimizados para SEO. Incluye hosting, dominio y diseño responsive. Planes desde S/500 para tu negocio en Perú."
-        keywords="diseño web Perú, desarrollo web profesional, páginas web optimizadas, SEO, hosting, dominio, diseño responsive, tiendas online, Zentpiper"
+        description="Agencia de diseño web y desarrollo de software en Santiago de Surco, Lima. Creamos sitios web profesionales, rápidos y optimizados para SEO. Incluye hosting y dominio."
+        keywords="diseño web Surco, desarrollo web Lima, páginas web optimizadas, SEO Perú, agencia de software Surco, hosting, Zentpiper"
         canonical="https://zentpiper.com/"
       />
 
       {/* Hero Section — renders immediately (above the fold) */}
       <section className="hero-section">
         <h1 className="hero-title">
-          Sitios web profesionales para tu negocio
+          Agencia de Diseño Web y Software en Perú
         </h1>
         <p className="hero-subtitle">
-          Diseño moderno, rápido y optimizado para que tu empresa destaque.
+          Creamos sitios web profesionales, rápidos y optimizados para SEO desde Santiago de Surco, Lima. Diseño moderno para que tu negocio destaque en Google.
         </p>
         <div className="cta-buttons">
           <Link className="btn btn-primary btn-hero" to="/planes">
