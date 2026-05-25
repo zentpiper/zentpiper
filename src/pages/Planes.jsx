@@ -49,15 +49,15 @@ function Planes() {
             </div>
             <div className="plan-maintenance plan-maintenance-promo">
               Mantenimiento: {formatearPrecio(planesWeb.basico.mantenimiento, paisSeleccionado)}/Mes
-              <span className="promo-text">Primer año incluido</span>
+              <span className="promo-text">3 meses incluidos</span>
             </div>
             <div className="plan-details">
               <ul>
-                <li>Visualización web del local</li>
-                <li>1 a 3 secciones</li>
-                <li>Hosting + dominio</li>
-                <li>Soporte email/chat básico</li>
-                <li>Certificado SSL gratuito</li>
+                <li>Tu negocio visible en Google 24/7</li>
+                <li>1 a 3 secciones profesionales</li>
+                <li>Hosting + dominio incluidos</li>
+                <li>Soporte directo por WhatsApp</li>
+                <li>Certificado SSL de seguridad</li>
               </ul>
             </div>
             <button
@@ -77,15 +77,15 @@ function Planes() {
             </div>
             <div className="plan-maintenance plan-maintenance-promo">
               Mantenimiento: {formatearPrecio(planesWeb.emprendedor.mantenimiento, paisSeleccionado)}/Mes
-              <span className="promo-text">Primer año incluido</span>
+              <span className="promo-text">3 meses incluidos</span>
             </div>
             <div className="plan-details">
               <ul>
-                <li>Catálogo hasta 50 productos</li>
-                <li>4 a 6 secciones</li>
-                <li>Optimización SEO básica</li>
-                <li>Formulario de contacto</li>
-                <li>Diseño responsive completo</li>
+                <li>Catálogo interactivo — tus clientes compran desde el celular</li>
+                <li>4 a 6 secciones personalizadas</li>
+                <li>Posicionamiento para ganarle clientes a tu competencia</li>
+                <li>Captura de cotizaciones directo a tu WhatsApp</li>
+                <li>Diseño responsive en todos los dispositivos</li>
               </ul>
             </div>
             <button
@@ -104,15 +104,15 @@ function Planes() {
             </div>
             <div className="plan-maintenance plan-maintenance-promo">
               Mantenimiento: {formatearPrecio(planesWeb.profesional.mantenimiento, paisSeleccionado)}/Mes
-              <span className="promo-text">Primer año incluido</span>
+              <span className="promo-text">3 meses incluidos</span>
             </div>
             <div className="plan-details">
               <ul>
-                <li>Hasta 10 secciones personalizadas</li>
-                <li>Datos de los usuarios</li>
-                <li>SEO local + Google Analytics</li>
+                <li>Hasta 10 secciones a tu medida</li>
+                <li>Base de datos automatizada para campañas de reventa</li>
+                <li>Métricas en tiempo real de quién visita tu web</li>
                 <li>Integración con redes sociales</li>
-                <li>Diseño mejorado y branding</li>
+                <li>Branding profesional que genera confianza</li>
               </ul>
             </div>
             <button
@@ -131,14 +131,14 @@ function Planes() {
             </div>
             <div className="plan-maintenance plan-maintenance-promo">
               Mantenimiento: {formatearPrecio(planesWeb.tienda.mantenimiento, paisSeleccionado)}/Mes
-              <span className="promo-text">Primer año incluido</span>
+              <span className="promo-text">3 meses incluidos</span>
             </div>
             <div className="plan-details">
               <ul>
-                <li>Catálogos personalizados</li>
-                <li>Seguimiento digital al cliente</li>
-                <li>Carrito + pasarela de pago</li>
-                <li>Panel de administración Avanzada</li>
+                <li>Catálogos con gestión de inventario</li>
+                <li>CRM integrado — nunca pierdas un lead</li>
+                <li>Cobros online seguros (Niubiz/Culqi)</li>
+                <li>Panel de control empresarial con usuarios y permisos</li>
                 <li>Soporte técnico prioritario</li>
               </ul>
             </div>

@@ -15,10 +15,10 @@ export const preciosPorPais = {
 
         // Planes Web
         planesWeb: {
-            basico: { desarrollo: 500, mantenimiento: 20 },
-            emprendedor: { desarrollo: 900, mantenimiento: 40 },
-            profesional: { desarrollo: 1500, mantenimiento: 80 },
-            tienda: { desarrollo: 2500, mantenimiento: 120 }
+            basico: { desarrollo: 500, mantenimiento: 15 },
+            emprendedor: { desarrollo: 900, mantenimiento: 30 },
+            profesional: { desarrollo: 1500, mantenimiento: 60 },
+            tienda: { desarrollo: 2500, mantenimiento: 90 }
         },
 
         // Planes Mobile
@@ -41,10 +41,10 @@ export const preciosPorPais = {
 
         // Planes Web
         planesWeb: {
-            basico: { desarrollo: 270000, mantenimiento: 65000 },
-            emprendedor: { desarrollo: 540000, mantenimiento: 65000 },
-            profesional: { desarrollo: 1080000, mantenimiento: 65000 },
-            tienda: { desarrollo: 1620000, mantenimiento: 65000 }
+            basico: { desarrollo: 270000, mantenimiento: 50000 },
+            emprendedor: { desarrollo: 540000, mantenimiento: 50000 },
+            profesional: { desarrollo: 1080000, mantenimiento: 50000 },
+            tienda: { desarrollo: 1620000, mantenimiento: 50000 }
         },
 
         // Planes Mobile
@@ -67,10 +67,10 @@ export const preciosPorPais = {
 
         // Planes Web (precios en USD)
         planesWeb: {
-            basico: { desarrollo: 150, mantenimiento: 5 },
-            emprendedor: { desarrollo: 300, mantenimiento: 10 },
-            profesional: { desarrollo: 600, mantenimiento: 20 },
-            tienda: { desarrollo: 900, mantenimiento: 30 }
+            basico: { desarrollo: 150, mantenimiento: 4 },
+            emprendedor: { desarrollo: 300, mantenimiento: 8 },
+            profesional: { desarrollo: 600, mantenimiento: 15 },
+            tienda: { desarrollo: 900, mantenimiento: 23 }
         },
 
         // Planes Mobile (precios en USD)
