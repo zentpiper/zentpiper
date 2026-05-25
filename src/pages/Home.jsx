@@ -112,7 +112,7 @@ function Home() {
         title="Zentpiper - Diseño Web, Hosting y SEO en Perú"
         description="Creamos sitios web profesionales, rápidos y optimizados para SEO. Incluye hosting, dominio y diseño responsive. Planes desde S/500 para tu negocio en Perú."
         keywords="diseño web Perú, desarrollo web profesional, páginas web optimizadas, SEO, hosting, dominio, diseño responsive, tiendas online, Zentpiper"
-        canonical="https://www.zentpiper.com/"
+        canonical="https://zentpiper.com/"
       />
 
       {/* Hero Section — renders immediately (above the fold) */}

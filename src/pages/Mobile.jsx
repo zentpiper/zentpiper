@@ -35,7 +35,7 @@ function Mobile() {
         title="Desarrollo Móvil | Zentpiper - Apps Nativas y Cross-Platform"
         description="Desarrollo de aplicaciones móviles nativas y cross-platform. Apps para iOS, Android, Flutter. Soluciones móviles profesionales."
         keywords="desarrollo móvil, apps iOS, apps Android, Flutter, React Native, aplicaciones nativas, desarrollo apps Perú, desarrollo apps Chile"
-        canonical="https://www.zentpiper.com/mobile"
+        canonical="https://zentpiper.com/mobile"
       />
 
       <div className="mobile-services-container">

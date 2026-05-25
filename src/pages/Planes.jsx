@@ -34,7 +34,7 @@ function Planes() {
         title="Planes y Precios | Zentpiper - Sitios Web Profesionales"
         description="Elige tu plan ideal de diseño web profesional. Todos incluyen hosting, dominio y optimización SEO. Planes para negocios, emprendedores y tiendas online."
         keywords="planes diseño web, precios páginas web, desarrollo web profesional, hosting y dominio, SEO Perú, SEO Chile, crear sitio web"
-        canonical="https://www.zentpiper.com/planes"
+        canonical="https://zentpiper.com/planes"
       />
 
       <div className="planes-container">

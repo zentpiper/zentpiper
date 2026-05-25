@@ -115,7 +115,7 @@ function Portfolio() {
         title="Portafolio | Zentpiper - Proyectos Web y Móviles"
         description="Conoce nuestros proyectos de diseño web, aplicaciones móviles y desarrollo de software. Casos de éxito de clientes satisfechos."
         keywords="portafolio web, proyectos desarrollo, diseño web ejemplos, aplicaciones móviles, casos de éxito, zentpiper proyectos"
-        canonical="https://www.zentpiper.com/portafolio"
+        canonical="https://zentpiper.com/portafolio"
       />
 
       <section className="portfolio-section" aria-labelledby="portfolio-title">

@@ -116,7 +116,7 @@ function Proyecto() {
         title="Proyectos y Tecnologías | Zentpiper - Desarrollo de Software Personalizado"
         description="Conoce nuestras tecnologías y áreas de especialización. Desarrollamos sistemas personalizados en Python, Swift, JavaScript, Java y más para tu empresa."
         keywords="desarrollo software Python, apps iOS Swift, JavaScript React, Java enterprise, Kotlin Android, sistemas corporativos, puntos de venta, chatbots"
-        canonical="https://www.zentpiper.com/proyecto"
+        canonical="https://zentpiper.com/proyecto"
       />
 
       {/* Hero Section */}

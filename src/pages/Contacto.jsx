@@ -72,7 +72,7 @@ function Contacto() {
         title={`Contacto | Zentpiper - Cotiza tu Proyecto en ${paisSeleccionado === 'PE' ? 'Perú' : 'Chile'}`}
         description={`¿Listo para impulsar tu negocio online? Contáctanos y recibe una cotización gratuita. Teléfono: ${paisData.telefono} · Email: ${paisData.email} · Atención en ${paisSeleccionado === 'PE' ? 'Perú' : 'Chile'}.`}
         keywords={`contacto Zentpiper, cotización sitio web, diseño web ${paisSeleccionado === 'PE' ? 'Perú' : 'Chile'}, crear página web, desarrollo web, consulta gratuita diseño web`}
-        canonical="https://www.zentpiper.com/contacto"
+        canonical="https://zentpiper.com/contacto"
       />
 
       <div className="contacto-container">
