@@ -1,0 +1,9 @@
+Zentpiper Favicon Logo Dimensions (Canva)
+Canvas size: 512x512
+Background Color: #121212
+
+Elements:
+1. Círculo blanco (#FFFFFF): 70x70, perfectamente centrado.
+2. Hexágono amarillo (#F5A623): 512x458, border radius 15.
+3. Líneas amarillas (#F5A623): 168x30 (2 líneas, izquierda y derecha).
+4. Hexágono negro (#121212): 430x410, centrado dentro del amarillo.

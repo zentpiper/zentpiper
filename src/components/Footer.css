@@ -45,18 +45,6 @@
   position: relative;
 }
 
-/* Líneas divisorias entre secciones */
-.footer-bottom-left::after,
-.footer-bottom-center::after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 30px;
-  width: 1px;
-  background: rgba(255, 193, 7, 0.3);
-}
 
 .footer-brand {
   font-weight: bold;
@@ -98,11 +86,7 @@
     min-width: unset;
   }
 
-  /* Ocultar líneas divisorias en móvil */
-  .footer-bottom-left::after,
-  .footer-bottom-center::after {
-    display: none;
-  }
+
 }
 
 @media (max-width: 480px) {

@@ -61,7 +61,7 @@ function Header() {
       <div className="header-content">
         {/* Logo */}
         <NavLink to="/" className="logo-container">
-          <img src="/logo.webp" className="logo" alt="ZENTPIPER SOFTWARE" width="66" height="75" loading="eager" fetchPriority="high" decoding="async" />
+          <img src="/Logo-transparente.svg" className="logo" alt="ZENTPIPER SOFTWARE" width="66" height="75" loading="eager" fetchPriority="high" decoding="async" />
           <div className="logo-text">
             <span className="logo-title">ZENTPIPER</span>
             <span className="logo-subtitle">SOFTWARE</span>

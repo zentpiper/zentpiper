@@ -10,7 +10,7 @@ const SEO = ({
   description = "Creamos sitios web profesionales, rápidos y optimizados para SEO. Diseño responsive, hosting incluido, dominio gratis.",
   keywords = "diseño web, desarrollo web, SEO, hosting, dominio, zentpiper, páginas web, aplicaciones móviles",
   canonical,
-  image = "https://zentpiper.com/logo-og.webp",
+  image = "https://zentpiper.com/Logo-definitivo-Isotipo.webp",
   type = "website",
 }) => {
   const location = useLocation();
