@@ -144,7 +144,7 @@ function Planes() {
             </div>
             <button
               className="btn btn-secondary"
-              onClick={() => window.open("https://ventacenter.vercel.app/home", "_blank")}
+              onClick={() => window.open("https://zent-flow.vercel.app", "_blank")}
             >
               Ver Ejemplo
             </button>

@@ -30,15 +30,15 @@ const projects = [
   },
   {
     id: 2,
-    title: 'H Y G',
-    description: 'Página de administración y control para Call Centers',
+    title: 'ZentFlow',
+    description: 'Sistema CRM de ventas y gestión comercial',
     image: '/HYG.webp',
     width: 600,
     height: 400,
-    link: 'https://ventacenter.vercel.app/home',
-    demo: 'https://ventacenter.vercel.app/home',
+    link: 'https://zent-flow.vercel.app',
+    demo: 'https://zent-flow.vercel.app',
     github: '',
-    tags: ['React', 'Excel', 'JSON'],
+    tags: ['Next.js', 'React', 'CRM'],
     featured: true
   },
   {
