@@ -11,7 +11,7 @@ function Footer() {
       <div className="footer-bottom">
         <div className="footer-local-seo" style={{ textAlign: 'center', marginBottom: '1.5rem', opacity: '0.8', fontSize: '0.85rem' }}>
           <p><strong>Agencia de Diseño Web, Software y SEO</strong></p>
-          <p>Atendiendo desde Santiago de Surco, Lima - Perú y todo Chile.</p>
+          <p>Raíces peruanas, con presencia global destacada en Rusia y España.</p>
         </div>
         <div className="footer-bottom-flex" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', paddingRight: '80px', paddingLeft: '20px' }}>
           <div className="footer-bottom-left">

@@ -10,8 +10,8 @@
 /* Main Content */
 main {
   flex: 1;
-  margin-top: 120px;
-  padding: 1.5rem 0;
+  margin-top: 64px;
+  padding: 0 0 1.5rem;
   width: 100%;
 }
 
@@ -24,14 +24,14 @@ main {
   }
 
   main {
-    margin-top: 130px;
-    padding: 1rem 0;
+    margin-top: 58px;
+    padding: 0 0 1rem;
   }
 }
 
 @media (max-width: 480px) {
   main {
-    margin-top: 125px;
-    padding: 0.5rem 0;
+    margin-top: 52px;
+    padding: 0 0 0.5rem;
   }
 }

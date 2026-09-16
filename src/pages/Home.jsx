@@ -1,9 +1,45 @@
 import { useNavigate, Link } from "react-router-dom";
-import { memo } from "react";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
 import SEO from "../components/SEO";
 import Icons from "../components/Icons";
 import LazySection from "../components/LazySection";
 import "./Home.css";
+
+const HERO_VIDEOS = ["/videos/1.mp4", "/videos/2.mp4"];
+
+/* Cycles through the hero videos endlessly, playing one after another */
+const HeroVideoBackground = memo(function HeroVideoBackground() {
+  const videoRef = useRef(null);
+  const indexRef = useRef(0);
+  const [src, setSrc] = useState(HERO_VIDEOS[0]);
+
+  const playNext = useCallback(() => {
+    indexRef.current = (indexRef.current + 1) % HERO_VIDEOS.length;
+    setSrc(HERO_VIDEOS[indexRef.current]);
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.load();
+    video.play().catch(() => {});
+  }, [src]);
+
+  return (
+    <video
+      ref={videoRef}
+      className="hero-video"
+      autoPlay
+      muted
+      playsInline
+      preload="auto"
+      onEnded={playNext}
+      aria-hidden="true"
+    >
+      <source src={src} type="video/mp4" />
+    </video>
+  );
+});
 
 /* Memoize heavy sections to avoid re-renders */
 const FeaturesGrid = memo(function FeaturesGrid() {
@@ -117,20 +153,58 @@ function Home() {
 
       {/* Hero Section — renders immediately (above the fold) */}
       <section className="hero-section">
-        <h1 className="hero-title">
-          Agencia de Diseño Web y Software en Perú
-        </h1>
-        <p className="hero-subtitle">
-          Creamos sitios web profesionales, rápidos y optimizados para SEO desde Santiago de Surco, Lima. Diseño moderno para que tu negocio destaque en Google.
-        </p>
-        <div className="cta-buttons">
-          <Link className="btn btn-primary btn-hero" to="/planes">
-            <span>Ver Planes</span>
-            <i className="arrow">→</i>
-          </Link>
-          <Link className="btn btn-secondary btn-hero" to="/contacto">
-            <span>Habla con nosotros</span>
-          </Link>
+        <HeroVideoBackground />
+        <div className="hero-video-overlay" />
+
+        <div className="hero-topbar">
+          <span className="hero-eyebrow">ZENTPIPER / PERÚ · RUSIA · ESPAÑA © &nbsp;·&nbsp; AGENCIA DIGITAL</span>
+          <Link to="/contacto" className="hero-topbar-link">HABLA CON NOSOTROS</Link>
+        </div>
+
+        <div className="hero-main">
+          <div className="hero-title-wrap">
+            <h1 className="hero-title-stack">
+              <span>DISEÑO</span>
+              <span>WEB &amp;</span>
+              <span className="hero-title-outline">SOFTWARE</span>
+            </h1>
+            <p className="sr-only">
+              Agencia de diseño web y desarrollo de software en Santiago de Surco, Lima. Creamos sitios web profesionales, rápidos y optimizados para SEO, con diseño moderno para que tu negocio destaque en Google.
+            </p>
+            <div className="hero-mark" aria-hidden="true">
+              <img src="/Logo-definitivo-Isotipo.webp" alt="" width="140" height="140" loading="eager" />
+            </div>
+          </div>
+
+          <aside className="hero-tags">
+            <span className="hero-tags-index">[ 01 // CORE ]</span>
+            <p className="hero-tags-highlight">
+              / ALTA CONVERSIÓN
+              <br />
+              ARTESANÍA PERUANA x TECH
+            </p>
+            <ul className="hero-tags-list">
+              <li>/ DISEÑO WEB INTERACTIVO</li>
+              <li>/ CONTENIDO DE ALTA RETENCIÓN</li>
+              <li>/ DIRECCIÓN DE ARTE Y CÓDIGO</li>
+            </ul>
+          </aside>
+        </div>
+
+        <div className="hero-footer">
+          <div className="hero-footer-location">
+            <span className="hero-footer-eyebrow">ALCANCE // PRESENCIA GLOBAL</span>
+            <p className="hero-footer-title">RAÍCES PERUANAS, CON PRESENCIA GLOBAL DESTACADA EN RUSIA Y ESPAÑA</p>
+          </div>
+          <div className="cta-buttons hero-footer-actions">
+            <Link className="btn btn-primary btn-hero" to="/planes">
+              <span>Ver Planes</span>
+              <i className="arrow">→</i>
+            </Link>
+            <Link className="btn btn-secondary btn-hero" to="/contacto">
+              <span>Habla con nosotros</span>
+            </Link>
+          </div>
         </div>
       </section>
 
