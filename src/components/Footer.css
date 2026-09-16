@@ -74,6 +74,23 @@
   font-weight: 500;
 }
 
+.footer-credit {
+  width: 100%;
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+.footer-credit a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.footer-credit a:hover {
+  color: var(--accent-color);
+}
+
 @media (max-width: 768px) {
   .footer-bottom {
     flex-direction: column;
