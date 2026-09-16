@@ -1,401 +1,301 @@
-/* Portafolio.css - Elegante & Minimalista Profesional (Textos Mejorados) */
+/* Portfolio.css - Grid mono "MNMLLIST" estilo base de datos */
 
-.portafolio-container {
-  max-width: 1200px;
+.folio-section {
+  --folio-bg: #0a0a0a;
+  --folio-line: rgba(255, 255, 255, 0.07);
+  --folio-text: #f5f5f0;
+  --folio-muted: rgba(245, 245, 240, 0.5);
+  --folio-faint: rgba(245, 245, 240, 0.28);
+  --folio-accent: var(--accent-color, #ffc107);
+  --folio-card-bg: #ffffff;
+
+  background-color: var(--folio-bg);
+  background-image:
+    linear-gradient(var(--folio-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--folio-line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  padding: 6rem 0 5rem;
+  font-family: ui-monospace, 'SF Mono', 'JetBrains Mono', 'Roboto Mono', Menlo, Consolas, monospace;
+  color: var(--folio-text);
+}
+
+.folio-container {
+  max-width: 1320px;
   margin: 0 auto;
-  padding: 4rem 2rem;
+  padding: 0 2rem;
 }
 
-.portafolio-header {
-  text-align: center;
-  margin-bottom: 4rem;
-}
-
-.portafolio-header h1 {
-  font-size: 2.5rem;
-  font-weight: 300;
-  color: var(--text-color);
-  margin-bottom: 1rem;
-  letter-spacing: -0.5px;
-  line-height: 1.2;
-}
-
-.portafolio-header p {
-  font-size: 1.1rem;
-  color: var(--text-color);
-  opacity: 0.7;
-  font-weight: 350;
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: 1.6;
-  letter-spacing: 0.2px;
-}
-
-/* Grid mejorado */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-  gap: 2.5rem;
-  justify-items: center;
-}
-
-/* Tarjetas elegantes */
-.project-card {
-  width: 100%;
-  max-width: 420px;
-  background: var(--card-bg);
-  border-radius: 16px;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 
-    0 4px 20px rgba(0, 0, 0, 0.04),
-    0 1px 2px rgba(0, 0, 0, 0.02);
-  position: relative;
+/* Barra superior */
+.folio-bar {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem 2rem;
+  padding-bottom: 2.5rem;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid var(--folio-line);
 }
 
-.project-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    var(--accent-color) 50%, 
-    transparent 100%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+.folio-brand {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--folio-text);
 }
 
-.project-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 
-    0 25px 50px rgba(0, 0, 0, 0.12),
-    0 8px 16px rgba(0, 0, 0, 0.06);
-  border-color: rgba(255, 255, 255, 0.12);
-}
-
-.project-card:hover::before {
-  opacity: 1;
-}
-
-/* Contenedor de imagen mejorado */
-.project-image-container {
+.folio-filter {
   position: relative;
-  overflow: hidden;
-  height: 240px;
-  flex-shrink: 0;
 }
 
-.project-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: all 0.5s ease;
+.folio-filter-toggle {
+  background: transparent;
+  border: none;
+  color: var(--folio-muted);
+  font-family: inherit;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  padding: 0.3rem 0;
+  transition: color 0.2s ease;
 }
 
-.project-card:hover .project-image {
-  transform: scale(1.05);
+.folio-filter-toggle:hover,
+.folio-filter-toggle.is-open {
+  color: var(--folio-text);
 }
 
-/* Overlay sutil en hover */
-.project-image-container::after {
-  content: '';
+.folio-filter-panel {
   position: absolute;
-  top: 0;
+  top: calc(100% + 0.75rem);
   left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(0, 0, 0, 0.02) 100%
-  );
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.project-card:hover .project-image-container::after {
-  opacity: 1;
-}
-
-/* Contenido mejorado - TEXTOS MÁS ELEGANTES */
-.project-content {
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  text-align: center;
-}
-
-.project-title {
-  font-size: 1.3rem;
-  font-weight: 400;
-  color: var(--text-color);
-  margin: 0 0 1rem 0;
-  line-height: 1.3;
-  letter-spacing: -0.3px;
-  text-align: center;
-  position: relative;
-  padding-bottom: 0.8rem;
-}
-
-.project-title::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 40px;
-  height: 1px;
-  background: var(--accent-color);
-  opacity: 0.5;
-}
-
-.project-description {
-  font-size: 0.92rem;
-  line-height: 1.7;
-  color: var(--text-color);
-  opacity: 0.8;
-  margin-bottom: 1.5rem;
-  font-weight: 350;
-  text-align: center;
-  letter-spacing: 0.1px;
-  max-width: 320px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Tags elegantes - CENTRADOS */
-.project-tags {
+  z-index: 5;
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-bottom: 2rem;
-  justify-content: center;
-  align-items: center;
+  width: min(480px, 80vw);
+  padding: 1rem;
+  background: #111111;
+  border: 1px solid var(--folio-line);
 }
 
-.tag {
-  padding: 0.35rem 0.75rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
+.folio-chip {
+  background: transparent;
+  border: 1px solid var(--folio-line);
+  color: var(--folio-muted);
+  font-family: inherit;
   font-size: 0.7rem;
-  color: var(--text-color);
-  opacity: 0.8;
-  font-weight: 400;
-  letter-spacing: 0.4px;
-  transition: all 0.3s ease;
-  text-transform: lowercase;
-  font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+  letter-spacing: 0.03em;
+  padding: 0.35rem 0.6rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
-.tag:hover {
-  background: rgba(255, 255, 255, 0.06);
-  opacity: 1;
-  transform: translateY(-1px);
-  border-color: rgba(255, 255, 255, 0.12);
+.folio-chip:hover {
+  color: var(--folio-text);
+  border-color: rgba(255, 255, 255, 0.25);
 }
 
-/* Enlace elegante - CENTRADO */
-.project-link-container {
-  margin-top: auto;
-  text-align: center;
+.folio-chip.is-active {
+  color: #0a0a0a;
+  background: var(--folio-accent);
+  border-color: var(--folio-accent);
 }
 
-.project-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  color: var(--accent-color);
+.folio-count {
+  font-size: 0.75rem;
+  color: var(--folio-faint);
+  letter-spacing: 0.04em;
+}
+
+.folio-about {
+  margin-left: auto;
+  font-size: 0.8rem;
+  color: var(--folio-muted);
   text-decoration: none;
-  font-weight: 450;
-  font-size: 0.85rem;
-  transition: all 0.3s ease;
-  padding: 0.6rem 1.2rem;
+  letter-spacing: 0.04em;
+  transition: color 0.2s ease;
+}
+
+.folio-about:hover {
+  color: var(--folio-accent);
+}
+
+/* Grid de proyectos */
+.folio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem 2rem;
+}
+
+.folio-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.folio-image-wrap {
   position: relative;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 8px;
-  letter-spacing: 0.3px;
+  aspect-ratio: 4 / 3;
+  background: var(--folio-card-bg);
+  overflow: hidden;
 }
 
-.project-link:hover {
-  gap: 0.8rem;
-  background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(255, 255, 255, 0.12);
-  transform: translateY(-1px);
+.folio-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  transition: transform 0.5s ease;
 }
 
-.arrow {
-  transition: transform 0.3s ease;
-  font-size: 0.9rem;
+.folio-card:hover .folio-image {
+  transform: scale(1.03);
 }
 
-.project-link:hover .arrow {
-  transform: translateX(2px);
+.folio-image-actions {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  display: flex;
+  gap: 0.4rem;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: all 0.2s ease;
 }
 
-/* Efectos de enfoque mejorados */
-.project-card:focus-within {
-  outline: 2px solid var(--accent-color);
-  outline-offset: 2px;
+.folio-card:hover .folio-image-actions,
+.folio-card:focus-within .folio-image-actions {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* Separador elegante entre secciones */
-.project-content > * + * {
-  margin-top: 1rem;
+.folio-icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: #0a0a0a;
+  color: var(--folio-text);
+  text-decoration: none;
 }
 
-/* Mejoras específicas para el layout de texto */
-.project-header {
-  text-align: center;
-  margin-bottom: 1.5rem;
+.folio-icon-link:hover {
+  background: var(--folio-accent);
+  color: #0a0a0a;
 }
 
-.project-footer {
-  margin-top: auto;
-  text-align: center;
+/* Info bajo la imagen */
+.folio-info {
+  padding-top: 0.9rem;
 }
 
-/* Responsive mejorado */
-@media (max-width: 968px) {
-  .portafolio-container {
-    padding: 3rem 1.5rem;
-  }
-  
-  .projects-grid {
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 2rem;
-  }
-  
-  .project-content {
-    padding: 1.8rem;
+.folio-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0 0 0.4rem 0;
+  letter-spacing: 0.01em;
+}
+
+.folio-desc {
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--folio-muted);
+  margin: 0 0 0.9rem 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.folio-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.folio-tagpill {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: var(--folio-text);
+  font-family: inherit;
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+}
+
+.folio-tagpill:hover,
+.folio-tagpill.is-active {
+  color: var(--folio-accent);
+}
+
+.folio-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  color: var(--folio-faint);
+  letter-spacing: 0.02em;
+}
+
+.folio-meta-marker {
+  color: var(--folio-muted);
+}
+
+.folio-meta-role {
+  color: var(--folio-muted);
+}
+
+.folio-meta-domain {
+  color: var(--folio-faint);
+}
+
+/* Responsive */
+@media (max-width: 1080px) {
+  .folio-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 768px) {
-  .portafolio-container {
-    padding: 2rem 1rem;
+  .folio-section {
+    padding: 4rem 0 3.5rem;
+    background-size: 40px 40px;
   }
-  
-  .portafolio-header h1 {
-    font-size: 2rem;
-    letter-spacing: -0.3px;
+
+  .folio-container {
+    padding: 0 1.25rem;
   }
-  
-  .portafolio-header p {
-    font-size: 1rem;
-    letter-spacing: 0.1px;
+
+  .folio-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-bottom: 1.75rem;
+    margin-bottom: 2rem;
+    gap: 0.9rem;
   }
-  
-  .projects-grid {
+
+  .folio-about {
+    margin-left: 0;
+  }
+
+  .folio-grid {
     grid-template-columns: 1fr;
-    gap: 1.8rem;
+    gap: 2.5rem;
   }
-  
-  .project-content {
-    padding: 1.5rem;
-    text-align: center;
-  }
-  
-  .project-image-container {
-    height: 200px;
-  }
-  
-  .project-title {
-    font-size: 1.2rem;
-  }
-  
-  .project-description {
-    font-size: 0.9rem;
-    line-height: 1.6;
+
+  .folio-image-actions {
+    opacity: 1;
+    transform: none;
   }
 }
 
 @media (max-width: 480px) {
-  .portafolio-header {
-    margin-bottom: 3rem;
+  .folio-filter-panel {
+    width: min(320px, 84vw);
   }
-  
-  .portafolio-header h1 {
-    font-size: 1.7rem;
-  }
-  
-  .project-card {
-    max-width: 100%;
-  }
-  
-  .project-tags {
-    gap: 0.4rem;
-  }
-  
-  .tag {
-    font-size: 0.65rem;
-    padding: 0.3rem 0.6rem;
-  }
-  
-  .project-link {
-    padding: 0.5rem 1rem;
-    font-size: 0.8rem;
-  }
-  
-  .project-content {
-    padding: 1.2rem;
-  }
-}
-
-/* Modo oscuro optimizado */
-@media (prefers-color-scheme: dark) {
-  .project-card {
-    background: rgba(255, 255, 255, 0.02);
-    border-color: rgba(255, 255, 255, 0.05);
-  }
-  
-  .tag {
-    background: rgba(255, 255, 255, 0.03);
-    border-color: rgba(255, 255, 255, 0.08);
-  }
-  
-  .project-link {
-    background: rgba(255, 255, 255, 0.02);
-    border-color: rgba(255, 255, 255, 0.06);
-  }
-}
-
-/* Animaciones de entrada suaves */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.project-card {
-  animation: fadeInUp 0.6s ease forwards;
-}
-
-.project-card:nth-child(2) { animation-delay: 0.1s; }
-.project-card:nth-child(3) { animation-delay: 0.2s; }
-.project-card:nth-child(4) { animation-delay: 0.3s; }
-
-/* Mejoras tipográficas adicionales */
-.project-title {
-  font-variant-ligatures: common-ligatures;
-  font-feature-settings: "kern", "liga", "clig", "calt";
-}
-
-.project-description {
-  font-variant-ligatures: common-ligatures;
-  font-feature-settings: "kern", "liga", "clig", "calt";
-  hyphens: auto;
 }
