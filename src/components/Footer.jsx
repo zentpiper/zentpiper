@@ -26,6 +26,9 @@ function Footer() {
           </div>
         </div>
         <p className="footer-credit">
+          Impulsado por <a href="https://cernextec.com/es">Cernext</a>
+        </p>
+        <p className="footer-credit">
           Hecho por <a href="https://barclayleach.com/es/">Barclay Leach</a> impulsando <a href="https://www.zentpiper.com/">Zentpiper</a>
         </p>
       </div>
