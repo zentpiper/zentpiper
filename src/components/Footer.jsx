@@ -26,7 +26,7 @@ function Footer() {
           </div>
         </div>
         <p className="footer-credit">
-          Creado por <a href="https://barclayleach.com/es/">Barclay Leach</a>, fundador de <a href="https://www.zentpiper.com/">Zentpiper</a>
+          Creado por <a href="https://barclayleach.com/es/">Barclay Leach</a> impulsando <a href="https://www.zentpiper.com/">Zentpiper</a>
         </p>
       </div>
     </footer>
