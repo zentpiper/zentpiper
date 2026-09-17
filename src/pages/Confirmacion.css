@@ -1,0 +1,196 @@
+/* Confirmacion.css - Obsidian Amber Design System (matches Contacto.css) */
+
+:root {
+  --cnf-bg: #0a0a0c;
+  --cnf-surface-card: #16161c;
+  --cnf-amber-primary: #f59e0b;
+  --cnf-amber-gold: #fbbf24;
+  --cnf-border-subtle: rgba(255, 255, 255, 0.08);
+  --cnf-border-amber: rgba(245, 158, 11, 0.45);
+  --cnf-text-primary: #f3f4f6;
+  --cnf-text-muted: #9ca3af;
+  --cnf-status-success: #25d366;
+}
+
+.confirmacion-page {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 5rem);
+  background-color: var(--cnf-bg);
+  color: var(--cnf-text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  padding: 3rem 1.25rem;
+}
+
+.confirmacion-ambient-backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.confirmacion-orb {
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 850px;
+  height: 450px;
+  border-radius: 9999px;
+  filter: blur(140px);
+  background: radial-gradient(circle, rgba(37, 211, 102, 0.12) 0%, transparent 70%);
+}
+
+.confirmacion-content-wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.confirmacion-card {
+  background: var(--cnf-surface-card);
+  border: 1px solid var(--cnf-border-subtle);
+  border-radius: 1.5rem;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.confirmacion-check-icon {
+  width: 4rem;
+  height: 4rem;
+  margin: 0 auto 1.25rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(37, 211, 102, 0.12);
+  color: var(--cnf-status-success);
+}
+
+.confirmacion-check-icon svg {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.confirmacion-title {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  margin: 0 0 1rem;
+}
+
+.confirmacion-eta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid var(--cnf-border-amber);
+  color: var(--cnf-amber-gold);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0 auto 1.75rem;
+}
+
+.confirmacion-eta-badge svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  flex-shrink: 0;
+}
+
+.confirmacion-subtitle {
+  color: var(--cnf-text-muted);
+  margin: 0 0 1.5rem;
+  line-height: 1.5;
+}
+
+.confirmacion-summary {
+  text-align: left;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--cnf-border-subtle);
+  border-radius: 1rem;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.confirmacion-summary-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--cnf-border-subtle);
+}
+
+.confirmacion-summary-row:last-of-type {
+  border-bottom: none;
+}
+
+.confirmacion-summary-label {
+  color: var(--cnf-text-muted);
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.confirmacion-summary-value {
+  font-weight: 600;
+  text-align: right;
+}
+
+.confirmacion-summary-message {
+  padding-top: 0.75rem;
+  margin-top: 0.4rem;
+  border-top: 1px solid var(--cnf-border-subtle);
+}
+
+.confirmacion-summary-message p {
+  margin: 0.4rem 0 0;
+  color: var(--cnf-text-primary);
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.confirmacion-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--cnf-border-subtle);
+  background: transparent;
+  color: var(--cnf-text-primary);
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.confirmacion-back-btn svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.confirmacion-back-btn:hover {
+  border-color: var(--cnf-border-amber);
+  background: rgba(245, 158, 11, 0.08);
+}
+
+@media (max-width: 480px) {
+  .confirmacion-card {
+    padding: 2rem 1.25rem;
+  }
+
+  .confirmacion-summary-row {
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .confirmacion-summary-value {
+    text-align: left;
+  }
+}

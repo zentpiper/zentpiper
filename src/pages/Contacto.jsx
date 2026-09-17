@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { usePais } from "../contexts/PaisContext";
 import SEO from "../components/SEO";
 import "./Contacto.css";
@@ -140,6 +140,7 @@ const TIMELINE_OPTIONS = [
 
 function Contacto() {
   const location = useLocation();
+  const navigate = useNavigate();
   const { paisSeleccionado, paisData } = usePais();
 
   // Form State
@@ -212,23 +213,25 @@ function Contacto() {
 
     const whatsappUrl = `https://api.whatsapp.com/send?phone=${targetPhone}&text=${encodeURIComponent(waMessage)}`;
 
+    const diagnostico = {
+      tipoProyecto,
+      nombre,
+      empresa,
+      email,
+      telefono,
+      inversion,
+      tiempo,
+      requiereNDA,
+      descripcion,
+      pais: paisNombre,
+      moneda: paisData?.moneda || "USD",
+    };
+
     // Non-blocking Telegram webhook dispatch
     fetch("/api/send-telegram", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        tipoProyecto,
-        nombre,
-        empresa,
-        email,
-        telefono,
-        inversion,
-        tiempo,
-        requiereNDA,
-        descripcion,
-        pais: paisNombre,
-        moneda: paisData?.moneda || "USD",
-      }),
+      body: JSON.stringify(diagnostico),
     }).catch((err) => console.error("Error al registrar notificación:", err));
 
     // Simulated SSL validation / dispatch delay
@@ -238,6 +241,9 @@ function Contacto() {
 
       // Open WhatsApp in a new tab with pre-filled diagnosis
       window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+
+      // Redirect to the confirmation page with a summary of what was sent
+      navigate("/confirmacion", { state: { diagnostico } });
     }, 1100);
   };
 

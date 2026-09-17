@@ -12,6 +12,7 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const Portafolio = lazy(() => import("./pages/Portafolio"));
 const Mobile = lazy(() => import("./pages/Mobile"));
 const SobreNosotros = lazy(() => import("./pages/SobreNosotros"));
+const Confirmacion = lazy(() => import("./pages/Confirmacion"));
 
 // Componente de carga
 const LoadingFallback = () => (
@@ -36,6 +37,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/planes" element={<Planes />} />
           <Route path="/contacto" element={<Contacto />} />
+          <Route path="/confirmacion" element={<Confirmacion />} />
           <Route path="/portafolio" element={<Portafolio />} />
           <Route path="/mobile" element={<Mobile />} />
           <Route path="/sobre-nosotros" element={<SobreNosotros />} />
