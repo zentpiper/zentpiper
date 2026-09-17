@@ -9,9 +9,11 @@ export const preciosPorPais = {
         nombre: "Perú",
         bandera: "PE",
         moneda: "S/",
-        telefono: "+51 945 935 080",
-        whatsapp: "51945935080",
-        email: "zentpiper@gmail.com",
+        telefono: "+51 988 490 319",
+        whatsapp: "51988490319",
+        telefono2: "+51 945 935 080",
+        whatsapp2: "51945935080",
+        email: "contacto@zentpiper.com",
 
         // Planes Web
         planesWeb: {
@@ -35,9 +37,11 @@ export const preciosPorPais = {
         nombre: "Chile",
         bandera: "CL",
         moneda: "CLP$",
-        telefono: "+51 945 935 080",
-        whatsapp: "51945935080",
-        email: "zentpiper@gmail.com",
+        telefono: "+51 988 490 319",
+        whatsapp: "51988490319",
+        telefono2: "+51 945 935 080",
+        whatsapp2: "51945935080",
+        email: "contacto@zentpiper.com",
 
         // Planes Web
         planesWeb: {
@@ -61,9 +65,11 @@ export const preciosPorPais = {
         nombre: "Internacional",
         bandera: "🌎",
         moneda: "USD",
-        telefono: "+51 945 935 080",
-        whatsapp: "51945935080",
-        email: "zentpiper@gmail.com",
+        telefono: "+51 988 490 319",
+        whatsapp: "51988490319",
+        telefono2: "+51 945 935 080",
+        whatsapp2: "51945935080",
+        email: "contacto@zentpiper.com",
 
         // Planes Web (precios en USD)
         planesWeb: {

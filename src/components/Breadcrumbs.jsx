@@ -7,7 +7,8 @@ const routeNames = {
     "planes": "Planes Web",
     "mobile": "Desarrollo Móvil",
     "portafolio": "Portafolio",
-    "proyecto": "Proyectos",
+    "sobre-nosotros": "Sobre Nosotros",
+    "proyecto": "Sobre Nosotros",
     "contacto": "Contacto"
 };
 

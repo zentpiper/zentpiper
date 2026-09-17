@@ -51,7 +51,7 @@ function Home() {
   const handleVerMobile = () => navigate("/mobile");
 
   const buildWhatsappLink = (planName) => {
-    const phone = paisData?.whatsapp || "51945935080";
+    const phone = paisData?.whatsapp || "51988490319";
     const text = encodeURIComponent(
       `Hola Zentpiper, me gustaría recibir más información y cotizar el ${planName} para ${paisData?.nombre || "mi negocio"}.`
     );
@@ -1064,7 +1064,7 @@ function Home() {
 
               <div className="zp-cta-actions">
                 <a
-                  href={`https://wa.me/${paisData?.whatsapp || "51945935080"}?text=${encodeURIComponent("Hola Zentpiper, quiero cotizar un proyecto web para mi empresa.")}`}
+                  href={`https://wa.me/${paisData?.whatsapp || "51988490319"}?text=${encodeURIComponent("Hola Zentpiper, quiero cotizar un proyecto web para mi empresa.")}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="zp-btn zp-btn-primary zp-btn-lg"

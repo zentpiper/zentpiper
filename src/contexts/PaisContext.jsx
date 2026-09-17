@@ -46,7 +46,9 @@ export function PaisProvider({ children }) {
         // Shortcuts útiles
         moneda: paisData.moneda,
         telefono: paisData.telefono,
+        telefono2: paisData.telefono2,
         whatsapp: paisData.whatsapp,
+        whatsapp2: paisData.whatsapp2,
         email: paisData.email,
         planesWeb: paisData.planesWeb,
         planesMobile: paisData.planesMobile

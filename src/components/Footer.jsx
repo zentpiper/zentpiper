@@ -7,7 +7,7 @@ function Footer() {
 
   const handleWhatsAppClick = () => {
     const message = "Hola, vengo desde la web de Zentpiper";
-    const phone = paisData?.whatsapp || "51945935080";
+    const phone = paisData?.whatsapp || "51988490319";
     const url = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
     window.open(url, "_blank", "noopener,noreferrer");
   };
@@ -47,7 +47,7 @@ function Footer() {
           </div>
 
           <div className="footer-cta-group">
-            <Link to="/proyecto" className="footer-cta-primary">
+            <Link to="/contacto" className="footer-cta-primary">
               <span>INICIAR PROYECTO</span>
               <svg
                 className="footer-cta-arrow"
@@ -117,7 +117,7 @@ function Footer() {
               <li><Link to="/mobile">Aplicaciones iOS</Link></li>
               <li><Link to="/mobile">Desarrollo Multiplataforma Flutter</Link></li>
               <li><Link to="/mobile">App Nativa Full</Link></li>
-              <li><Link to="/proyecto">Software &amp; Proyectos a Medida</Link></li>
+              <li><Link to="/contacto">Software &amp; Proyectos a Medida</Link></li>
               <li><Link to="/portafolio">Portafolio de Trabajos</Link></li>
             </ul>
           </div>
@@ -133,7 +133,7 @@ function Footer() {
               <li><Link to="/portafolio">Portafolio</Link></li>
               <li><Link to="/planes">Planes Web</Link></li>
               <li><Link to="/mobile">Apps Mobile</Link></li>
-              <li><Link to="/proyecto">Cotizar Proyecto</Link></li>
+              <li><Link to="/sobre-nosotros">Sobre Nosotros</Link></li>
               <li><Link to="/contacto">Contacto</Link></li>
             </ul>
           </div>
@@ -163,7 +163,12 @@ function Footer() {
               <span className="contact-label">TELÉFONO / WHATSAPP</span>
               <p className="contact-value">
                 <a href={`tel:${paisData?.telefono?.replace(/\s+/g, '')}`}>
-                  {paisData?.telefono || "+51 945 935 080"}
+                  {paisData?.telefono || "+51 988 490 319"}
+                </a>
+              </p>
+              <p className="contact-value">
+                <a href={`tel:${paisData?.telefono2?.replace(/\s+/g, '')}`}>
+                  {paisData?.telefono2 || "+51 945 935 080"}
                 </a>
               </p>
             </div>
@@ -185,20 +190,28 @@ function Footer() {
 
           <div className="transmission-links">
             <a
-              href="https://www.tiktok.com/@zentpiper"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transmission-pill"
-            >
-              TIKTOK / @ZENTPIPER
-            </a>
-            <a
               href="https://www.instagram.com/zentpiper"
               target="_blank"
               rel="noopener noreferrer"
               className="transmission-pill"
             >
-              INSTAGRAM / @ZENTPIPER
+              <svg className="transmission-pill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+              </svg>
+              <span>INSTAGRAM / @ZENTPIPER</span>
+            </a>
+            <a
+              href="https://www.tiktok.com/@zentpiper"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transmission-pill"
+            >
+              <svg className="transmission-pill-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 3 15.68a6.34 6.34 0 0 0 10.86 4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-2.04-.54z" />
+              </svg>
+              <span>TIKTOK / @ZENTPIPER</span>
             </a>
             <a
               href="https://www.facebook.com/zentpiper/"
@@ -206,7 +219,10 @@ function Footer() {
               rel="noopener noreferrer"
               className="transmission-pill"
             >
-              FACEBOOK / @ZENTPIPER
+              <svg className="transmission-pill-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+              </svg>
+              <span>FACEBOOK / @ZENTPIPER</span>
             </a>
           </div>
         </div>

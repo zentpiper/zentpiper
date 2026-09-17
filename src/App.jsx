@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Layout from "./components/Layout";
 import ScrollRestoration from "./components/ScrollRestoration";
@@ -11,7 +11,7 @@ const Contacto = lazy(() => import("./pages/Contacto"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Portafolio = lazy(() => import("./pages/Portafolio"));
 const Mobile = lazy(() => import("./pages/Mobile"));
-const Proyecto = lazy(() => import("./pages/Proyecto"));
+const SobreNosotros = lazy(() => import("./pages/SobreNosotros"));
 
 // Componente de carga
 const LoadingFallback = () => (
@@ -38,7 +38,8 @@ function App() {
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/portafolio" element={<Portafolio />} />
           <Route path="/mobile" element={<Mobile />} />
-          <Route path="/proyecto" element={<Proyecto />} />
+          <Route path="/sobre-nosotros" element={<SobreNosotros />} />
+          <Route path="/proyecto" element={<Navigate to="/sobre-nosotros" replace />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

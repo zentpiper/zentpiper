@@ -110,7 +110,7 @@ function Header() {
           <NavLink to="/portafolio" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>Portafolio</NavLink>
           <NavLink to="/planes" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>Web</NavLink>
           <NavLink to="/mobile" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>Mobile</NavLink>
-          <NavLink to="/proyecto" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>Proyecto</NavLink>
+          <NavLink to="/sobre-nosotros" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>Sobre Nosotros</NavLink>
           <NavLink to="/contacto" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>Contacto</NavLink>
         </nav>
 
@@ -158,7 +158,7 @@ function Header() {
         <NavLink to="/portafolio" className={({ isActive }) => isActive ? "nav-link-mobile active" : "nav-link-mobile"}>Portafolio</NavLink>
         <NavLink to="/planes" className={({ isActive }) => isActive ? "nav-link-mobile active" : "nav-link-mobile"}>Web</NavLink>
         <NavLink to="/mobile" className={({ isActive }) => isActive ? "nav-link-mobile active" : "nav-link-mobile"}>Mobile</NavLink>
-        <NavLink to="/proyecto" className={({ isActive }) => isActive ? "nav-link-mobile active" : "nav-link-mobile"}>Proyecto</NavLink>
+        <NavLink to="/sobre-nosotros" className={({ isActive }) => isActive ? "nav-link-mobile active" : "nav-link-mobile"}>Sobre Nosotros</NavLink>
         <NavLink to="/contacto" className={({ isActive }) => isActive ? "nav-link-mobile active" : "nav-link-mobile"}>Contacto</NavLink>
       </nav>
       {isMobileMenuOpen && (
