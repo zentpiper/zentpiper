@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "vite build && wrangler deploy"
   },
   "dependencies": {
     "react": "^19.1.1",
@@ -27,6 +28,7 @@
     "sharp": "^0.34.5",
     "vite": "^7.1.7",
     "vite-plugin-imagemin": "^0.6.1",
-    "vite-plugin-pwa": "^1.1.0"
+    "vite-plugin-pwa": "^1.1.0",
+    "wrangler": "^4.134.0"
   }
 }
