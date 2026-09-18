@@ -1,18 +1,13 @@
 import { NavLink, useLocation } from "react-router-dom";
 import { useState, useEffect, useCallback, useRef } from "react";
-import { usePais } from "../contexts/PaisContext";
-import { paisesDisponibles, preciosPorPais } from "../data/precios";
 import "./Header.css";
 
 function Header() {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const lastScrollY = useRef(0);
   const location = useLocation();
-
-  const { paisSeleccionado, paisData, cambiarPais } = usePais();
 
   // Close mobile menu on route change
   useEffect(() => {
@@ -53,30 +48,9 @@ function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close dropdown on outside click
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (!e.target.closest('.country-selector')) {
-        setIsCountryDropdownOpen(false);
-      }
-    };
-    document.addEventListener('click', handleClickOutside);
-    return () => document.removeEventListener('click', handleClickOutside);
-  }, []);
-
-  const toggleCountryDropdown = useCallback((e) => {
-    e.stopPropagation();
-    setIsCountryDropdownOpen(prev => !prev);
-  }, []);
-
   const toggleMobileMenu = useCallback(() => {
     setIsMobileMenuOpen(prev => !prev);
   }, []);
-
-  const seleccionarPais = useCallback((pais) => {
-    cambiarPais(pais);
-    setIsCountryDropdownOpen(false);
-  }, [cambiarPais]);
 
   return (
     <header className={`header ${isHeaderVisible ? "header-visible" : "header-hidden"} ${isScrolled ? "header-scrolled" : ""}`}>
@@ -113,40 +87,6 @@ function Header() {
           <NavLink to="/sobre-nosotros" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>Sobre Nosotros</NavLink>
           <NavLink to="/contacto" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>Contacto</NavLink>
         </nav>
-
-        {/* Country Selector */}
-        <div className="header-right">
-          <div className="country-selector">
-            <button
-              className="country-btn"
-              onClick={toggleCountryDropdown}
-              aria-label="Seleccionar país"
-              title={`Precios en ${paisData.moneda}`}
-            >
-              <span className="country-label">País:</span>
-              <span className="country-display">
-                <strong>{paisSeleccionado}</strong> ({paisData.moneda})
-              </span>
-              <span className={`dropdown-arrow ${isCountryDropdownOpen ? 'open' : ''}`}>▼</span>
-            </button>
-
-            {isCountryDropdownOpen && (
-              <div className="country-dropdown">
-                {paisesDisponibles.map((pais) => (
-                  <button
-                    key={pais.codigo}
-                    className={`country-option ${paisSeleccionado === pais.codigo ? 'selected' : ''}`}
-                    onClick={() => seleccionarPais(pais.codigo)}
-                    title={`Cambiar a precios de ${pais.nombre}`}
-                  >
-                    <span className="country-name">{pais.nombre}</span>
-                    <span className="country-currency">{preciosPorPais[pais.codigo].moneda}</span>
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
       </div>
 
       {/* Mobile Navigation Panel */}
