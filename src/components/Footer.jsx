@@ -246,17 +246,12 @@ function Footer() {
             <p className="legal-manifesto">
               Agencia de Diseño Web, Software y SEO con raíces peruanas y presencia global.
             </p>
-            {/* Same-line Credits: Barclay Leach + Zentpiper, then Cernext strictly after */}
             <p className="footer-credits-line">
               Hecho por{" "}
               <a href="https://barclayleach.com/es/" target="_blank" rel="noopener noreferrer">
                 Barclay Leach
-              </a>{" "}
-              impulsando{" "}
-              <a href="https://www.zentpiper.com/">
-                Zentpiper
-              </a>{" "}
-              · Impulsado por{" "}
+              </a>
+              , impulsando{" "}
               <a href="https://cernextec.com/es" target="_blank" rel="noopener noreferrer">
                 Cernext
               </a>
