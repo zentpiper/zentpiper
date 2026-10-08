@@ -193,8 +193,8 @@ export default function SobreNosotros() {
                 {Icons.bank}
               </div>
               <div className="sn-trust-info">
-                <span className="sn-trust-number">10+ Años</span>
-                <span className="sn-trust-label">Experiencia Combinada</span>
+                <span className="sn-trust-number">2 Líderes</span>
+                <span className="sn-trust-label">Trato Directo con los Autores</span>
               </div>
             </div>
 
