@@ -7,7 +7,7 @@ function Footer() {
 
   const handleWhatsAppClick = () => {
     const message = "Hola, vengo desde la web de Zentpiper";
-    const phone = paisData?.whatsapp || "51923741645";
+    const phone = paisData?.whatsapp || "51988490319";
     const url = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
     window.open(url, "_blank", "noopener,noreferrer");
   };
@@ -163,7 +163,7 @@ function Footer() {
               <span className="contact-label">TELÉFONO / WHATSAPP</span>
               <p className="contact-value">
                 <a href={`tel:${paisData?.telefono?.replace(/\s+/g, '')}`}>
-                  {paisData?.telefono || "+51 923 741 645"}
+                  {paisData?.telefono || "+51 988 490 319"}
                 </a>
               </p>
               <p className="contact-value">

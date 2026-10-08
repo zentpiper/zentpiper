@@ -83,6 +83,6 @@ El sitemap se genera automáticamente en `/public/sitemap.xml` y debe actualizar
 
 ## 📞 Contacto
 
-- **Teléfono**: 923 741 645 / 945 935 080
+- **Teléfono**: 988 490 319 / 945 935 080
 - **Email**: zentpiper@gmail.com
 - **Web**: https://zentpiper.com

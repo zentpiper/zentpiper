@@ -195,7 +195,7 @@ function Contacto() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const targetPhone = paisData?.whatsapp || "51923741645";
+    const targetPhone = paisData?.whatsapp || "51988490319";
     const paisNombre = paisSeleccionado === "PE" ? "Perú" : paisSeleccionado === "CL" ? "Chile" : "Internacional";
 
     // Build structured WhatsApp message
@@ -247,11 +247,11 @@ function Contacto() {
     }, 1100);
   };
 
-  const directWhatsAppUrl = `https://api.whatsapp.com/send?phone=${paisData?.whatsapp || "51923741645"}&text=${encodeURIComponent(
+  const directWhatsAppUrl = `https://api.whatsapp.com/send?phone=${paisData?.whatsapp || "51988490319"}&text=${encodeURIComponent(
     "Hola Zentpiper Software, me gustaría consultar directamente con un Ingeniero de Software sobre un nuevo proyecto."
   )}`;
 
-  const directPhone = paisData?.telefono || "+51 923 741 645";
+  const directPhone = paisData?.telefono || "+51 988 490 319";
   const cleanDirectPhone = directPhone.replace(/[^\d+]/g, "");
 
   return (
@@ -411,7 +411,7 @@ function Contacto() {
                       id="telefonoWhatsApp"
                       type="tel"
                       className="form-input"
-                      placeholder={paisSeleccionado === "CL" ? "+56 9 0000 0000" : "+51 923 741 645"}
+                      placeholder={paisSeleccionado === "CL" ? "+56 9 0000 0000" : "+51 988 490 319"}
                       value={telefono}
                       onChange={(e) => setTelefono(e.target.value)}
                       required

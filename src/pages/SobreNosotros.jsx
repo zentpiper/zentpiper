@@ -146,7 +146,7 @@ export default function SobreNosotros() {
   };
 
   const handleWhatsApp = () => {
-    const phone = paisData?.whatsapp || "51923741645";
+    const phone = paisData?.whatsapp || "51988490319";
     const msg = "Hola Zentpiper, me gustaría conversar directamente con su equipo de ingeniería.";
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, "_blank", "noopener,noreferrer");
   };
