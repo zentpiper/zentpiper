@@ -95,13 +95,6 @@ const Icons = {
       <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
     </svg>
   ),
-  psychology: (
-    <svg className="sn-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M9 18h6" />
-      <path d="M10 22h4" />
-      <path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7z" />
-    </svg>
-  ),
   speed: (
     <svg className="sn-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <circle cx="12" cy="12" r="10" />
@@ -168,7 +161,7 @@ export default function SobreNosotros() {
       <SEO
         title="Sobre Nosotros | Equipo y Liderazgo Técnico | Zentpiper Software"
         description="Conoce al equipo de ingenieros y líderes detrás de Zentpiper Software. Arquitectura digital, desarrollo full stack, inteligencia artificial y SEO de alto rendimiento."
-        keywords="sobre nosotros zentpiper, equipo zentpiper, liderazgo técnico, Barclay Leach, Arian Liendro, Patrick Pozsgai, desarrollo de software, arquitectura cloud"
+        keywords="sobre nosotros zentpiper, equipo zentpiper, liderazgo técnico, Barclay Leach, Patrick Pozsgai, desarrollo de software, arquitectura cloud"
         canonical="https://zentpiper.com/sobre-nosotros"
       />
 
@@ -317,71 +310,7 @@ export default function SobreNosotros() {
               </div>
             </article>
 
-            {/* Leader 2: Arian Liendro */}
-            <article className="sn-leader-card" id="arian-liendro">
-              <div className="sn-leader-photo-wrap">
-                <img
-                  src="/sobre-nosotros/arian-liendro.png"
-                  alt="Arian Liendro - Desarrollador de Software & Especialista en Ciencia de Datos / LLMs"
-                  className="sn-leader-photo"
-                  loading="eager"
-                  fetchPriority="high"
-                />
-                <div className="sn-photo-gradient" />
-                <div className="sn-photo-badge">
-                  <span>DATA &amp; AI ARCHITECT // 02</span>
-                </div>
-              </div>
-
-              <div className="sn-leader-info">
-                <div className="sn-leader-name-row">
-                  <h3 className="sn-leader-name">Arian Liendro</h3>
-                  <span className="sn-status-dot pulse-amber" title="Disponible para nuevos proyectos" />
-                </div>
-
-                <div className="sn-leader-role">
-                  Desarrollador de Software &amp; Especialista en Ciencia de Datos / LLMs
-                </div>
-
-                <p className="sn-leader-bio">
-                  Enfoque en la arquitectura, planificación y desarrollo de sistemas de software funcionales y escalables. Combino la ingeniería de software tradicional con la implementación de modelos de aprendizaje automático y grandes modelos de lenguaje (LLMs), buscando integrar soluciones inteligentes que resuelvan problemas reales de forma eficiente.
-                </p>
-
-                <div className="sn-speciality-box">
-                  <span className="sn-speciality-title">Especialidad &amp; Enfoque</span>
-                  <div className="sn-tags-list">
-                    <span className="sn-tag">Arquitectura de Software</span>
-                    <span className="sn-tag">Machine Learning</span>
-                    <span className="sn-tag">LLMs &amp; IA Generativa</span>
-                    <span className="sn-tag">Sistemas Escalables</span>
-                  </div>
-                </div>
-
-                <div className="sn-leader-footer">
-                  <button
-                    type="button"
-                    onClick={() => handleContactarEspecialista("Consulta con Arian Liendro", "IA & Data Science")}
-                    className="sn-profile-link"
-                  >
-                    {Icons.psychology}
-                    <span>Consultar IA &amp; Data</span>
-                  </button>
-
-                  <div className="sn-leader-quick-actions">
-                    <button
-                      type="button"
-                      onClick={() => copyProfileLink("Arian Liendro")}
-                      className="sn-quick-btn"
-                      title="Copiar enlace de perfil"
-                    >
-                      {Icons.link}
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            {/* Leader 3: Patrick Pozsgai */}
+            {/* Leader 2: Patrick Pozsgai */}
             <article className="sn-leader-card" id="patrick-pozsgai">
               <div className="sn-leader-photo-wrap">
                 <img
@@ -393,7 +322,7 @@ export default function SobreNosotros() {
                 />
                 <div className="sn-photo-gradient" />
                 <div className="sn-photo-badge">
-                  <span>WEB ARCHITECTURE &amp; SEO // 03</span>
+                  <span>WEB ARCHITECTURE &amp; SEO // 02</span>
                 </div>
               </div>
 
