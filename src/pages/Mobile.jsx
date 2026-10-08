@@ -156,7 +156,7 @@ function Mobile() {
   const { paisSeleccionado, moneda, whatsapp } = usePais();
 
   const handleWhatsAppDirect = (nombrePlan) => {
-    const phone = whatsapp || "51988490319";
+    const phone = whatsapp || "51923741645";
     const msg = `Hola Zentpiper, deseo consultar confidencialmente la propuesta de inversion y alcance tecnico para ${nombrePlan} (${paisSeleccionado}). Busco agendar una sesion tecnica.`;
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, "_blank", "noopener,noreferrer");
   };
