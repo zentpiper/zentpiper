@@ -5,8 +5,14 @@
   "compatibility_date": "2026-09-17",
   "account_id": "9e884f76715823912b30bc0370733553",
   "assets": {
-    "directory": "./dist",
-    "not_found_handling": "single-page-application"
+    // HTML prerenderizado por React Router (npm run build)
+    "directory": "./build/client",
+    // /planes sirve planes/index.html y /planes/ redirige a /planes
+    "html_handling": "drop-trailing-slash",
+    // Rutas desconocidas → 404.html con status 404 real
+    "not_found_handling": "404-page",
+    // La API la atiende el Worker antes de buscar archivos
+    "run_worker_first": ["/api/*"]
   },
   "observability": {
     "enabled": true

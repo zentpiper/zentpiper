@@ -29,3 +29,11 @@ dist-ssr
 
 # Promo video renders (large media)
 promo-video/
+
+# Cloudflare Worker local secrets
+.dev.vars
+
+# Generados
+build
+.react-router
+.wrangler

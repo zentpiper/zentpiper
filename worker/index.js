@@ -1,8 +1,10 @@
+// Worker de Cloudflare. Los archivos estáticos (build/client) se sirven antes de
+// llegar aquí; este código solo atiende la API.
+
 // Trim to a string and cap its length; non-strings become "".
 const str = (v, max) => (typeof v === "string" ? v.trim().slice(0, max) : "");
 
-const json = (data, status = 200) =>
-  Response.json(data, { status });
+const json = (data, status = 200) => Response.json(data, { status });
 
 async function handleSendTelegram(request, env) {
   if (request.method !== "POST") {
@@ -24,52 +26,42 @@ async function handleSendTelegram(request, env) {
     return json({ success: false, error: "Invalid JSON" }, 400);
   }
 
-  const tipoProyecto = str(body.tipoProyecto, 60);
   const nombre = str(body.nombre, 100);
-  const empresa = str(body.empresa, 120);
-  const email = str(body.email, 150);
   const telefono = str(body.telefono, 30);
-  const inversion = str(body.inversion, 40);
-  const tiempo = str(body.tiempo, 40);
-  const descripcion = str(body.descripcion, 2000);
+  const email = str(body.email, 150);
+  const servicio = str(body.servicio, 60);
+  const plan = str(body.plan, 40);
+  const mensaje = str(body.mensaje, 2000);
   const pais = str(body.pais, 20);
-  const moneda = str(body.moneda, 10);
-  const requiereNDA = !!body.requiereNDA;
 
-  if (!nombre || !email || !telefono || !descripcion) {
+  // Formulario corto: solo nombre y teléfono son obligatorios.
+  if (!nombre || !telefono) {
     return json({ success: false, error: "Faltan campos requeridos." }, 400);
   }
-  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+  if (email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
     return json({ success: false, error: "Email inválido." }, 400);
   }
 
   // Plain text (no parse_mode) — user fields can't inject Telegram markup.
   const message = [
-    "🆕 NUEVO DIAGNÓSTICO TÉCNICO — ZENTPIPER",
+    "🆕 NUEVO LEAD — ZENTPIPER",
     "",
-    `🧩 Tipo de Requerimiento: ${tipoProyecto || "No especificado"}`,
+    `🧩 Servicio: ${servicio || "No especificado"}${plan ? ` · Plan ${plan}` : ""}`,
     `👤 Nombre: ${nombre}`,
-    `🏢 Empresa/Cargo: ${empresa || "No especificada"}`,
-    `📧 Email: ${email}`,
-    `📱 Teléfono: ${telefono}`,
-    `🌎 País: ${pais || "No especificado"}`,
-    `💵 Inversión estimada: ${inversion || "No especificada"} ${moneda || ""}`.trim(),
-    `⏱️ Tiempo estimado: ${tiempo || "No especificado"}`,
-    `🔒 NDA requerido: ${requiereNDA ? "Sí" : "No"}`,
-    `💬 Desafío/Alcance: ${descripcion}`,
+    `📱 WhatsApp: ${telefono}`,
+    `📧 Email: ${email || "—"}`,
+    `🌎 País (precios): ${pais || "No especificado"}`,
+    `💬 Mensaje: ${mensaje || "—"}`,
     "",
-    `📅 Fecha: ${new Date().toLocaleString("es-PE", { timeZone: "America/Lima" })}`,
+    `📅 ${new Date().toLocaleString("es-PE", { timeZone: "America/Lima" })}`,
   ].join("\n");
 
   try {
-    const r = await fetch(
-      `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chat_id: CHAT_ID, text: message }),
-      },
-    );
+    const r = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ chat_id: CHAT_ID, text: message }),
+    });
     const data = await r.json();
     if (data.ok) return json({ success: true });
 

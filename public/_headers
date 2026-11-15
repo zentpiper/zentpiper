@@ -1,0 +1,15 @@
+# Cloudflare Workers static assets: cabeceras de caché y seguridad
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+# Archivos con hash: inmutables
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Medios: cambian de nombre si cambian
+/media/*
+  Cache-Control: public, max-age=2592000

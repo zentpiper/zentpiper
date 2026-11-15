@@ -1,0 +1,5 @@
+# Secretos del Worker para `npm run preview` (wrangler dev).
+# Copia este archivo como .dev.vars (no se versiona) y completa los valores.
+# En producción se configuran con: npx wrangler secret put <NOMBRE>
+TELEGRAM_BOT_TOKEN=
+TELEGRAM_CHAT_ID=
