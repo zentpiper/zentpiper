@@ -1,5 +1,6 @@
 import Icono from "./Icono";
 import BotonWhatsApp from "./BotonWhatsApp";
+import FichaTecnica from "./FichaTecnica";
 import { usePais } from "../contexts/pais";
 import { MESES_GRATIS } from "../data/precios";
 
@@ -7,29 +8,28 @@ import { MESES_GRATIS } from "../data/precios";
 export default function TarjetasPlanes({ grupo, planes, extra }) {
   const { datos, precio } = usePais();
   const tipo = grupo === "web" ? "la página web" : "el plan";
+  const conPasarelas = (t) => t.replace("{pasarelas}", datos.pasarelas);
 
   return (
     <div className="planes">
       {planes.map((plan) => {
         const total = precio(grupo, plan.id);
-        const mensual = precio(grupo, plan.id, "mensual");
         return (
           <article key={plan.id} className={`plan${plan.destacado ? " plan--top" : ""}`}>
-            {plan.destacado && <p className="plan__badge">{plan.destacado}</p>}
-            <h3 className="plan__nombre">{plan.nombre}</h3>
+            <header className="plan__cab">
+              <h3 className="plan__nombre">{plan.nombre}</h3>
+              {plan.destacado && <p className="plan__badge">{plan.destacado}</p>}
+            </header>
             <p className="plan__para">{plan.para}</p>
-            <p className="plan__precio">
-              <span className="plan__monto">{total}</span>
-              <span className="plan__unico">pago único</span>
-            </p>
+            <p className="plan__monto">{total}</p>
             <p className="plan__mensual">
-              <strong>{MESES_GRATIS} meses gratis</strong> de mantenimiento, luego {mensual}/mes
+              Pago único · {MESES_GRATIS} meses de mantenimiento gratis, luego {precio(grupo, plan.id, "mensual")}/mes
             </p>
             <ul className="checks">
               {plan.incluye.map((item) => (
                 <li key={item}>
                   <Icono nombre="check" size={18} />
-                  {item.replace("{pasarelas}", datos.pasarelas)}
+                  {conPasarelas(item)}
                 </li>
               ))}
             </ul>
@@ -37,9 +37,11 @@ export default function TarjetasPlanes({ grupo, planes, extra }) {
               className={`btn btn--block ${plan.destacado ? "btn--gold" : "btn--ghost"}`}
               origen={`plan-${grupo}-${plan.id}`}
               mensaje={`Hola Zentpiper, quiero ${tipo} ${plan.nombre} (${total}). ¿Me ayudan a empezar?`}
+              aria-label={`Lo quiero: ${plan.nombre}`}
             >
-              Quiero el plan {plan.nombre.replace(/^App /, "")}
+              Lo quiero
             </BotonWhatsApp>
+            <FichaTecnica filas={plan.ficha.map(([dato, valor]) => [dato, conPasarelas(valor)])} />
           </article>
         );
       })}

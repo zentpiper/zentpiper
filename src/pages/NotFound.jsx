@@ -16,7 +16,7 @@ export default function NotFound() {
       <div className="container narrow center">
         <p className="eyebrow">Error 404</p>
         <h1 className="h1">Esta página no existe</h1>
-        <p className="lead">Pero tu próxima web sí puede existir.</p>
+        <p className="lead">Puede que el enlace esté mal o que la página se haya movido.</p>
         <div className="acciones center">
           <Link className="btn btn--gold btn--lg" to="/planes">Ver precios</Link>
           <BotonWhatsApp className="btn btn--ghost btn--lg" origen="404">Escríbenos</BotonWhatsApp>

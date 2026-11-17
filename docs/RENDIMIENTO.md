@@ -67,10 +67,13 @@ cambian el resultado.
 
 ## 5. Imágenes y video
 
-- LCP de la home = póster del video (`<picture>`, WebP de 26 KB en móvil y 56 KB en
-  desktop, `fetchpriority="high"` + preload en `links()` de `Home.jsx`).
+- LCP de la home = póster del primer video (`<picture>`, WebP de 7 KB en móvil y 24 KB
+  en desktop, `fetchpriority="high"` + preload en `links()` de `Home.jsx`).
 - El `<video>` no tiene `src` en el HTML. El script lo carga tras el primer LCP + `load`
-  + tiempo libre (respaldo: 4 s). Móvil usa el recorte vertical `-m.mp4` (~260 KB).
+  + tiempo libre (respaldo: 4 s). Móvil usa el recorte vertical `-m.mp4` (70–280 KB).
+  Clips: 7 s de cada video de Pexels, con retoque (ver `CLIPS` en
+  `scripts/optimizar-medios.mjs`). Para cambiar un video: descargarlo en
+  `assets-src/videos/pexels/`, añadirlo a `CLIPS` y correr `npm run medios` con FFMPEG.
   No hay video con "reducir movimiento", ahorro de datos ni 2G.
 - Todas las imágenes llevan `width`/`height` y `srcset` 480/800. Se generan con
   `npm run medios` desde `assets-src/` (ver `scripts/optimizar-medios.mjs`).

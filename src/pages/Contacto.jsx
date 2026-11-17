@@ -100,10 +100,10 @@ export default function Contacto() {
   return (
     <>
       <section className="page-hero page-hero--sm">
-        <div className="container narrow center">
+        <div className="container">
           <p className="eyebrow">Contacto</p>
-          <h1 className="h1">Cotiza gratis tu web o app</h1>
-          <p className="lead">Déjanos 2 datos y seguimos por WhatsApp. Sin compromiso.</p>
+          <h1 className="h1">Cotiza gratis tu web o app.</h1>
+          <p className="lead">Dos datos y seguimos por WhatsApp. Sin compromiso.</p>
         </div>
       </section>
 

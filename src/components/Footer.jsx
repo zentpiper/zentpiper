@@ -1,7 +1,17 @@
 import { Link } from "react-router";
 import Icono from "./Icono";
 import BotonWhatsApp from "./BotonWhatsApp";
+import FichaTecnica from "./FichaTecnica";
 import { CONTACTO } from "../data/precios";
+
+// Lo que mostramos de nuestra propia web: la mejor demo para una agencia web.
+// Cifras medidas con Lighthouse (docs/RENDIMIENTO.md); actualizar si cambian.
+const ESTA_WEB = [
+  ["Lighthouse", "100 en rendimiento, accesibilidad, buenas prácticas y SEO"],
+  ["Primera pantalla", "0,7 s en un celular con 4G lento"],
+  ["Peso inicial", "Sin JavaScript hasta que tocas la página"],
+  ["Hosting", "Cloudflare, HTML estático"],
+];
 
 const REDES = [
   { nombre: "instagram", label: "Instagram de Zentpiper" },
@@ -18,7 +28,7 @@ export default function Footer() {
             <img src="/logo.svg" width="30" height="30" alt="" loading="lazy" />
             <span>ZENTPIPER</span>
           </Link>
-          <p>Diseño web, tiendas online y apps que venden. Desde Lima para Perú y Rusia.</p>
+          <p>Webs, tiendas online y apps para negocios de Perú y Rusia. Desde Santiago de Surco, Lima.</p>
           <BotonWhatsApp className="btn btn--gold btn--sm" origen="footer">
             Cotizar gratis
           </BotonWhatsApp>
@@ -61,6 +71,7 @@ export default function Footer() {
 
       <div className="container ftr__base">
         <p>© <span suppressHydrationWarning>{new Date().getFullYear()}</span> Zentpiper. Todos los derechos reservados.</p>
+        <FichaTecnica titulo="¿Cómo está hecha esta web?" filas={ESTA_WEB} />
         {/* Asociado sin pasar autoridad SEO (nofollow): Zentpiper es la entidad principal. */}
         <p>
           Asociado con{" "}

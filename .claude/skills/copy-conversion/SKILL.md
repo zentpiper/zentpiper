@@ -10,21 +10,30 @@ objeción y termina en WhatsApp.
 
 ## Estructura de una página que vende
 
-1. **Hero**: resultado concreto + precio de entrada + plazo. Un CTA principal (WhatsApp)
-   y uno secundario (ver precios). Prueba social en una línea (+50 proyectos, Perú y Rusia).
-2. **Precio visible** pronto: tarjetas con plan destacado ("Más elegido"), pago único y
-   la mensualidad después de los 3 meses gratis.
-3. **Cómo funciona** en 3 pasos (quita la incertidumbre).
-4. **Prueba**: proyectos reales y testimonios.
-5. **Objeciones**: comparativa corta + FAQ de 4–6 preguntas.
-6. **CTA final**: repite la oferta y el botón.
+1. **Hero**: resultado concreto + precio de entrada + plazo, sobre video real. Un CTA
+   principal (WhatsApp) y uno secundario (ver precios). Caras del equipo con "te
+   atienden los que la construyen".
+2. **Clientes**: una fila sobria de nombres reales.
+3. **Precio visible** pronto: tarjetas con plan destacado, pago único, mensualidad tras
+   los 3 meses gratis, 3 puntos y la ficha técnica plegada.
+4. **Prueba**: trabajos con un resultado medible (si lo hay) y una cita textual.
+5. **Objeciones**: 4 preguntas rápidas con respuestas de 1–2 líneas.
+6. **Cierre**: "¿Hablamos de tu negocio?" + WhatsApp.
+
+## Tono: profesional, humano, sin cara de IA
+
+- Nada de "transforma", "potencia", "impulsa", "solución integral", "llevamos tu negocio
+  al siguiente nivel" ni frases de folleto.
+- Primera persona del plural y cosas concretas: nombres, ciudades, cifras, plazos.
+- Titulares en minúscula normal, sin eslóganes en mayúsculas ni rótulos `// …`.
+- Si un dato técnico no ayuda a decidir la compra, va en la ficha técnica plegada.
 
 ## Reglas de redacción
 
-- Titulares ≤ 8 palabras, en positivo y con el beneficio ("Webs y apps que venden").
-- Párrafos de 1–2 frases. Listas de 4–5 ítems como máximo, empezando con el beneficio.
+- Titulares ≤ 8 palabras, en positivo y con el beneficio ("Webs que te traen clientes por WhatsApp").
+- Párrafos de 1–2 frases. Tarjetas con 3 puntos como máximo, empezando con el beneficio.
 - Habla de "tú" y del negocio del cliente, no de nosotros.
-- CTA con verbo + resultado: "Cotizar gratis por WhatsApp", "Quiero el plan Negocio".
+- CTA con verbo + resultado: "Cotizar por WhatsApp", "Lo quiero" (con `aria-label` del plan).
   Evita "Más información", "Click aquí" o "Ver más" (Lighthouse los marca y no venden).
 - Precio siempre desde `usePais().precio(...)`, nunca escrito a mano.
 - Mensaje prellenado de WhatsApp: saludo + qué quiere + plan y precio. Ejemplo:

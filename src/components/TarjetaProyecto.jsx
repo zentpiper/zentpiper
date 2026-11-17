@@ -3,7 +3,7 @@ import Icono from "./Icono";
 // `arriba`: la tarjeta se ve sin hacer scroll (carga inmediata). `lcp`: además es la
 // imagen más grande de la pantalla inicial (prioridad alta, ver docs/RENDIMIENTO.md §5).
 export default function TarjetaProyecto({ proyecto, arriba = false, lcp = false }) {
-  const { id, nombre, rubro, descripcion, url } = proyecto;
+  const { id, nombre, rubro, descripcion, resultado, url } = proyecto;
   const contenido = (
     <>
       <img
@@ -25,6 +25,7 @@ export default function TarjetaProyecto({ proyecto, arriba = false, lcp = false 
           {url && <Icono nombre="externo" size={16} />}
         </h3>
         <p className="proy__desc">{descripcion}</p>
+        {resultado && <p className="proy__res">{resultado}</p>}
       </div>
     </>
   );

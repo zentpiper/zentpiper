@@ -1,5 +1,6 @@
-// Bloque estándar: eyebrow + h2 + subtítulo + contenido.
-export default function Seccion({ id, eyebrow, titulo, sub, children, className = "", centrado = true }) {
+// Bloque estándar: título (y opcionalmente etiqueta y bajada) + contenido.
+// Alineado a la izquierda por defecto: lo centrado en todo es lo que más "plantilla" parece.
+export default function Seccion({ id, eyebrow, titulo, sub, children, className = "", centrado = false }) {
   return (
     <section id={id} className={`section ${className}`} aria-labelledby={id ? `${id}-t` : undefined}>
       <div className="container">

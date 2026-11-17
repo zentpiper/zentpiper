@@ -21,10 +21,10 @@ export default function Portafolio() {
   return (
     <>
       <section className="page-hero">
-        <div className="container narrow center">
+        <div className="container">
           <p className="eyebrow">Portafolio</p>
-          <h1 className="h1">+50 proyectos que ya están vendiendo</h1>
-          <p className="lead">Webs, tiendas, sistemas y apps para negocios reales. Toca uno para verlo en vivo.</p>
+          <h1 className="h1">Más de 50 webs, tiendas y apps entregadas.</h1>
+          <p className="lead">Toca cualquiera para verla funcionando.</p>
         </div>
       </section>
 

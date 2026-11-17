@@ -24,6 +24,7 @@ WhatsApp en cada bloque.
 | Cabeceras y redirecciones | `public/_headers` (caché, seguridad) · `public/_redirects` (`/proyecto` → `/sobre-nosotros` 301) |
 | Analítica | GA4 `G-0L8037Y84K`, se carga con la primera interacción; evento `generate_lead` en cada clic a WhatsApp |
 | Medios | Fuentes originales en `assets-src/` → `npm run medios` → `public/media/` |
+| Videos del hero | 3 clips reales de Pexels (licencia libre): `cliente-celular`, `mensaje-whatsapp`, `empacando-pedido`. 7 s cada uno, retoque cálido, 200–480 KB (móvil 70–280 KB) |
 
 ## 3. Árbol
 
@@ -41,9 +42,9 @@ src/
   styles/site.css          tokens + todos los estilos
   data/precios.js          ÚNICA fuente de precios, monedas y contacto (PE, RU)
   content/
-    planes.js              planes web y apps (nombre, para quién, qué incluye)
-    proyectos.js           portafolio + categorías + lista de clientes
-    textos.js              testimonios, pasos, comparativa, FAQ, equipo
+    planes.js              planes web y apps (nombre, para quién, 3 puntos, ficha técnica)
+    proyectos.js           portafolio + categorías + resultado confirmado
+    textos.js              testimonios, FAQ, equipo
   contexts/                país seleccionado (PaisProvider + usePais)
   lib/
     seo.js                 meta por ruta (title, description, canonical, OG, JSON-LD)
@@ -51,8 +52,8 @@ src/
     whatsapp.js            enlace wa.me + evento GA4
   components/              Header, Footer, BotonWhatsApp, WhatsAppFlotante, HeroVideo,
                            CamposDiferidos (campos de formulario sin costo de carga), iconos.js,
-                           TarjetasPlanes, Seccion, Faq, CtaFinal, TarjetaProyecto,
-                           Testimonios, CintaClientes, Pasos, Comparativa, SelectorPais, Icono
+                           TarjetasPlanes, FichaTecnica, Seccion, Faq, CtaFinal, TarjetaProyecto,
+                           Equipo, Cita, Clientes, SelectorPais, Icono
   pages/                   una por ruta (ver §4)
 worker/index.js            API de leads a Telegram
 public/                    media/, logo, favicons, og.jpg, robots.txt, _headers, _redirects
@@ -63,11 +64,11 @@ assets-src/                originales de medios (no se publican)
 
 | Ruta | Archivo | Objetivo | Bloques |
 |---|---|---|---|
-| `/` | `Home.jsx` | Vender webs | Hero con video · cinta de clientes · precios web · 3 pasos · 6 proyectos · testimonios · comparativa · FAQ · CTA |
-| `/planes` | `Planes.jsx` | Vender webs (SEO "precios páginas web") | Hero con precio · planes · 4 beneficios · pasos · FAQ · CTA |
-| `/mobile` | `Mobile.jsx` | Vender apps | Hero con precio · 3 planes + "Empresa" · pasos · casos · FAQ apps · CTA |
+| `/` | `Home.jsx` | Vender webs | Hero con video real + caras del equipo · clientes · precios con ficha técnica · 3 trabajos con resultado · equipo + cita · FAQ · CTA |
+| `/planes` | `Planes.jsx` | Vender webs (SEO "precios páginas web") | Hero con precio · planes con ficha técnica · casos de tiendas + cita · FAQ · CTA |
+| `/mobile` | `Mobile.jsx` | Vender apps | Hero con precio · 3 planes + "Empresa" (con ficha) · casos · FAQ apps · CTA |
 | `/portafolio` | `Portafolio.jsx` | Prueba social | Filtros por categoría · 14 proyectos · CTA |
-| `/sobre-nosotros` | `SobreNosotros.jsx` | Confianza | Datos · equipo (Patrick, Barclay) · 3 principios · CTA |
+| `/sobre-nosotros` | `SobreNosotros.jsx` | Confianza | Datos · equipo (Patrick, Barclay) · cómo trabajamos + cita · CTA |
 | `/contacto` | `Contacto.jsx` | Captar lead | Formulario corto: primero "¿Qué necesitas?" (un toque), luego nombre, WhatsApp, mensaje y email opcionales · WhatsApp directo |
 | `/confirmacion` | `Confirmacion.jsx` | Post-envío (noindex) | Reabrir WhatsApp · ver portafolio |
 | `*` → `404.html` | `NotFound.jsx` | 404 real (noindex) | Ver precios · WhatsApp |
@@ -128,14 +129,24 @@ Enlaces internos a `/contacto` pueden precargar el formulario: `?servicio=App%20
 
 ## 8. Sistema visual
 
-Tokens en `:root` de `site.css`: fondo `#0a0a0b`, superficies `#16161b`/`#1e1e24`,
+Colores y logo de marca (no cambiar): fondo `#0a0a0b`, superficies `#16161b`/`#1e1e24`,
 dorado del isotipo `#f3a523` (hover `#ffc24a`), texto `#f5f5f6`/`#b8b8c1`/`#9d9da8`,
-WhatsApp `#25d366`. Radios 10/16/24. Inter para todo y monoespaciada del sistema para
-los "eyebrow" (`// PRECIOS CLAROS`). Breakpoints: 960 (menú), 860, 560, 480.
+WhatsApp `#25d366`. Isotipo hexagonal + "ZENTPIPER" espaciado.
+
+Dirección (rediseño 2026-11-17, "verse profesional y cerrar ventas, menos cara de IA"):
+- Titulares en minúscula normal y alineados a la izquierda; nada de eslóganes en
+  mayúsculas, rótulos `// …`, brillos dorados difusos ni secciones todas centradas.
+- Gente real: videos de Pexels en el hero, caras de Patrick y Barclay desde el primer
+  pantallazo y en "Quiénes somos".
+- Prueba concreta en vez de adjetivos: trabajos con resultado y una cita textual.
+- Menos texto: planes con 3 puntos; el detalle técnico va plegado (`FichaTecnica`) en
+  cada plan y en el pie ("¿Cómo está hecha esta web?").
+- Radios 8/12/16, botones con esquinas (no píldora). Inter para todo.
+  Breakpoints: 960 (menú), 860, 560.
 
 Componentes de conversión: `.btn--gold` (CTA principal, siempre WhatsApp) ·
-`.btn--ghost` (secundario) · `.plan--top` (plan destacado) · `.chips` (lo incluido) ·
-`.wa-float` (botón flotante en todas las páginas).
+`.btn--ghost` (secundario) · `.plan--top` (plan destacado) · `.ficha` (detalle técnico
+plegado) · `.cita` (testimonio) · `.wa-float` (botón flotante en todas las páginas).
 
 ## 9. Calidad
 

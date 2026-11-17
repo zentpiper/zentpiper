@@ -1,5 +1,6 @@
 // Portafolio. `img` = prefijo en public/media (se sirven -480.webp y -800.webp).
 // categoria: web | tienda | sistema | app  (filtros de /portafolio)
+// resultado: solo cifras confirmadas (testimonio o dato del proyecto). destacado: sale en la home.
 // Enlaces externos de clientes: rel="noopener" (sí pasan reputación, son nuestro trabajo).
 
 export const PROYECTOS = [
@@ -10,13 +11,13 @@ export const PROYECTOS = [
     descripcion: "Sitio para DJ y productor de Tech House en España.",
     url: "https://www.naimmarchionni.com",
     categoria: "web",
-    destacado: true,
   },
   {
     id: "cegrisa",
     nombre: "Cegrisa Import",
     rubro: "Catálogo web",
     descripcion: "Catálogo de cerámicas con cotización directa por WhatsApp.",
+    resultado: "+60% de consultas por WhatsApp",
     url: "https://cegrisa-one.vercel.app",
     categoria: "tienda",
     destacado: true,
@@ -25,7 +26,8 @@ export const PROYECTOS = [
     id: "tayoton",
     nombre: "Tayoton Fest",
     rubro: "Web + venta de entradas",
-    descripcion: "Festival de música: entradas agotadas en menos de 24 horas.",
+    descripcion: "Web y venta de entradas para un festival de música.",
+    resultado: "Entradas agotadas en menos de 24 horas",
     url: "https://tayoton.com",
     categoria: "tienda",
     destacado: true,
@@ -46,7 +48,6 @@ export const PROYECTOS = [
     descripcion: "CRM de ventas y gestión comercial a medida.",
     url: "https://zent-flow.vercel.app",
     categoria: "sistema",
-    destacado: true,
   },
   {
     id: "maxgrind",
@@ -55,7 +56,6 @@ export const PROYECTOS = [
     descripcion: "App de seguimiento fitness para gimnasio.",
     url: "https://www.maxgrind.app/es",
     categoria: "app",
-    destacado: true,
   },
   {
     id: "ketbia",

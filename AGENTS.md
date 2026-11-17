@@ -62,6 +62,12 @@ Usa la skill `nueva-pagina`. Resumen: `src/routes.js` · `RUTAS_PUBLICAS` · nav
 
 ## Estilos
 
+- Objetivo: **verse profesional y cerrar ventas**, sin cara de plantilla de IA. Se
+  mantienen los colores (negro + dorado `#f3a523`) y el logo (isotipo hexagonal +
+  "ZENTPIPER"). No vuelvas a meter rótulos `// …`, eslóganes en mayúsculas, brillos
+  dorados difusos, estrellas, tablas de check/cruz ni secciones todas centradas.
+  Detalle en `docs/ESQUEMA.md` §8.
+- Detalle técnico solo plegado, con `components/FichaTecnica.jsx`.
 - Una sola hoja: `src/styles/site.css`, organizada por secciones con tokens en `:root`.
   No crees archivos CSS por página ni prefijos de tokens nuevos.
 - Usa los tokens (`--oro`, `--surface`, `--text-2`…), nunca colores sueltos.
