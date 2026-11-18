@@ -4,13 +4,6 @@
 
 export const TESTIMONIOS = [
   {
-    id: "cegrisa",
-    texto: "Antes teníamos una web en WordPress que tardaba segundos en cargar los modelos de porcelanato. Zentpiper desarrolló nuestro catálogo y las consultas por WhatsApp crecieron más del 60%.",
-    autor: "Carlos Mendoza",
-    cargo: "Gerente Comercial, Cegrisa Import",
-    pais: "Perú",
-  },
-  {
     id: "spanglish",
     texto: "Coordinar el desarrollo de nuestra academia desde Moscú fue facilísimo con Zentpiper. Muy profesionales, cumplieron exactamente los plazos acordados y el diseño transmite absoluta confianza.",
     autor: "Elena Volkova",
@@ -33,11 +26,11 @@ export const FAQ_WEB = [
   },
   {
     p: "¿Qué pago después?",
-    r: "Nada durante 3 meses. Luego, desde {mensualWeb} por cambios, seguridad y soporte por WhatsApp.",
+    r: "Nada durante 3 meses. Luego, desde {mensualWeb} al mes con hosting, dominio, cambios, seguridad y soporte por WhatsApp.",
   },
   {
-    p: "¿El dominio y el hosting están incluidos?",
-    r: "Sí, el primer año completo, con SSL. Sin cobros sorpresa.",
+    p: "¿La web y el dominio son míos?",
+    r: "Sí, todo es tuyo. El hosting y el dominio van siempre incluidos: gratis los 3 primeros meses y después dentro del mantenimiento.",
   },
   {
     p: "¿Cómo pago?",
@@ -62,6 +55,25 @@ export const FAQ_APPS = [
     p: "¿Quién la publica en las tiendas?",
     r: "Nosotros, a nombre de tu empresa: fichas, capturas y revisión de App Store y Google Play.",
   },
+];
+
+// Inicio: qué pasa después del primer mensaje. Solo plazos y promesas confirmados.
+export const PASOS = [
+  { t: "Nos escribes por WhatsApp", d: "Cuéntanos de tu negocio y te recomendamos el plan. Cotizar es gratis." },
+  { t: "Ves tu web antes de publicarla", d: "Te mostramos avances mientras la construimos." },
+  { t: "La publicamos y es tuya", d: "Esencial en 3 a 5 días hábiles; los demás, en 7 a 14. La web y el dominio son tuyos." },
+];
+
+// Sobre nosotros: cómo trabajamos y datos de la empresa.
+export const COMO_TRABAJAMOS = [
+  { t: "Hablas con quien programa", d: "Sin vendedores de por medio ni tickets." },
+  { t: "Rápidas de verdad", d: "Cada segundo de carga cuesta clientes. Las nuestras dan 95–100 en PageSpeed." },
+  { t: "Medimos en mensajes", d: "Una web funciona si te escriben más, no si se ve bonita." },
+];
+
+export const DATOS_EMPRESA = [
+  { valor: "+50", texto: "proyectos entregados" },
+  { valor: "2", texto: "países: Perú y Rusia" },
 ];
 
 export const EQUIPO = [

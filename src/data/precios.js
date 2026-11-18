@@ -7,7 +7,7 @@ export const CONTACTO = {
   telefono: "+51 945 935 080",
   whatsapp: "51945935080",
   telefono2: "+51 988 490 319",
-  email: "contacto@zentpiper.com",
+  email: "zentpiper@gmail.com",
   ciudad: "Santiago de Surco, Lima",
   redes: {
     instagram: "https://www.instagram.com/zentpiper",

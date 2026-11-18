@@ -1,5 +1,5 @@
 // Genera los medios optimizados de public/media a partir de assets-src/.
-// Uso: FFMPEG=/ruta/a/ffmpeg node scripts/optimizar-medios.mjs
+// Uso: FFMPEG=/ruta/a/ffmpeg node scripts/optimizar-medios.mjs [videos|fotos|proyectos|equipo|marca…]
 // (sin FFMPEG solo procesa imágenes). Los resultados se versionan; no corre en build.
 import { execFileSync } from "node:child_process";
 import { mkdirSync, readdirSync, rmSync } from "node:fs";
@@ -48,12 +48,35 @@ async function videos() {
   }
 }
 
+// ── Fotos de encabezado y de cierre: fotogramas de los mismos clips ──
+// 4:3, con el mismo retoque que los videos. `t`: segundo del clip original;
+// `left`: inicio del recorte de 960 px de ancho (sobre 1280x720).
+const FOTOS = [
+  { nombre: "f-planes", clip: "empacando-pedido", t: 4, left: 120 },
+  { nombre: "f-mobile", clip: "mensaje-whatsapp", t: 3, left: 200 },
+  { nombre: "f-cierre", clip: "cliente-celular", t: 9, left: 160 },
+];
+
+async function fotos() {
+  if (!FFMPEG) return console.log("· FFMPEG no definido: se omiten fotos de encabezado");
+  for (const { nombre, clip, t, left } of FOTOS) {
+    const frame = join(tmpdir(), `${nombre}.png`);
+    execFileSync(FFMPEG, ["-v", "error", "-y", "-ss", String(t), "-i", join(SRC, "videos", "pexels", `${clip}.mp4`), "-vf", `scale=1280:720,${GRADO}`, "-frames:v", "1", frame]);
+    const base = sharp(frame).extract({ left, top: 0, width: 960, height: 720 });
+    await webp(base.clone().resize(960, 720), 62).toFile(join(OUT, `${nombre}-960.webp`));
+    await webp(base.clone().resize(600, 450), 60).toFile(join(OUT, `${nombre}-600.webp`));
+    rmSync(frame);
+  }
+  console.log("✓ fotos");
+}
+
 // ── Capturas del portafolio: 16:10, ancla arriba ────────────────
 async function proyectos() {
   for (const file of readdirSync(join(SRC, "proyectos"))) {
     const name = basename(file, extname(file));
     const src = sharp(join(SRC, "proyectos", file));
-    for (const w of [480, 800]) {
+    // 160: miniatura de "Ejemplo real" en las tarjetas de planes (56 px).
+    for (const w of [160, 480, 800]) {
       await webp(src.clone().resize(w, Math.round(w / 1.6), { fit: "cover", position: "top" })).toFile(join(OUT, `p-${name}-${w}.webp`));
     }
   }
@@ -100,7 +123,8 @@ async function marca() {
   console.log("✓ marca");
 }
 
-await videos();
-await proyectos();
-await equipo();
-await marca();
+// Sin argumentos corre todo; con nombres, solo esas partes.
+const SOLO = process.argv.slice(2);
+for (const [nombre, paso] of Object.entries({ videos, fotos, proyectos, equipo, marca })) {
+  if (!SOLO.length || SOLO.includes(nombre)) await paso();
+}

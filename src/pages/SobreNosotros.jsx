@@ -1,5 +1,7 @@
 import Seccion from "../components/Seccion";
 import Equipo from "../components/Equipo";
+import PageHero from "../components/PageHero";
+import { EQUIPO, COMO_TRABAJAMOS as COMO, DATOS_EMPRESA as DATOS } from "../content/textos";
 import Cita from "../components/Cita";
 import CtaFinal from "../components/CtaFinal";
 import { seo } from "../lib/seo";
@@ -14,34 +16,42 @@ export const meta = () =>
     jsonLd: [migas({ nombre: "Nosotros", ruta: "/sobre-nosotros" })],
   });
 
-const COMO = [
-  { t: "Hablas con quien programa", d: "Sin vendedores de por medio ni tickets." },
-  { t: "Rápidas de verdad", d: "Cada segundo de carga cuesta clientes. Las nuestras dan 95–100 en PageSpeed." },
-  { t: "Medimos en mensajes", d: "Una web funciona si te escriben más, no si se ve bonita." },
-];
-
-const DATOS = [
-  { valor: "+50", texto: "proyectos entregados" },
-  { valor: "2", texto: "países: Perú y Rusia" },
-];
-
 export default function SobreNosotros() {
   return (
     <>
-      <section className="page-hero">
-        <div className="container">
-          <p className="eyebrow">Nosotros</p>
-          <h1 className="h1">Un equipo pequeño de Lima, con clientes en Perú y Rusia.</h1>
-          <ul className="datos">
-            {DATOS.map((d) => (
-              <li key={d.texto}><strong>{d.valor}</strong><span>{d.texto}</span></li>
+      <PageHero
+        eyebrow="Nosotros"
+        titulo={<>Un equipo pequeño de Lima, con clientes en <span className="oro">Perú y Rusia</span>.</>}
+        visual={
+          <div className="duo">
+            {EQUIPO.map((p, i) => (
+              <figure key={p.id}>
+                <img
+                  src={`/media/e-${p.id}.webp`}
+                  width="480"
+                  height="600"
+                  alt={`Foto de ${p.nombre}`}
+                  fetchPriority={i === 0 ? "high" : undefined}
+                  decoding="async"
+                />
+                <figcaption>
+                  <strong>{p.nombre}</strong>
+                  <span>{p.rol}</span>
+                </figcaption>
+              </figure>
             ))}
-          </ul>
-        </div>
-      </section>
+          </div>
+        }
+      >
+        <ul className="datos">
+          {DATOS.map((d) => (
+            <li key={d.texto}><strong>{d.valor}</strong><span>{d.texto}</span></li>
+          ))}
+        </ul>
+      </PageHero>
 
       <Seccion id="equipo" titulo="Quiénes somos" className="section--alt">
-        <Equipo />
+        <Equipo fotos={false} />
       </Seccion>
 
       <Seccion id="como" titulo="Cómo trabajamos">

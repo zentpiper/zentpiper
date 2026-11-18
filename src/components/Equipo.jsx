@@ -2,12 +2,13 @@ import Icono from "./Icono";
 import { EQUIPO } from "../content/textos";
 
 // Las caras reales del equipo: la mejor prueba de que detrás hay personas.
-export default function Equipo() {
+// `fotos={false}` cuando las fotos ya están en el encabezado de la página.
+export default function Equipo({ fotos = true }) {
   return (
-    <div className="equipo">
+    <div className={`equipo${fotos ? "" : " equipo--texto"}`}>
       {EQUIPO.map((p) => (
         <article key={p.id} className="persona">
-          <img src={`/media/e-${p.id}.webp`} width="480" height="600" alt={`Foto de ${p.nombre}`} loading="lazy" decoding="async" />
+          {fotos && <img src={`/media/e-${p.id}.webp`} width="480" height="600" alt={`Foto de ${p.nombre}`} loading="lazy" decoding="async" />}
           <div className="persona__txt">
             <h3 className="persona__n">{p.nombre}</h3>
             <p className="persona__rol">{p.rol}</p>

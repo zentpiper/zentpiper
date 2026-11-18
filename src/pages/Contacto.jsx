@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import BotonWhatsApp from "../components/BotonWhatsApp";
 import CamposDiferidos from "../components/CamposDiferidos";
+import Atienden from "../components/Atienden";
 import Icono from "../components/Icono";
 import { svgHtml } from "../components/iconos";
 import { usePais } from "../contexts/pais";
@@ -104,6 +105,7 @@ export default function Contacto() {
           <p className="eyebrow">Contacto</p>
           <h1 className="h1">Cotiza gratis tu web o app.</h1>
           <p className="lead">Dos datos y seguimos por WhatsApp. Sin compromiso.</p>
+          <Atienden texto="Te responden Patrick y Barclay, no un bot." />
         </div>
       </section>
 

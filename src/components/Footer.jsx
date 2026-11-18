@@ -8,9 +8,9 @@ import { CONTACTO } from "../data/precios";
 // Cifras medidas con Lighthouse (docs/RENDIMIENTO.md); actualizar si cambian.
 const ESTA_WEB = [
   ["Lighthouse", "100 en rendimiento, accesibilidad, buenas prácticas y SEO"],
-  ["Primera pantalla", "0,7 s en un celular con 4G lento"],
+  ["Primera pantalla", "Menos de 1 s en un celular con 4G lento"],
   ["Peso inicial", "Sin JavaScript hasta que tocas la página"],
-  ["Hosting", "Cloudflare, HTML estático"],
+  ["Hosting", "HTML estático en CDN"],
 ];
 
 const REDES = [

@@ -7,13 +7,15 @@ import Clientes from "../components/Clientes";
 import TarjetasPlanes from "../components/TarjetasPlanes";
 import TarjetaProyecto from "../components/TarjetaProyecto";
 import Equipo from "../components/Equipo";
+import Atienden from "../components/Atienden";
+import Incluido from "../components/Incluido";
 import Cita from "../components/Cita";
 import Faq from "../components/Faq";
 import CtaFinal from "../components/CtaFinal";
 import { usePais } from "../contexts/pais";
-import { PLANES_WEB, INCLUIDO_WEB } from "../content/planes";
+import { PLANES_WEB } from "../content/planes";
 import { PROYECTOS } from "../content/proyectos";
-import { EQUIPO, FAQ_WEB } from "../content/textos";
+import { FAQ_WEB, PASOS } from "../content/textos";
 import { seo } from "../lib/seo";
 import { desde } from "../data/precios";
 import { catalogo } from "../lib/schema";
@@ -48,7 +50,7 @@ export default function Home() {
             Webs que te traen <span className="oro">clientes por WhatsApp</span>.
           </h1>
           <p className="hero__sub">
-            Lista en 3 a 5 días hábiles, desde <strong>{precio("web", "esencial")}</strong>. Hosting y dominio incluidos.
+            Lista en 3 a 5 días hábiles, desde <strong>{precio("web", "esencial")}</strong>. Hosting y dominio incluidos, y todo es tuyo.
           </p>
           <div className="acciones">
             <BotonWhatsApp className="btn btn--gold btn--lg" origen="hero" mensaje="Hola Zentpiper, quiero cotizar mi página web.">
@@ -58,14 +60,7 @@ export default function Home() {
               Ver precios <Icono nombre="flecha" size={18} />
             </a>
           </div>
-          <div className="hero__equipo">
-            <span className="avatares" aria-hidden="true">
-              {EQUIPO.map((p) => (
-                <img key={p.id} src={`/media/e-${p.id}-96.webp`} width="40" height="40" alt="" decoding="async" />
-              ))}
-            </span>
-            <p>Te atienden {EQUIPO.map((p) => p.corto).join(" y ")}, los que la construyen. Sin intermediarios.</p>
-          </div>
+          <Atienden />
         </div>
       </section>
 
@@ -73,15 +68,29 @@ export default function Home() {
 
       <Seccion id="precios" titulo="Elige tu web" sub="Pago único. Los 3 primeros meses de mantenimiento van por nuestra cuenta.">
         <TarjetasPlanes grupo="web" planes={PLANES_WEB} />
-        <p className="incluido">
-          <span>En todos:</span> {INCLUIDO_WEB.join(" · ")}
-        </p>
+        <Incluido />
         <p className="nota">
           ¿Buscas una app? <Link to="/mobile">iPhone y Android desde {precio("apps", "lanzamiento")}</Link>
         </p>
       </Seccion>
 
-      <Seccion id="trabajos" titulo="Webs que ya están vendiendo" className="section--alt">
+      <Seccion id="pasos" titulo="Tu web lista en 3 pasos" className="section--alt">
+        <ol className="pasos">
+          {PASOS.map((p) => (
+            <li key={p.t}>
+              <h3>{p.t}</h3>
+              <p>{p.d}</p>
+            </li>
+          ))}
+        </ol>
+        <div className="acciones">
+          <BotonWhatsApp className="btn btn--gold" origen="home-pasos" mensaje="Hola Zentpiper, quiero empezar mi página web.">
+            Empezar por WhatsApp
+          </BotonWhatsApp>
+        </div>
+      </Seccion>
+
+      <Seccion id="trabajos" titulo="Webs que ya están vendiendo">
         <div className="grid-3">
           {PROYECTOS.filter((p) => p.destacado).map((p) => (
             <TarjetaProyecto key={p.id} proyecto={p} />
@@ -94,14 +103,14 @@ export default function Home() {
         </p>
       </Seccion>
 
-      <Seccion id="equipo" titulo="Quiénes somos" sub="Diseñamos, programamos y te respondemos nosotros.">
+      <Seccion id="equipo" titulo="Quiénes somos" sub="Diseñamos, programamos y te respondemos nosotros." className="section--alt">
         <div className="equipo-cita">
           <Equipo />
-          <Cita id="cegrisa" />
+          <Cita id="spanglish" />
         </div>
       </Seccion>
 
-      <Seccion id="faq" titulo="Preguntas rápidas" className="section--alt">
+      <Seccion id="faq" titulo="Preguntas rápidas">
         <Faq items={FAQ_WEB} />
       </Seccion>
 

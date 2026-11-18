@@ -1,6 +1,8 @@
 import BotonWhatsApp from "../components/BotonWhatsApp";
 import Icono from "../components/Icono";
 import Seccion from "../components/Seccion";
+import PageHero, { FotoHero } from "../components/PageHero";
+import Atienden from "../components/Atienden";
 import TarjetasPlanes from "../components/TarjetasPlanes";
 import FichaTecnica from "../components/FichaTecnica";
 import Faq from "../components/Faq";
@@ -21,6 +23,10 @@ export const meta = () =>
     ruta: "/mobile",
     jsonLd: [catalogo("Desarrollo de aplicaciones móviles", "apps", PLANES_APPS), migas({ nombre: "Apps", ruta: "/mobile" })],
   });
+
+export const links = () => [
+  { rel: "preload", as: "image", href: "/media/f-mobile-600.webp", imageSrcSet: "/media/f-mobile-600.webp 600w, /media/f-mobile-960.webp 960w", imageSizes: "(max-width: 900px) 92vw, 520px", fetchPriority: "high" },
+];
 
 const FICHA_EMPRESA = [
   ["Alcance", "ERP, CRM o integraciones complejas"],
@@ -54,20 +60,21 @@ export default function Mobile() {
 
   return (
     <>
-      <section className="page-hero">
-        <div className="container">
-          <p className="eyebrow">Apps para iPhone y Android</p>
-          <h1 className="h1">Tu app en las dos tiendas desde {precio("apps", "lanzamiento")}.</h1>
-          <p className="lead">Un solo desarrollo para iPhone y Android. Precio cerrado y 3 meses de soporte gratis.</p>
-          <div className="acciones">
-            <BotonWhatsApp className="btn btn--gold btn--lg" origen="mobile-hero" mensaje="Hola Zentpiper, quiero cotizar una app.">
-              Cotizar mi app
-            </BotonWhatsApp>
-          </div>
+      <PageHero
+        eyebrow="Apps para iPhone y Android"
+        titulo={<>Tu app en las dos tiendas desde <span className="oro">{precio("apps", "lanzamiento")}</span>.</>}
+        lead="Un solo desarrollo para iPhone y Android, con precio cerrado y 3 meses de soporte gratis."
+        visual={<FotoHero nombre="f-mobile" alt="Persona escribiendo un mensaje en su celular" />}
+      >
+        <div className="acciones">
+          <BotonWhatsApp className="btn btn--gold btn--lg" origen="mobile-hero" mensaje="Hola Zentpiper, quiero cotizar una app.">
+            Cotizar mi app
+          </BotonWhatsApp>
         </div>
-      </section>
+        <Atienden />
+      </PageHero>
 
-      <Seccion id="precios" titulo="Planes">
+      <Seccion id="precios" titulo="Elige tu plan" sub="Precio cerrado antes de empezar. Sin sorpresas a mitad del proyecto.">
         <TarjetasPlanes grupo="apps" planes={PLANES_APPS} extra={empresa} />
       </Seccion>
 

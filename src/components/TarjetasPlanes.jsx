@@ -3,6 +3,7 @@ import BotonWhatsApp from "./BotonWhatsApp";
 import FichaTecnica from "./FichaTecnica";
 import { usePais } from "../contexts/pais";
 import { MESES_GRATIS } from "../data/precios";
+import { PROYECTOS } from "../content/proyectos";
 
 // grupo: "web" | "apps" (claves de PAISES[x].web / .apps)
 export default function TarjetasPlanes({ grupo, planes, extra }) {
@@ -14,6 +15,7 @@ export default function TarjetasPlanes({ grupo, planes, extra }) {
     <div className="planes">
       {planes.map((plan) => {
         const total = precio(grupo, plan.id);
+        const ejemplo = PROYECTOS.find((p) => p.id === plan.ejemplo);
         return (
           <article key={plan.id} className={`plan${plan.destacado ? " plan--top" : ""}`}>
             <header className="plan__cab">
@@ -41,6 +43,13 @@ export default function TarjetasPlanes({ grupo, planes, extra }) {
             >
               Lo quiero
             </BotonWhatsApp>
+            {ejemplo && (
+              <a className="plan__ej" href={ejemplo.url} target="_blank" rel="noopener">
+                <img src={`/media/p-${ejemplo.id}-160.webp`} width="56" height="35" alt="" loading="lazy" decoding="async" />
+                <span>Ejemplo real: <strong>{ejemplo.nombre}</strong></span>
+                <Icono nombre="externo" size={14} />
+              </a>
+            )}
             <FichaTecnica filas={plan.ficha.map(([dato, valor]) => [dato, conPasarelas(valor)])} />
           </article>
         );

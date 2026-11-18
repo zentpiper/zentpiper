@@ -11,10 +11,10 @@ export default function SelectorPais() {
           type="button"
           className="pais__btn"
           aria-pressed={pais === p.codigo}
-          aria-label={`Precios de ${p.nombre} (${p.moneda})`}
+          aria-label={`${p.codigo} ${p.moneda}: precios de ${p.nombre}`}
           onClick={() => cambiarPais(p.codigo)}
         >
-          {p.codigo} <span aria-hidden="true">{p.moneda}</span>
+          {p.codigo} <span>{p.moneda}</span>
         </button>
       ))}
     </div>

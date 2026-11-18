@@ -1,6 +1,7 @@
 // Contenido de los planes. Los precios viven en src/data/precios.js (misma clave).
 // `incluye`: máximo 3 puntos, en lenguaje de cliente (lo que gana, no la tecnología).
 // `ficha`: detalle técnico breve, plegado en la tarjeta para quien lo busque.
+// `ejemplo`: id de un proyecto real de src/content/proyectos.js (miniatura + enlace).
 // `{pasarelas}` se reemplaza por las pasarelas de pago del país seleccionado.
 // Solo hechos que el dueño ya confirmó (ver skill copy-conversion).
 
@@ -8,12 +9,13 @@ export const PLANES_WEB = [
   {
     id: "esencial",
     nombre: "Esencial",
+    ejemplo: "naim-marchionni",
     para: "Para estar en Google y recibir mensajes",
     incluye: ["Web de 1 a 3 secciones", "Botón de WhatsApp y formulario", "Lista en 3 a 5 días hábiles"],
     ficha: [
       ["Secciones", "1 a 3"],
       ["Entrega", "3 a 5 días hábiles"],
-      ["Hosting, dominio y SSL", "1 año incluido"],
+      ["Hosting, dominio y SSL", "Siempre incluidos"],
       ["Velocidad", "95–100 en PageSpeed"],
       ["SEO", "Títulos, sitemap y datos estructurados"],
       ["Código", "React, sin plantillas de WordPress"],
@@ -22,6 +24,7 @@ export const PLANES_WEB = [
   {
     id: "negocio",
     nombre: "Negocio",
+    ejemplo: "lyfgolosinas",
     para: "Para vender tu catálogo por WhatsApp",
     destacado: "Más elegido",
     incluye: ["Hasta 6 secciones con catálogo", "Pedidos directo a tu WhatsApp", "SEO para tu ciudad y rubro"],
@@ -30,13 +33,14 @@ export const PLANES_WEB = [
       ["Catálogo", "Productos o servicios con foto y precio"],
       ["Pedidos", "Mensaje de WhatsApp ya escrito con el producto"],
       ["Entrega", "7 a 14 días hábiles"],
-      ["Hosting, dominio y SSL", "1 año incluido"],
+      ["Hosting, dominio y SSL", "Siempre incluidos"],
       ["Velocidad", "95–100 en PageSpeed"],
     ],
   },
   {
     id: "profesional",
     nombre: "Profesional",
+    ejemplo: "spanglish",
     para: "Para marcas que invierten en anuncios",
     incluye: ["Hasta 10 secciones", "Base de clientes para remarketing", "Métricas de cada visita y venta"],
     ficha: [
@@ -51,6 +55,7 @@ export const PLANES_WEB = [
   {
     id: "tienda",
     nombre: "Tienda Online",
+    ejemplo: "tayoton",
     para: "Para cobrar online las 24 horas",
     incluye: ["Carrito y pagos con {pasarelas}", "Inventario, pedidos y clientes", "Panel con usuarios y permisos"],
     ficha: [
@@ -68,6 +73,7 @@ export const PLANES_APPS = [
   {
     id: "lanzamiento",
     nombre: "App Lanzamiento",
+    ejemplo: "maxgrind",
     para: "Para validar tu idea en las tiendas",
     incluye: ["iPhone y Android a la vez", "Hasta 8 pantallas con registro", "Lista en 2 a 4 semanas"],
     ficha: [
@@ -110,5 +116,8 @@ export const PLANES_APPS = [
   },
 ];
 
-// Lo que traen todos los planes web (una línea bajo las tarjetas).
-export const INCLUIDO_WEB = ["Hosting y dominio 1 año", "SSL", "Diseño para celular", "WhatsApp integrado", "Google Analytics"];
+// Bajo las tarjetas (components/Incluido.jsx). El hosting y el dominio son permanentes:
+// gratis los 3 primeros meses y luego dentro del mantenimiento mensual. Confirmado por
+// el dueño: la web y el dominio son del cliente.
+export const PROPIEDAD_WEB = "Todo es tuyo: la web y el dominio.";
+export const INCLUIDO_WEB = ["Hosting y dominio siempre incluidos", "SSL", "Diseño para celular", "WhatsApp integrado", "Google Analytics"];

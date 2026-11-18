@@ -1,6 +1,7 @@
 import { useState } from "react";
 import TarjetaProyecto from "../components/TarjetaProyecto";
 import CtaFinal from "../components/CtaFinal";
+import PageHero from "../components/PageHero";
 import { PROYECTOS, CATEGORIAS } from "../content/proyectos";
 import { seo } from "../lib/seo";
 import { migas } from "../lib/schema";
@@ -14,19 +15,27 @@ export const meta = () =>
     jsonLd: [migas({ nombre: "Portafolio", ruta: "/portafolio" })],
   });
 
+// Mosaico del encabezado: trabajos reales en vez de un título solo sobre negro.
+const MOSAICO = ["tayoton", "spanglish", "naim-marchionni", "lima-moscow"];
+
 export default function Portafolio() {
   const [filtro, setFiltro] = useState("todos");
   const visibles = filtro === "todos" ? PROYECTOS : PROYECTOS.filter((p) => p.categoria === filtro);
 
   return (
     <>
-      <section className="page-hero">
-        <div className="container">
-          <p className="eyebrow">Portafolio</p>
-          <h1 className="h1">Más de 50 webs, tiendas y apps entregadas.</h1>
-          <p className="lead">Toca cualquiera para verla funcionando.</p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Portafolio"
+        titulo={<>Más de <span className="oro">50 webs, tiendas y apps</span> entregadas.</>}
+        lead="Negocios reales de Perú y Rusia. Toca cualquiera para verla funcionando."
+        visual={
+          <div className="mosaico" aria-hidden="true">
+            {MOSAICO.map((id) => (
+              <img key={id} src={`/media/p-${id}-480.webp`} width="480" height="300" alt="" decoding="async" />
+            ))}
+          </div>
+        }
+      />
 
       <section className="section section--tight" aria-labelledby="proyectos-t">
         <div className="container">
@@ -39,7 +48,7 @@ export default function Portafolio() {
             ))}
           </div>
           <div className="grid-3">
-            {visibles.map((p, i) => <TarjetaProyecto key={p.id} proyecto={p} lcp={i === 0} />)}
+            {visibles.map((p) => <TarjetaProyecto key={p.id} proyecto={p} />)}
           </div>
         </div>
       </section>
