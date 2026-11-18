@@ -104,8 +104,8 @@ Navegación: Páginas web · Apps · Portafolio · Nosotros · Contacto + select
 | App Pro | `pro` | S/ 15,900 · S/ 490/mes | 379 900 ₽ · 11 690 ₽/mes | 6–10 semanas |
 | Empresa | — | A cotizar | A cotizar | — |
 
-Precios RU = conversión aproximada (1 S/ ≈ 24 ₽) con redondeo comercial. **Pendiente
-de confirmar por el dueño.**
+Precios RU = conversión aproximada (1 S/ ≈ 24 ₽) con redondeo comercial, confirmados
+por el dueño el 2026-11-18.
 
 ## 6. Recorrido de un lead
 
@@ -168,8 +168,8 @@ plegado) · `.cita` (testimonio) · `.wa-float` (botón flotante en todas las p�
 
 ## 10. Pendientes del dueño
 
-1. Confirmar precios en rublos (§5).
-2. Confirmar que los testimonios son reales y que hay permiso para publicarlos.
+Ninguno. El 2026-11-18 el dueño confirmó los precios en rublos (§5) y el permiso para
+publicar los dos testimonios (Spanglish y Naim Marchionni).
 
 ## 11. Dominio, SEO y analítica (revisado 2026-11-18)
 

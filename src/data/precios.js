@@ -1,6 +1,6 @@
 // ÚNICA fuente de precios, monedas y datos de contacto.
 // Si cambias teléfono o email, revisa también src/lib/schema.js (usa estos valores).
-// Precios RU = conversión aprox. 1 S/ ≈ 24 ₽ con redondeo comercial (confirmar con el dueño).
+// Precios RU = conversión aprox. 1 S/ ≈ 24 ₽ con redondeo comercial (confirmados por el dueño).
 
 export const CONTACTO = {
   // Número principal: WhatsApp de todos los CTA, schema y meta.
