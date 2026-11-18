@@ -170,7 +170,8 @@ plegado) · `.cita` (testimonio) · `.wa-float` (botón flotante en todas las p�
 
 1. Confirmar precios en rublos (§5).
 2. Confirmar que los testimonios son reales y que hay permiso para publicarlos.
-3. Perfil de Empresa en Google con el mismo nombre, teléfono y web.
+3. Subir fotos al Perfil de Empresa en Google (logo, portada y trabajos): hoy no tiene
+   ninguna.
 
 ## 11. Dominio, SEO y analítica (revisado 2026-11-18)
 
@@ -194,3 +195,17 @@ Estado en vivo (2026-11-18): publicado en **Vercel**, proyecto `zentpiper` del e
   "Completo" (desde 2026-11-18; antes eran propietarios con sus propios registros). El 2026-11-18 se envió
   `https://zentpiper.com/sitemap.xml` (6 URLs, correcto) y se pidió indexar `/` y
   `/planes` (Google tenía `/planes` como 404 del sitio viejo).
+- Perfil de Empresa en Google: "Zentpiper", verificado, único propietario principal
+  `zentpiper@gmail.com`. Revisado el 2026-11-18:
+  - categoría principal "Diseñador web" y secundaria "Compañía de software" (antes "Tienda
+    de software");
+  - descripción con el mensaje de la web (pago único desde S/ 500, todo es tuyo,
+    hosting incluido);
+  - Instagram, TikTok y Facebook de @zentpiper;
+  - dirección oculta (negocio de servicio) con área de servicio Lima;
+  - horario de 7:00 a 22:00 todos los días;
+  - teléfono y chat al +51 945 935 080.
+  - El enlace a la web lleva
+    `?utm_source=google&utm_medium=organic&utm_campaign=perfil-empresa`: en GA4, las
+    visitas desde la ficha se ven filtrando por la campaña `perfil-empresa`.
+  - Si cambias teléfono, precios u oferta, cambia también la ficha.
