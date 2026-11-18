@@ -1,75 +1,97 @@
-# Protected sections — mobile hero & header redesign (2026-09-16)
+# AGENTS.md — Zentpiper
 
-The mobile header and the Home page hero section were just reworked so the hero
-fits exactly within one screen on mobile and the header uses a hamburger menu.
-**Read this before touching any of the files below.** The values are
-interdependent across files — changing one without the others reintroduces
-layout bugs that were specifically fixed (hero overflowing the viewport, dead
-black space in the header, the WhatsApp button overlapping the hero CTA
-buttons).
+Guía para cualquier agente de código (Claude, Codex, Cursor…) en este repo.
+Antes de un cambio grande lee [`docs/ESQUEMA.md`](docs/ESQUEMA.md) (mapa del sitio) y
+[`docs/RENDIMIENTO.md`](docs/RENDIMIENTO.md) (reglas que sostienen el 100 en Lighthouse).
 
-## Files involved, and why
+## Proyecto
 
-- `src/components/Header.jsx` / `src/components/Header.css` — mobile header
-  (≤768px) is a single row: hamburger button | centered logo | currency
-  selector, laid out with `grid-template-columns: 1fr auto 1fr` so the logo is
-  centered on the full header width. The old horizontal-scroll nav-pills bar
-  is gone; nav links now live in a slide-in `.navbar-mobile` panel.
-  Z-index order is intentional and easy to break: `.header-content` (z-index
-  2) sits above `.navbar-mobile` (1), which sits above `.mobile-nav-backdrop`
-  (0) — all inside `.header`'s own stacking context (it has
-  `position: fixed` + `z-index: 1000`). If you add new fixed-position
-  children inside `<header>`, give them a z-index lower than 2 or the header
-  bar will disappear behind them.
+Web comercial de Zentpiper (diseño web, tiendas online y apps; Lima, Perú). Mercados:
+**Perú y Rusia**. Objetivo único: **convertir visitas en conversaciones de WhatsApp**.
+Todo el contenido visible está en español (es-PE). El código usa español para el
+dominio (`planes`, `precios`, `pais`) e inglés para lo técnico.
 
-- `src/pages/Home.css`, `.hero-section` mobile media queries (`@media
-  (max-width: 768px)` and `@media (max-width: 480px)`) — `min-height` uses
-  `calc(100svh - Npx)`. `N` = mobile header height + clearance reserved for
-  the floating WhatsApp button. Current values: **142px at ≤768px, 136px at
-  ≤480px**. If the header height or the WhatsApp button's size/position
-  change, recompute these.
+## Comandos
 
-- `src/components/Layout.css` (`main { margin-top: ... }`) and the inline
-  `<style>` block in `index.html`'s `<head>` (critical CSS: `.header {
-  min-height }`, `main { margin-top }`) — **must stay numerically in sync**
-  with the real rendered mobile header height: currently **58px at ≤768px,
-  52px at ≤480px**. The inline critical CSS exists to reserve layout space
-  before the real stylesheet loads (avoids a layout shift on first paint), so
-  it duplicates these numbers on purpose in three places. Editing the header
-  layout without updating all three is what caused the original "big empty
-  black gap" bug.
+```bash
+npm install
+npm run dev        # React Router dev server (http://localhost:5173), sin /api
+npm run build      # prerender a build/client + scripts/postbuild.mjs
+npm run lint       # ESLint 9 — debe quedar en 0 errores
+npm run preview    # build + wrangler dev: sitio + /api en local (necesita .dev.vars)
+npm run servir     # build/client estático en :8788, para medir con Lighthouse (sin /api)
+npm run medios     # regenera public/media desde assets-src (FFMPEG=ruta para videos)
+npm run deploy     # build + wrangler deploy — SOLO con permiso explícito del dueño
+```
 
-- `src/App.css` — dead legacy `.hero-section` / `.hero-title` /
-  `.hero-subtitle` rules were removed from here (they were leaking
-  `padding: 4rem 1rem` onto the real hero via CSS cascade, since the real
-  `.hero-section` in `Home.css` never declared `padding` itself). Do not
-  re-add generic `.hero-section`/`.hero-title`/`.hero-subtitle` rules to
-  `App.css` — the real hero styling lives entirely in `Home.css`.
+No hay tests. Verificar = `npm run build` + `npm run lint` + navegador + Lighthouse
+(skill `qa-visual`).
 
-- `.hero-main` and `.hero-title-wrap` (base rules, `Home.css` ~line 127-141)
-  both have `flex: 1` for the **desktop** row layout (title takes remaining
-  horizontal space next to the `.hero-tags` sidebar). On mobile,
-  `.hero-main` switches to `flex-direction: column` — if `.hero-title-wrap`
-  keeps `flex: 1` there, it grows to fill all leftover vertical space and
-  shoves `.hero-tags` down, creating a large empty gap between the title and
-  the tags list even though nothing looks wrong in the CSS. The mobile media
-  query explicitly cancels this with `.hero-title-wrap { flex: none; width:
-  100%; }` and `.hero-main { flex: none; justify-content: flex-start; }` —
-  don't remove these as "redundant," they're canceling an inherited desktop
-  value.
+## Arquitectura en una pantalla
 
-## Before changing any of the above
+- React Router 7 **modo framework**, `ssr: false` + `prerender`: cada ruta es un HTML
+  estático completo. Rutas en `src/routes.js`; lista prerenderizada en
+  `react-router.config.js` (`RUTAS_PUBLICAS`).
+- `src/root.jsx`: documento, CSS inline, fuente, JSON-LD de empresa, GA4 diferido y
+  layout (Header, main, Footer, WhatsApp flotante).
+- **Hidratación diferida**: `scripts/postbuild.mjs` hace que React cargue con la primera
+  interacción. Todo lo que deba funcionar al primer toque tiene que funcionar sin JS.
+- Producción: funciona en **Cloudflare Workers** (`wrangler.jsonc`) o **Vercel**
+  (`vercel.json` + `api/send-telegram.js`). La lógica de leads está en `worker/lead.js`
+  y la usan ambos. Si cambias redirecciones o cabeceras, cámbialas en los dos.
+- SEO y analítica siempre en `https://zentpiper.com` (sin www). Ver `docs/ESQUEMA.md` §11.
 
-Re-measure in a real mobile viewport (devtools device emulation or
-Playwright), don't just eyeball it:
+## Reglas de contenido y datos
 
-1. Hero fits with **no page scroll** at 360×760, 375×667, 390×844, 430×932.
-2. Hero footer's CTA buttons ("Ver Planes" / "Habla con nosotros") don't
-   overlap `.whatsapp-float`.
-3. Mobile header shows no empty/dead space (header height should match its
-   content height, not a stale reserved value).
-4. Hamburger menu opens/closes, closes on route change and outside click,
-   and its icon stays visible above the backdrop.
-5. No unexplained gap between the hero title block and the tags list
-   (`[ 01 // CORE ]` etc.) below it — should be a small, consistent gap, not
-   one that changes size with viewport height.
+- **Precios, monedas, teléfono, WhatsApp y email solo en `src/data/precios.js`.** Léelos
+  con `usePais()` (`precio("web", "negocio")`) o importando `CONTACTO`. Nunca un precio
+  o teléfono literal en JSX.
+- Textos de planes, proyectos, FAQ, testimonios y equipo van en `src/content/`, no
+  dentro de las páginas.
+- Copy de conversión: frases cortas, beneficio antes que característica, un CTA claro
+  por bloque. No inventes plazos, garantías, cifras ni testimonios: usa solo los que
+  ya están en `src/content/` o los que dé el dueño.
+- Mercados: solo Perú y Rusia en mensajes, schema y selector de país.
+- **Zentpiper es la entidad principal para SEO.** Enlaces a Barclay Leach, Cernext u
+  otras agencias llevan `rel="nofollow noopener"`. Nunca en meta, títulos ni JSON-LD.
+- CTA principal = `<BotonWhatsApp>` (enlace `wa.me` real + evento GA4). No uses
+  `window.open` fuera del formulario de contacto.
+
+## Añadir o cambiar una ruta
+
+Usa la skill `nueva-pagina`. Resumen: `src/routes.js` · `RUTAS_PUBLICAS` · nav en
+`components/navegacion.js` · `Footer.jsx` · `export const meta = () => seo({...})` con
+`migas()` · `public/_redirects` si renombras · `docs/ESQUEMA.md`.
+
+## Estilos
+
+- Objetivo: **verse profesional y cerrar ventas**, sin cara de plantilla de IA. Se
+  mantienen los colores (negro + dorado `#f3a523`) y el logo (isotipo hexagonal +
+  "ZENTPIPER"). No vuelvas a meter rótulos `// …`, eslóganes en mayúsculas, brillos
+  dorados difusos, estrellas, tablas de check/cruz ni secciones todas centradas.
+  Detalle en `docs/ESQUEMA.md` §8.
+- Detalle técnico solo plegado, con `components/FichaTecnica.jsx`.
+- Una sola hoja: `src/styles/site.css`, organizada por secciones con tokens en `:root`.
+  No crees archivos CSS por página ni prefijos de tokens nuevos.
+- Usa los tokens (`--oro`, `--surface`, `--text-2`…), nunca colores sueltos.
+- Prohibido (rompe el 100 sin GPU): `backdrop-filter`, sombras con desenfoque grande,
+  animaciones que no sean `transform`/`opacity`, `text-wrap: balance`.
+- Imágenes siempre con `width`/`height`. Las de bajo el pliegue con `loading="lazy"`;
+  las visibles sin scroll nunca `lazy`.
+- Formularios con campos de texto: usa `components/CamposDiferidos.jsx` (ver
+  `docs/RENDIMIENTO.md` §7). Un `<input>` de texto en el HTML inicial cuesta ~100 ms.
+- `dangerouslySetInnerHTML` solo con objetos estables (constante o `useMemo`), nunca
+  `{{ __html: … }}` inline: React 19 reescribe el contenido en cada re-render.
+
+## Seguridad y secretos
+
+- Nunca subas `.env*` ni `.dev.vars`. Los secretos del Worker se gestionan con
+  `npx wrangler secret put TELEGRAM_BOT_TOKEN` / `TELEGRAM_CHAT_ID`.
+- El Worker valida y recorta los campos y envía texto plano a Telegram (sin
+  `parse_mode`) para que nadie pueda inyectar formato.
+
+## Git
+
+- Rama `main`, más de un colaborador: `git pull --ff-only` antes de empezar.
+- Commits pequeños, estilo Conventional Commits (`feat(planes): …`, `fix(header): …`).
+- No hagas `push`, `deploy` ni cambies créditos/autoría sin permiso explícito del dueño.

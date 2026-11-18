@@ -1,119 +1,80 @@
-// Datos centralizados de precios y contactos por país
-// Moneda Perú: S/ (soles)
-// Moneda Chile: CLP$ (pesos chilenos)
-// Moneda Internacional: US$ (dólares)
+// ÚNICA fuente de precios, monedas y datos de contacto.
+// Si cambias teléfono o email, revisa también src/lib/schema.js (usa estos valores).
+// Precios RU = conversión aprox. 1 S/ ≈ 24 ₽ con redondeo comercial (confirmar con el dueño).
 
-export const preciosPorPais = {
-    PE: {
-        codigo: "PE",
-        nombre: "Perú",
-        bandera: "PE",
-        moneda: "S/",
-        telefono: "+51 988 490 319",
-        whatsapp: "51988490319",
-        telefono2: "+51 945 935 080",
-        whatsapp2: "51945935080",
-        email: "contacto@zentpiper.com",
+export const CONTACTO = {
+  // Número principal: WhatsApp de todos los CTA, schema y meta.
+  telefono: "+51 945 935 080",
+  whatsapp: "51945935080",
+  telefono2: "+51 988 490 319",
+  email: "zentpiper@gmail.com",
+  ciudad: "Santiago de Surco, Lima",
+  redes: {
+    instagram: "https://www.instagram.com/zentpiper",
+    tiktok: "https://www.tiktok.com/@zentpiper",
+    facebook: "https://www.facebook.com/zentpiper/",
+  },
+};
 
-        // Planes Web
-        planesWeb: {
-            basico: { desarrollo: 500, mantenimiento: 15 },
-            emprendedor: { desarrollo: 900, mantenimiento: 30 },
-            profesional: { desarrollo: 1500, mantenimiento: 60 },
-            tienda: { desarrollo: 2500, mantenimiento: 90 }
-        },
+// Espacio que no se corta entre moneda y monto ("S/ 500" nunca queda en dos líneas).
+const NBSP = String.fromCharCode(160);
 
-        // Planes Mobile
-        planesMobile: {
-            android: { desarrollo: 7000, mantenimiento: 700 },
-            ios: { desarrollo: 10500, mantenimiento: 700 },
-            flutter: { desarrollo: 12000, mantenimiento: 700 },
-            nativo: { desarrollo: 14000, mantenimiento: 700 }
-        }
+// Meses de mantenimiento gratis incluidos en todos los planes.
+export const MESES_GRATIS = 3;
+
+export const PAISES = {
+  PE: {
+    codigo: "PE",
+    nombre: "Perú",
+    moneda: "S/",
+    separador: ",",
+    simboloDespues: false,
+    pasarelas: "Niubiz, Culqi y Yape",
+    web: {
+      esencial: { precio: 500, mensual: 30 },
+      negocio: { precio: 900, mensual: 50 },
+      profesional: { precio: 1500, mensual: 75 },
+      tienda: { precio: 2500, mensual: 120 },
     },
-
-    CL: {
-        codigo: "CL",
-        nombre: "Chile",
-        bandera: "CL",
-        moneda: "CLP$",
-        telefono: "+51 988 490 319",
-        whatsapp: "51988490319",
-        telefono2: "+51 945 935 080",
-        whatsapp2: "51945935080",
-        email: "contacto@zentpiper.com",
-
-        // Planes Web
-        planesWeb: {
-            basico: { desarrollo: 270000, mantenimiento: 50000 },
-            emprendedor: { desarrollo: 540000, mantenimiento: 50000 },
-            profesional: { desarrollo: 1080000, mantenimiento: 50000 },
-            tienda: { desarrollo: 1620000, mantenimiento: 50000 }
-        },
-
-        // Planes Mobile
-        planesMobile: {
-            android: { desarrollo: 560000, mantenimiento: 60000 },
-            ios: { desarrollo: 840000, mantenimiento: 60000 },
-            flutter: { desarrollo: 980000, mantenimiento: 120000 },
-            nativo: { desarrollo: 1120000, mantenimiento: 120000 }
-        }
+    apps: {
+      lanzamiento: { precio: 5900, mensual: 190 },
+      negocio: { precio: 9900, mensual: 290 },
+      pro: { precio: 15900, mensual: 490 },
     },
-
-    INT: {
-        codigo: "INT",
-        nombre: "Internacional",
-        bandera: "🌎",
-        moneda: "USD",
-        telefono: "+51 988 490 319",
-        whatsapp: "51988490319",
-        telefono2: "+51 945 935 080",
-        whatsapp2: "51945935080",
-        email: "contacto@zentpiper.com",
-
-        // Planes Web (precios en USD)
-        planesWeb: {
-            basico: { desarrollo: 150, mantenimiento: 4 },
-            emprendedor: { desarrollo: 300, mantenimiento: 8 },
-            profesional: { desarrollo: 600, mantenimiento: 15 },
-            tienda: { desarrollo: 900, mantenimiento: 23 }
-        },
-
-        // Planes Mobile (precios en USD)
-        planesMobile: {
-            android: { desarrollo: 2000, mantenimiento: 200 },
-            ios: { desarrollo: 3000, mantenimiento: 200 },
-            flutter: { desarrollo: 3500, mantenimiento: 200 },
-            nativo: { desarrollo: 4000, mantenimiento: 200 }
-        }
-    }
+  },
+  RU: {
+    codigo: "RU",
+    nombre: "Rusia",
+    moneda: "₽",
+    separador: NBSP,
+    simboloDespues: true,
+    pasarelas: "ЮKassa y tarjetas rusas",
+    web: {
+      esencial: { precio: 11900, mensual: 690 },
+      negocio: { precio: 21900, mensual: 1190 },
+      profesional: { precio: 35900, mensual: 1790 },
+      tienda: { precio: 59900, mensual: 2890 },
+    },
+    apps: {
+      lanzamiento: { precio: 139900, mensual: 4490 },
+      negocio: { precio: 234900, mensual: 6890 },
+      pro: { precio: 379900, mensual: 11690 },
+    },
+  },
 };
 
-// Lista de países disponibles
-export const paisesDisponibles = [
-    { codigo: "PE", nombre: "Perú", bandera: "PE" },
-    { codigo: "CL", nombre: "Chile", bandera: "CL" },
-    { codigo: "INT", nombre: "Internacional", bandera: "🌎" }
-];
+export const PAIS_DEFAULT = "PE";
+export const LISTA_PAISES = Object.values(PAISES);
 
-// Función para formatear precios según el país
-export const formatearPrecio = (precio, codigoPais) => {
-    const pais = preciosPorPais[codigoPais];
-    if (!pais) return `$${precio}`;
+// Formato determinista (sin Intl) para que el HTML prerenderizado y el cliente coincidan.
+export function formatearPrecio(valor, codigoPais = PAIS_DEFAULT) {
+  const pais = PAISES[codigoPais] ?? PAISES[PAIS_DEFAULT];
+  const numero = String(valor).replace(/\B(?=(\d{3})+(?!\d))/g, pais.separador);
+  return pais.simboloDespues ? `${numero}${NBSP}${pais.moneda}` : `${pais.moneda}${NBSP}${numero}`;
+}
 
-    if (codigoPais === 'CL') {
-        return `${pais.moneda} ${precio.toLocaleString('es-CL')}`;
-    }
-    return `${pais.moneda} ${precio.toLocaleString('es-PE')}`;
-};
-
-// Obtener datos del país por defecto
-export const getPaisDefault = () => {
-    const paisGuardado = localStorage.getItem('paisSeleccionado');
-    if (paisGuardado && preciosPorPais[paisGuardado]) {
-        return paisGuardado;
-    }
-    return 'PE';
-};
-
-export default preciosPorPais;
+// Precio más bajo / más alto de un grupo ("web" | "apps") en el mercado principal.
+// Para textos que no dependen del país elegido: <title>, description y schema.
+const preciosDe = (grupo) => Object.values(PAISES[PAIS_DEFAULT][grupo]).map((p) => p.precio);
+export const desde = (grupo) => formatearPrecio(Math.min(...preciosDe(grupo)));
+export const hasta = (grupo) => formatearPrecio(Math.max(...preciosDe(grupo)));
