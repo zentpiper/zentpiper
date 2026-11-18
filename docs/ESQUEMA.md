@@ -170,8 +170,6 @@ plegado) · `.cita` (testimonio) · `.wa-float` (botón flotante en todas las p�
 
 1. Confirmar precios en rublos (§5).
 2. Confirmar que los testimonios son reales y que hay permiso para publicarlos.
-3. Subir fotos al Perfil de Empresa en Google (logo, portada y trabajos): hoy no tiene
-   ninguna.
 
 ## 11. Dominio, SEO y analítica (revisado 2026-11-18)
 
@@ -195,8 +193,13 @@ Estado en vivo (2026-11-18): publicado en **Vercel**, proyecto `zentpiper` del e
   "Completo" (desde 2026-11-18; antes eran propietarios con sus propios registros). El 2026-11-18 se envió
   `https://zentpiper.com/sitemap.xml` (6 URLs, correcto) y se pidió indexar `/` y
   `/planes` (Google tenía `/planes` como 404 del sitio viejo).
-- Perfil de Empresa en Google: "Zentpiper", verificado, único propietario principal
-  `zentpiper@gmail.com`. Revisado el 2026-11-18:
+- Perfil de Empresa en Google: "Zentpiper", único propietario principal
+  `zentpiper@gmail.com`. **Sin verificar desde el 2026-11-18**: al ocultar la dirección,
+  Google pidió verificar de nuevo, y el único método que ofrece es un video del local.
+  Zentpiper no tiene local y atiende todo por WhatsApp, sin reuniones en persona, así que
+  el dueño decidió no verificarla: Google reserva la ficha para negocios con trato en
+  persona. Sin verificar, Google no publica los cambios; el posicionamiento depende de
+  la web (Search Console, sitemap, JSON-LD). Cambios enviados el 2026-11-18:
   - categoría principal "Diseñador web" y secundaria "Compañía de software" (antes "Tienda
     de software");
   - descripción con el mensaje de la web (pago único desde S/ 500, todo es tuyo,
