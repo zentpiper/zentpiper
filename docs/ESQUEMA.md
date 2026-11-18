@@ -20,7 +20,7 @@ WhatsApp en cada bloque.
 | Estilos | Una hoja `src/styles/site.css` inyectada **inline** en cada HTML |
 | Fuente | Inter variable reducida a español y pesos 400–850 (`src/assets/inter-zp.woff2`, 26 KB, `npm run fuente`) |
 | Hosting | Funciona en **Cloudflare Workers** (`wrangler.jsonc`) **o Vercel** (`vercel.json`). Ver §11 |
-| API | `POST /api/send-telegram`: lógica en `worker/lead.js`, usada por `worker/index.js` (Cloudflare) y `api/send-telegram.js` (Vercel) |
+| API | Ninguna: sitio 100 % estático. Los contactos van por WhatsApp |
 | Cabeceras y redirecciones | Cloudflare: `public/_headers` y `public/_redirects` · Vercel: `vercel.json`. Las mismas reglas en ambos (caché, seguridad, `/proyecto` → `/sobre-nosotros` 301) |
 | Analítica | GA4 `G-0L8037Y84K`, se carga con la primera interacción; evento `generate_lead` en cada clic a WhatsApp |
 | Medios | Fuentes originales en `assets-src/` → `npm run medios` → `public/media/` |
@@ -31,9 +31,8 @@ WhatsApp en cada bloque.
 ```
 react-router.config.js     RUTAS_PUBLICAS + prerender
 vite.config.js             plugin de React Router
-wrangler.jsonc             Cloudflare: Worker + assets (drop-trailing-slash, 404-page)
+wrangler.jsonc             Cloudflare: solo assets (drop-trailing-slash, 404-page)
 vercel.json                Vercel: build/client estático, sin barra final, redirecciones y cabeceras
-api/send-telegram.js       Vercel: función de leads (usa worker/lead.js)
 scripts/
   postbuild.mjs            404.html, sitemap.xml, hidratación diferida
   optimizar-medios.mjs     videos, pósters, capturas (160/480/800), fotos, favicons, og.jpg;
@@ -61,8 +60,6 @@ src/
                            PageHero (encabezado con foto), Atienden (caras del equipo), Equipo, Cita,
                            Clientes, SelectorPais, Icono
   pages/                   una por ruta (ver §4)
-worker/index.js            Cloudflare: API de leads (usa worker/lead.js)
-worker/lead.js             validación + mensaje de Telegram, compartido por ambas plataformas
 public/                    media/, logo, favicons, og.jpg, robots.txt, _headers, _redirects
 assets-src/                originales de medios (no se publican)
 ```
@@ -76,7 +73,7 @@ assets-src/                originales de medios (no se publican)
 | `/mobile` | `Mobile.jsx` | Vender apps | Hero con precio y foto · 3 planes + "Empresa" (con ficha) · casos · FAQ apps · CTA |
 | `/portafolio` | `Portafolio.jsx` | Prueba social | Hero con mosaico · filtros por categoría · 13 proyectos · CTA |
 | `/sobre-nosotros` | `SobreNosotros.jsx` | Confianza | Hero con fotos del equipo + datos (`DATOS_EMPRESA`) · equipo · cómo trabajamos (`COMO_TRABAJAMOS`) + cita · CTA |
-| `/contacto` | `Contacto.jsx` | Captar lead | Formulario corto: primero "¿Qué necesitas?" (un toque), luego nombre, WhatsApp, mensaje y email opcionales · WhatsApp directo |
+| `/contacto` | `Contacto.jsx` | Captar lead | Formulario corto: primero "¿Qué necesitas?" (un toque), luego nombre y un mensaje opcional; arma el texto y abre WhatsApp · WhatsApp directo |
 | `/confirmacion` | `Confirmacion.jsx` | Post-envío (noindex) | Reabrir WhatsApp · ver portafolio |
 | `*` → `404.html` | `NotFound.jsx` | 404 real (noindex) | Ver precios · WhatsApp |
 | `/proyecto` | `_redirects` | 301 → `/sobre-nosotros` | — |
@@ -118,7 +115,6 @@ Cualquier CTA ──<a href="https://wa.me/51945935080?text=…">──▶ Whats
 
 /contacto (formulario)
   submit ─┬─ window.open(wa.me con el mensaje armado)      ← dentro del gesto: no lo bloquean
-          ├─ fetch POST /api/send-telegram (keepalive)    ← Worker → chat de Telegram
           ├─ GA4 generate_lead
           └─ navigate("/confirmacion", { state })
 ```
@@ -136,7 +132,7 @@ Enlaces internos a `/contacto` pueden precargar el formulario: `?servicio=App%20
   perfil de Barclay en Nosotros enlaza a su web; ambos enlaces llevan `rel="nofollow"`: no pasan autoridad ni aparecen en meta
   ni en schema. Los proyectos del portafolio se presentan como trabajo de Zentpiper.
 - `sitemap.xml` se genera en cada build desde `RUTAS_PUBLICAS`. `robots.txt` bloquea
-  `/api/` y `/confirmacion`.
+  `/confirmacion`.
 - 404 con status real. Barra final → 307 a la URL sin barra.
 
 ## 8. Sistema visual
@@ -168,16 +164,13 @@ plegado) · `.cita` (testimonio) · `.wa-float` (botón flotante en todas las p�
   páginas públicas, en móvil y desktop**. Móvil: LCP 1,1–1,6 s, TBT 0–80 ms, CLS 0.
   La home en desktop oscila 89–100 por el arranque gráfico de Chrome sin GPU (ver
   `RENDIMIENTO.md`, "Cómo medir"); da 100 en las corridas sin esa espera.
-- Sin tests automatizados. El Worker se probó con un fetch simulado (éxito, campos
-  faltantes, email inválido, sin configurar, método).
+- Sin tests automatizados.
 
 ## 10. Pendientes del dueño
 
 1. Confirmar precios en rublos (§5).
 2. Confirmar que los testimonios son reales y que hay permiso para publicarlos.
-3. Configurar sus propios secretos de Telegram (Cloudflare: `npx wrangler secret put …`;
-   Vercel: variables de entorno `TELEGRAM_BOT_TOKEN` y `TELEGRAM_CHAT_ID`).
-4. Verificar la propiedad en Google Search Console y enviar `sitemap.xml`.
+3. Verificar la propiedad en Google Search Console y enviar `sitemap.xml`.
 
 ## 11. Dominio, SEO y analítica (revisado 2026-11-18)
 
@@ -190,6 +183,6 @@ Estado en vivo (2026-11-18): publicado en **Vercel**, proyecto `zentpiper` del e
 - `zentpiper.com` → 200 directo (entorno Production).
 - `www.zentpiper.com` → 301 a `zentpiper.com`; `http://` → 308 a `https://`.
 - Barra final y `/proyecto` → 308 (redirecciones permanentes de `vercel.json`).
-- Pendiente del dueño: confirmar la propiedad de GA4 y Search Console, y configurar
-  `TELEGRAM_BOT_TOKEN` / `TELEGRAM_CHAT_ID` propios en Vercel (antes los leads iban al
-  chat de Telegram de Cernext).
+- 2026-11-18: se quitó la copia de leads a Telegram (no atienden por Telegram; antes
+  iba al chat de Cernext). El formulario solo abre WhatsApp.
+- Pendiente del dueño: confirmar la propiedad de GA4 y Search Console.

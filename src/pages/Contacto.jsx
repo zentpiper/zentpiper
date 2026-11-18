@@ -5,7 +5,6 @@ import CamposDiferidos from "../components/CamposDiferidos";
 import Atienden from "../components/Atienden";
 import Icono from "../components/Icono";
 import { svgHtml } from "../components/iconos";
-import { usePais } from "../contexts/pais";
 import { CONTACTO } from "../data/precios";
 import { enlaceWhatsApp, registrarLead } from "../lib/whatsapp";
 import { seo } from "../lib/seo";
@@ -26,9 +25,7 @@ const SERVICIOS = ["Página web", "Tienda online", "App móvil", "Sistema a medi
 // (ver components/CamposDiferidos.jsx). `alto` = filas visibles.
 const CAMPOS = [
   { id: "nombre", label: "Tu nombre", attrs: 'autocomplete="name" required maxlength="100"' },
-  { id: "telefono", label: "WhatsApp o teléfono", attrs: 'type="tel" autocomplete="tel" inputmode="tel" required maxlength="30"', placeholder: "+51 9…" },
   { id: "mensaje", label: "Cuéntanos un poco", opcional: true, area: true, attrs: 'rows="3" maxlength="2000"', placeholder: "Rubro, qué quieres vender, fecha ideal…" },
-  { id: "email", label: "Email", opcional: true, attrs: 'type="email" autocomplete="email" maxlength="150"' },
 ];
 const BOTON = `${svgHtml("whatsapp", 18)} Enviar por WhatsApp`;
 const etiqueta = (c) => `${c.label}${c.opcional ? ' <span class="opcional">(opcional)</span>' : ""}`;
@@ -51,7 +48,6 @@ const CAMPOS_FALSOS =
 
 export default function Contacto() {
   const navigate = useNavigate();
-  const { datos } = usePais();
   const [plan, setPlan] = useState("");
 
   // ?servicio=App%20móvil&plan=Negocio llega desde enlaces internos.
@@ -78,21 +74,6 @@ export default function Contacto() {
 
     // Se abre dentro del submit (gesto del usuario) para que el navegador no lo bloquee.
     window.open(enlaceWhatsApp(mensaje), "_blank", "noopener");
-
-    fetch("/api/send-telegram", {
-      method: "POST",
-      keepalive: true,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        nombre,
-        telefono: f.get("telefono"),
-        email: f.get("email"),
-        servicio,
-        plan,
-        mensaje: detalle,
-        pais: datos.nombre,
-      }),
-    }).catch(() => {});
 
     registrarLead("formulario", { servicio });
     navigate("/confirmacion", { state: { nombre, mensaje } });

@@ -1,4 +1,4 @@
-# Cloudflare Workers static assets: cabeceras de caché y seguridad
+# Cloudflare (assets estáticos): cabeceras de caché y seguridad. Mismas reglas en vercel.json
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin

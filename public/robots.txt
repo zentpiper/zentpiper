@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /api/
 Disallow: /confirmacion
 
 Sitemap: https://zentpiper.com/sitemap.xml

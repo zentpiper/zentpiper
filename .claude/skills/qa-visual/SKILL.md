@@ -38,9 +38,9 @@ Antes de interactuar, el HTML debe traer la vista previa (`.falso`) y ningún
 `pointerdown`, los campos reales deben estar en su lugar sin mover nada.
 
 En la consola, intercepta antes de enviar:
-`window.open = (u) => console.log(u); window.fetch = async (u, o) => (console.log(u, o.body), new Response("{}"))`.
-Comprueba que el mensaje de WhatsApp lleva nombre, servicio y plan, que el POST va a
-`/api/send-telegram` y que termina en `/confirmacion`.
+`window.open = (u) => console.log(u)`.
+Comprueba que el mensaje de WhatsApp lleva nombre, servicio y plan, que no sale ningún
+`fetch` con datos del cliente y que termina en `/confirmacion`.
 
 ## Lighthouse (objetivo: 100 · 100 · 100 · 100)
 

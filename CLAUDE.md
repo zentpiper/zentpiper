@@ -21,7 +21,7 @@
 | `copy-conversion` | Escribir o reescribir textos de venta (hero, planes, CTA, FAQ) |
 | `qa-visual` | Después de cualquier cambio de UI: navegador + Lighthouse |
 | `auditoria-seo` | Revisar meta, JSON-LD, sitemap, robots y coherencia de mensajes |
-| `deploy` | Publicar en Cloudflare o configurar secretos del Worker |
+| `deploy` | Publicar en Vercel o Cloudflare y comprobar dominio y redirecciones |
 
 ## Definición de "terminado"
 

@@ -15,11 +15,11 @@ dominio (`planes`, `precios`, `pais`) e inglés para lo técnico.
 
 ```bash
 npm install
-npm run dev        # React Router dev server (http://localhost:5173), sin /api
+npm run dev        # React Router dev server (http://localhost:5173)
 npm run build      # prerender a build/client + scripts/postbuild.mjs
 npm run lint       # ESLint 9 — debe quedar en 0 errores
-npm run preview    # build + wrangler dev: sitio + /api en local (necesita .dev.vars)
-npm run servir     # build/client estático en :8788, para medir con Lighthouse (sin /api)
+npm run preview    # build + wrangler dev: el sitio como en Cloudflare (:8787)
+npm run servir     # build/client estático en :8788, para medir con Lighthouse
 npm run medios     # regenera public/media desde assets-src (FFMPEG=ruta para videos)
 npm run deploy     # build + wrangler deploy — SOLO con permiso explícito del dueño
 ```
@@ -36,9 +36,10 @@ No hay tests. Verificar = `npm run build` + `npm run lint` + navegador + Lightho
   layout (Header, main, Footer, WhatsApp flotante).
 - **Hidratación diferida**: `scripts/postbuild.mjs` hace que React cargue con la primera
   interacción. Todo lo que deba funcionar al primer toque tiene que funcionar sin JS.
-- Producción: funciona en **Cloudflare Workers** (`wrangler.jsonc`) o **Vercel**
-  (`vercel.json` + `api/send-telegram.js`). La lógica de leads está en `worker/lead.js`
-  y la usan ambos. Si cambias redirecciones o cabeceras, cámbialas en los dos.
+- Producción: **Vercel** (`vercel.json`; cada push a `main` despliega). También
+  funciona en Cloudflare Workers (`wrangler.jsonc`, solo assets). Sitio 100 % estático:
+  sin API ni secretos. Si cambias redirecciones o cabeceras, cámbialas en
+  `vercel.json` y en `public/_headers` / `public/_redirects`.
 - SEO y analítica siempre en `https://zentpiper.com` (sin www). Ver `docs/ESQUEMA.md` §11.
 
 ## Reglas de contenido y datos
@@ -85,10 +86,10 @@ Usa la skill `nueva-pagina`. Resumen: `src/routes.js` · `RUTAS_PUBLICAS` · nav
 
 ## Seguridad y secretos
 
-- Nunca subas `.env*` ni `.dev.vars`. Los secretos del Worker se gestionan con
-  `npx wrangler secret put TELEGRAM_BOT_TOKEN` / `TELEGRAM_CHAT_ID`.
-- El Worker valida y recorta los campos y envía texto plano a Telegram (sin
-  `parse_mode`) para que nadie pueda inyectar formato.
+- Nunca subas `.env*` ni `.dev.vars`.
+- No hay backend: el formulario de contacto solo arma un mensaje y abre WhatsApp. No
+  guardes ni envíes datos de clientes a ningún servidor sin que el dueño lo pida.
+  La atención es solo por WhatsApp (no Telegram).
 
 ## Git
 
