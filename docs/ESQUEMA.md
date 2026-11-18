@@ -170,8 +170,7 @@ plegado) · `.cita` (testimonio) · `.wa-float` (botón flotante en todas las p�
 
 1. Confirmar precios en rublos (§5).
 2. Confirmar que los testimonios son reales y que hay permiso para publicarlos.
-3. Decidir si la cuenta personal de Barclay sigue como propietaria en Search Console (§11).
-4. Perfil de Empresa en Google con el mismo nombre, teléfono y web.
+3. Perfil de Empresa en Google con el mismo nombre, teléfono y web.
 
 ## 11. Dominio, SEO y analítica (revisado 2026-11-18)
 
@@ -190,7 +189,8 @@ Estado en vivo (2026-11-18): publicado en **Vercel**, proyecto `zentpiper` del e
   de `zentpiper@gmail.com` (único administrador). Dos cuentas de Google Ads vinculadas
   tienen acceso de lector a la propiedad.
 - Search Console: propiedad de dominio `sc-domain:zentpiper.com`, verificada por DNS
-  en Cloudflare (nameservers `*.ns.cloudflare.com`). Propietarios: `zentpiper@gmail.com`
-  y las cuentas personales de Patrick y de Barclay. El 2026-11-18 se envió
+  en Cloudflare (nameservers `*.ns.cloudflare.com`). Único propietario: `zentpiper@gmail.com`
+  (registro TXT `google-site-verification=YZZx…`). Patrick y Barclay son usuarios
+  "Completo" (desde 2026-11-18; antes eran propietarios con sus propios registros). El 2026-11-18 se envió
   `https://zentpiper.com/sitemap.xml` (6 URLs, correcto) y se pidió indexar `/` y
   `/planes` (Google tenía `/planes` como 404 del sitio viejo).
