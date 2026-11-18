@@ -33,7 +33,7 @@ export default defineConfig([
   },
   {
     // Scripts de build y configuración corren en Node
-    files: ['scripts/**', '*.config.js'],
+    files: ['scripts/**', '*.config.js', 'api/**'],
     languageOptions: { globals: globals.node },
   },
 ])
