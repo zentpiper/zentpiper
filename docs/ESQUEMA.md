@@ -179,19 +179,17 @@ plegado) · `.cita` (testimonio) · `.wa-float` (botón flotante en todas las p�
    Vercel: variables de entorno `TELEGRAM_BOT_TOKEN` y `TELEGRAM_CHAT_ID`).
 4. Verificar la propiedad en Google Search Console y enviar `sitemap.xml`.
 
-## 11. Dominio, SEO y analítica (revisado 2026-11-17)
+## 11. Dominio, SEO y analítica (revisado 2026-11-18)
 
 Todo el SEO y la analítica viven en **https://zentpiper.com** (sin www): canonical, Open
 Graph, sitemap, `robots.txt`, JSON-LD (`@id` `https://zentpiper.com/#empresa`) y GA4
 `G-0L8037Y84K`. Ningún tercero aparece en meta ni schema; los créditos van con nofollow.
 
-Estado en vivo el 2026-11-17 (fuera del repo, a corregir en el panel del hosting):
-- zentpiper.com lo sirve **Vercel** (en octubre era Cloudflare) y redirige con 307 a
-  `www.zentpiper.com`. Como canonical y sitemap dicen `zentpiper.com`, Google recibe
-  señales cruzadas. Hay que dejar `zentpiper.com` como dominio principal y que `www`
-  redirija a él con 301 (no al revés).
-- Lo publicado es la versión vieja de `main`.
-- Confirmar que el proyecto de Vercel (o la cuenta de Cloudflare de `wrangler.jsonc`),
-  la propiedad de GA4, Search Console y el bot/chat de Telegram estén a nombre del
-  dueño. El ejemplo de variables anterior decía que los leads iban al mismo chat de
-  Telegram que Cernext.
+Estado en vivo (2026-11-18): publicado en **Vercel**, proyecto `zentpiper` del equipo
+"Zentpiper's projects" (cuenta del dueño). Cada push a `main` despliega solo.
+- `zentpiper.com` → 200 directo (entorno Production).
+- `www.zentpiper.com` → 301 a `zentpiper.com`; `http://` → 308 a `https://`.
+- Barra final y `/proyecto` → 308 (redirecciones permanentes de `vercel.json`).
+- Pendiente del dueño: confirmar la propiedad de GA4 y Search Console, y configurar
+  `TELEGRAM_BOT_TOKEN` / `TELEGRAM_CHAT_ID` propios en Vercel (antes los leads iban al
+  chat de Telegram de Cernext).
