@@ -47,9 +47,15 @@ Comprueba que el mensaje de WhatsApp lleva nombre, servicio y plan, que el POST 
 Mide como PageSpeed: Chrome completo con `--headless=new`, móvil y desktop.
 
 ```bash
-npx lighthouse http://127.0.0.1:8787/<ruta> --form-factor=mobile --chrome-flags="--headless=new" --output=json --output-path=lh.json
-npx lighthouse http://127.0.0.1:8787/<ruta> --preset=desktop --chrome-flags="--headless=new" --output=json --output-path=lh-d.json
+npm run build && npm run servir     # estático en 8788; no midas contra wrangler dev
+npx lighthouse http://127.0.0.1:8788/<ruta> --form-factor=mobile --chrome-flags="--headless=new" --output=json --output-path=lh.json
+npx lighthouse http://127.0.0.1:8788/<ruta> --preset=desktop --chrome-flags="--headless=new" --output=json --output-path=lh-d.json
 ```
+
+- Descarta corridas con `environment.benchmarkIndex` < ~1100 (batería baja o CPU
+  ocupada). Mide con el cargador conectado.
+- Desktop: una tarea de 150–350 ms justo en el primer pintado, sin hijos en el hilo
+  principal, es el proceso gráfico de Chrome compilando shaders, no la página. Repite.
 
 - No uses `chrome-headless-shell`: retrasa solo el primer pintado ~2 s.
 - No navegues en el mismo equipo mientras mide: el TBT sube por la CPU compartida.

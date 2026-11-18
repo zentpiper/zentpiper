@@ -19,9 +19,9 @@ WhatsApp en cada bloque.
 | Build | Vite 7 → `build/client` · `scripts/postbuild.mjs` (404.html, sitemap, hidratación diferida) |
 | Estilos | Una hoja `src/styles/site.css` inyectada **inline** en cada HTML |
 | Fuente | Inter variable reducida a español y pesos 400–850 (`src/assets/inter-zp.woff2`, 26 KB, `npm run fuente`) |
-| Hosting | **Cloudflare Workers** + static assets (`wrangler.jsonc`) |
-| API | `worker/index.js` → `POST /api/send-telegram` (`run_worker_first: ["/api/*"]`) |
-| Cabeceras y redirecciones | `public/_headers` (caché, seguridad) · `public/_redirects` (`/proyecto` → `/sobre-nosotros` 301) |
+| Hosting | Funciona en **Cloudflare Workers** (`wrangler.jsonc`) **o Vercel** (`vercel.json`). Ver §11 |
+| API | `POST /api/send-telegram`: lógica en `worker/lead.js`, usada por `worker/index.js` (Cloudflare) y `api/send-telegram.js` (Vercel) |
+| Cabeceras y redirecciones | Cloudflare: `public/_headers` y `public/_redirects` · Vercel: `vercel.json`. Las mismas reglas en ambos (caché, seguridad, `/proyecto` → `/sobre-nosotros` 301) |
 | Analítica | GA4 `G-0L8037Y84K`, se carga con la primera interacción; evento `generate_lead` en cada clic a WhatsApp |
 | Medios | Fuentes originales en `assets-src/` → `npm run medios` → `public/media/` |
 | Videos del hero | 3 clips reales de Pexels (licencia libre): `cliente-celular`, `mensaje-whatsapp`, `empacando-pedido`. 7 s cada uno, retoque cálido, 200–480 KB (móvil 70–280 KB) |
@@ -31,11 +31,15 @@ WhatsApp en cada bloque.
 ```
 react-router.config.js     RUTAS_PUBLICAS + prerender
 vite.config.js             plugin de React Router
-wrangler.jsonc             Worker + assets (drop-trailing-slash, 404-page)
+wrangler.jsonc             Cloudflare: Worker + assets (drop-trailing-slash, 404-page)
+vercel.json                Vercel: build/client estático, sin barra final, redirecciones y cabeceras
+api/send-telegram.js       Vercel: función de leads (usa worker/lead.js)
 scripts/
   postbuild.mjs            404.html, sitemap.xml, hidratación diferida
-  optimizar-medios.mjs     videos, pósters, capturas, fotos, favicons, og.jpg
+  optimizar-medios.mjs     videos, pósters, capturas (160/480/800), fotos, favicons, og.jpg;
+                           acepta partes: `node scripts/optimizar-medios.mjs proyectos`
   subconjunto-fuente.py    Inter reducida → src/assets/inter-zp.woff2
+  servir-estatico.mjs      `npm run servir`: build/client en :8788 para medir con Lighthouse
 src/
   root.jsx                 <html>, CSS inline, fuente, JSON-LD de empresa, GA4, layout
   routes.js                tabla de rutas
@@ -44,7 +48,7 @@ src/
   content/
     planes.js              planes web y apps (nombre, para quién, 3 puntos, ficha técnica)
     proyectos.js           portafolio + categorías + resultado confirmado
-    textos.js              testimonios, FAQ, equipo
+    textos.js              testimonios, FAQ, pasos de la home, cómo trabajamos, datos, equipo
   contexts/                país seleccionado (PaisProvider + usePais)
   lib/
     seo.js                 meta por ruta (title, description, canonical, OG, JSON-LD)
@@ -52,10 +56,13 @@ src/
     whatsapp.js            enlace wa.me + evento GA4
   components/              Header, Footer, BotonWhatsApp, WhatsAppFlotante, HeroVideo,
                            CamposDiferidos (campos de formulario sin costo de carga), iconos.js,
-                           TarjetasPlanes, FichaTecnica, Seccion, Faq, CtaFinal, TarjetaProyecto,
-                           Equipo, Cita, Clientes, SelectorPais, Icono
+                           TarjetasPlanes (con ejemplo real), Incluido ("Todo es tuyo" + "En
+                           todos"), FichaTecnica, Seccion, Faq, CtaFinal (con foto), TarjetaProyecto,
+                           PageHero (encabezado con foto), Atienden (caras del equipo), Equipo, Cita,
+                           Clientes, SelectorPais, Icono
   pages/                   una por ruta (ver §4)
-worker/index.js            API de leads a Telegram
+worker/index.js            Cloudflare: API de leads (usa worker/lead.js)
+worker/lead.js             validación + mensaje de Telegram, compartido por ambas plataformas
 public/                    media/, logo, favicons, og.jpg, robots.txt, _headers, _redirects
 assets-src/                originales de medios (no se publican)
 ```
@@ -64,11 +71,11 @@ assets-src/                originales de medios (no se publican)
 
 | Ruta | Archivo | Objetivo | Bloques |
 |---|---|---|---|
-| `/` | `Home.jsx` | Vender webs | Hero con video real + caras del equipo · clientes · precios con ficha técnica · 3 trabajos con resultado · equipo + cita · FAQ · CTA |
-| `/planes` | `Planes.jsx` | Vender webs (SEO "precios páginas web") | Hero con precio · planes con ficha técnica · casos de tiendas + cita · FAQ · CTA |
-| `/mobile` | `Mobile.jsx` | Vender apps | Hero con precio · 3 planes + "Empresa" (con ficha) · casos · FAQ apps · CTA |
-| `/portafolio` | `Portafolio.jsx` | Prueba social | Filtros por categoría · 14 proyectos · CTA |
-| `/sobre-nosotros` | `SobreNosotros.jsx` | Confianza | Datos · equipo (Patrick, Barclay) · cómo trabajamos + cita · CTA |
+| `/` | `Home.jsx` | Vender webs | Hero con video real + caras del equipo · clientes · precios con ficha técnica y "Todo es tuyo" · 3 pasos (`PASOS`) + WhatsApp · 3 trabajos con resultado · equipo + cita · FAQ · CTA con foto |
+| `/planes` | `Planes.jsx` | Vender webs (SEO "precios páginas web") | Hero con precio y foto · planes con ejemplo real, ficha técnica y "Todo es tuyo" · casos de tiendas + cita · FAQ · CTA |
+| `/mobile` | `Mobile.jsx` | Vender apps | Hero con precio y foto · 3 planes + "Empresa" (con ficha) · casos · FAQ apps · CTA |
+| `/portafolio` | `Portafolio.jsx` | Prueba social | Hero con mosaico · filtros por categoría · 13 proyectos · CTA |
+| `/sobre-nosotros` | `SobreNosotros.jsx` | Confianza | Hero con fotos del equipo + datos (`DATOS_EMPRESA`) · equipo · cómo trabajamos (`COMO_TRABAJAMOS`) + cita · CTA |
 | `/contacto` | `Contacto.jsx` | Captar lead | Formulario corto: primero "¿Qué necesitas?" (un toque), luego nombre, WhatsApp, mensaje y email opcionales · WhatsApp directo |
 | `/confirmacion` | `Confirmacion.jsx` | Post-envío (noindex) | Reabrir WhatsApp · ver portafolio |
 | `*` → `404.html` | `NotFound.jsx` | 404 real (noindex) | Ver precios · WhatsApp |
@@ -80,6 +87,11 @@ Navegación: Páginas web · Apps · Portafolio · Nosotros · Contacto + select
 ## 5. Precios y planes
 
 `src/data/precios.js` (pago único · mensualidad tras **3 meses gratis**):
+
+- La mensualidad es el mantenimiento e **incluye hosting y dominio para siempre**
+  (los 3 primeros meses van por cuenta de Zentpiper). Nunca escribas "1 año".
+- **Todo es del cliente**: la web y el dominio (`PROPIEDAD_WEB` en
+  `src/content/planes.js`, se muestra con `components/Incluido.jsx` bajo las tarjetas).
 
 | Plan web | Clave | PE | RU |
 |---|---|---|---|
@@ -151,9 +163,11 @@ plegado) · `.cita` (testimonio) · `.wa-float` (botón flotante en todas las p�
 ## 9. Calidad
 
 - `npm run build` ✅ · `npm run lint` ✅ (0 errores)
-- Lighthouse 2026-11-15 (Chrome 155, headless nuevo, sin GPU, como PageSpeed):
-  **100 · 100 · 100 · 100 en las 6 páginas públicas, en móvil y desktop**.
-  Móvil: LCP 1,0–1,5 s, TBT 0–80 ms, CLS 0. Reglas en `RENDIMIENTO.md`.
+- Lighthouse 2026-11-18, tras el rediseño de páginas internas (Chrome 155, headless
+  nuevo, sin GPU, servidor estático `npm run servir`): **100 · 100 · 100 · 100 en las 6
+  páginas públicas, en móvil y desktop**. Móvil: LCP 1,1–1,6 s, TBT 0–80 ms, CLS 0.
+  La home en desktop oscila 89–100 por el arranque gráfico de Chrome sin GPU (ver
+  `RENDIMIENTO.md`, "Cómo medir"); da 100 en las corridas sin esa espera.
 - Sin tests automatizados. El Worker se probó con un fetch simulado (éxito, campos
   faltantes, email inválido, sin configurar, método).
 
@@ -161,5 +175,23 @@ plegado) · `.cita` (testimonio) · `.wa-float` (botón flotante en todas las p�
 
 1. Confirmar precios en rublos (§5).
 2. Confirmar que los testimonios son reales y que hay permiso para publicarlos.
-3. Configurar los secretos de Telegram en Cloudflare (`npx wrangler secret put …`).
+3. Configurar sus propios secretos de Telegram (Cloudflare: `npx wrangler secret put …`;
+   Vercel: variables de entorno `TELEGRAM_BOT_TOKEN` y `TELEGRAM_CHAT_ID`).
 4. Verificar la propiedad en Google Search Console y enviar `sitemap.xml`.
+
+## 11. Dominio, SEO y analítica (revisado 2026-11-17)
+
+Todo el SEO y la analítica viven en **https://zentpiper.com** (sin www): canonical, Open
+Graph, sitemap, `robots.txt`, JSON-LD (`@id` `https://zentpiper.com/#empresa`) y GA4
+`G-0L8037Y84K`. Ningún tercero aparece en meta ni schema; los créditos van con nofollow.
+
+Estado en vivo el 2026-11-17 (fuera del repo, a corregir en el panel del hosting):
+- zentpiper.com lo sirve **Vercel** (en octubre era Cloudflare) y redirige con 307 a
+  `www.zentpiper.com`. Como canonical y sitemap dicen `zentpiper.com`, Google recibe
+  señales cruzadas. Hay que dejar `zentpiper.com` como dominio principal y que `www`
+  redirija a él con 301 (no al revés).
+- Lo publicado es la versión vieja de `main`.
+- Confirmar que el proyecto de Vercel (o la cuenta de Cloudflare de `wrangler.jsonc`),
+  la propiedad de GA4, Search Console y el bot/chat de Telegram estén a nombre del
+  dueño. El ejemplo de variables anterior decía que los leads iban al mismo chat de
+  Telegram que Cernext.

@@ -13,6 +13,7 @@ description: Cambiar precios, mensualidades, planes web/apps, países/monedas, t
 | Meses gratis de mantenimiento | `MESES_GRATIS` en `src/data/precios.js` |
 | Teléfono, WhatsApp, email, redes, ciudad | `CONTACTO` en `src/data/precios.js` |
 | Nombre, "para quién" e "incluye" de cada plan | `src/content/planes.js` (misma clave que en `PAISES`) |
+| Línea "Todo es tuyo" y "En todos" bajo las tarjetas | `PROPIEDAD_WEB` e `INCLUIDO_WEB` en `src/content/planes.js` |
 | Rango de precios del schema | `priceRange` en `src/lib/schema.js` |
 
 `whatsapp` va sin `+` ni espacios (`51945935080`); `telefono` va formateado.

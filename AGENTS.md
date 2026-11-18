@@ -19,6 +19,7 @@ npm run dev        # React Router dev server (http://localhost:5173), sin /api
 npm run build      # prerender a build/client + scripts/postbuild.mjs
 npm run lint       # ESLint 9 — debe quedar en 0 errores
 npm run preview    # build + wrangler dev: sitio + /api en local (necesita .dev.vars)
+npm run servir     # build/client estático en :8788, para medir con Lighthouse (sin /api)
 npm run medios     # regenera public/media desde assets-src (FFMPEG=ruta para videos)
 npm run deploy     # build + wrangler deploy — SOLO con permiso explícito del dueño
 ```
@@ -35,8 +36,10 @@ No hay tests. Verificar = `npm run build` + `npm run lint` + navegador + Lightho
   layout (Header, main, Footer, WhatsApp flotante).
 - **Hidratación diferida**: `scripts/postbuild.mjs` hace que React cargue con la primera
   interacción. Todo lo que deba funcionar al primer toque tiene que funcionar sin JS.
-- Producción: Cloudflare Workers (`wrangler.jsonc`, assets en `build/client`,
-  `worker/index.js` atiende `/api/*`).
+- Producción: funciona en **Cloudflare Workers** (`wrangler.jsonc`) o **Vercel**
+  (`vercel.json` + `api/send-telegram.js`). La lógica de leads está en `worker/lead.js`
+  y la usan ambos. Si cambias redirecciones o cabeceras, cámbialas en los dos.
+- SEO y analítica siempre en `https://zentpiper.com` (sin www). Ver `docs/ESQUEMA.md` §11.
 
 ## Reglas de contenido y datos
 

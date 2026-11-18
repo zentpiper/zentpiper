@@ -77,6 +77,9 @@ cambian el resultado.
   No hay video con "reducir movimiento", ahorro de datos ni 2G.
 - Todas las imágenes llevan `width`/`height` y `srcset` 480/800. Se generan con
   `npm run medios` desde `assets-src/` (ver `scripts/optimizar-medios.mjs`).
+- Encabezados internos (`PageHero`): la foto o el equipo de la derecha suele ser el LCP.
+  Va sin `lazy`, con `fetchPriority="high"` y con preload en `links()` de la página
+  (`/planes` y `/mobile`: `f-*-600/960.webp`, 11–21 KB).
 - Imágenes visibles sin scroll: **nunca** `loading="lazy"`. En `/portafolio` la primera
   captura es el LCP en móvil; con `lazy` el navegador la pedía tarde y el LCP subía a
   1,9 s (rendimiento 99). `TarjetaProyecto` acepta `arriba` (carga inmediata) y `lcp`
@@ -112,9 +115,21 @@ Nunca escribas `dangerouslySetInnerHTML={{ __html: … }}` inline.
 
 ```bash
 npm run build
-npx wrangler dev                      # o cualquier servidor estático sobre build/client
-npx lighthouse http://127.0.0.1:8787/ --form-factor=mobile --chrome-flags="--headless=new"
+npm run servir                        # servidor estático sobre build/client (puerto 8788)
+npx lighthouse http://127.0.0.1:8788/ --form-factor=mobile --chrome-flags="--headless=new"
 ```
+
+No midas contra `wrangler dev` (`npm run preview`): workerd compite por la CPU y la home
+bajó a 88–95 en móvil con el mismo build que da 99–100 en el servidor estático.
+
+Mira `environment.benchmarkIndex` en el JSON. En la laptop del dueño lo normal es
+~1400; por debajo de ~1100 descarta la corrida (batería baja: Windows frena la CPU
+4–5 veces; Opera, Discord o un antivirus usando CPU). Mide con el cargador conectado.
+
+En desktop, el primer cuadro espera a que el proceso gráfico de Chrome sin GPU termine
+de compilar sus shaders (tareas de ~170 ms). Si termina después del FCP aparece una
+tarea de 150–350 ms y la home cae a 89–95. Pasa con o sin video y con o sin el botón de
+WhatsApp, así que no es la página: repite la corrida.
 
 Usa Chrome completo con `--headless=new`. El "chrome-headless-shell" antiguo retrasa
 el primer pintado ~2 s por su cuenta y da números falsos.

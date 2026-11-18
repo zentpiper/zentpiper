@@ -2,6 +2,18 @@
   "version": "0.0.1",
   "configurations": [
     {
+      "name": "sitio",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "preview"],
+      "port": 8787
+    },
+    {
+      "name": "estatico",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "servir"],
+      "port": 8788
+    },
+    {
       "name": "vite",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],

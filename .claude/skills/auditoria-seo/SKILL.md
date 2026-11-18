@@ -59,7 +59,17 @@ Hero, datos, footer, schema y selector de país deben decir lo mismo: Perú y Ru
 +50 proyectos, el mismo teléfono y los mismos precios. Cada afirmación verificable
 ("95–100 en PageSpeed", plazos) debe estar respaldada (skill `copy-conversion`).
 
-## 6. Fuera del código (recordar al dueño)
+## 6. Dominio en vivo
+
+```bash
+curl -sIL https://zentpiper.com | grep -iE "^HTTP|^location|^server"
+curl -sIL https://www.zentpiper.com | grep -iE "^HTTP|^location|^server"
+```
+
+`zentpiper.com` debe responder 200 directo; `www` debe redirigir con 301 a
+`zentpiper.com`. Si es al revés, el canonical apunta a una URL que redirige.
+
+## 7. Fuera del código (recordar al dueño)
 
 - Google Search Console: propiedad verificada, `sitemap.xml` enviado, inspección de URL
   de `/` y `/planes`.

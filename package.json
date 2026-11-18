@@ -8,6 +8,7 @@
     "build": "react-router build && node scripts/postbuild.mjs",
     "lint": "eslint .",
     "preview": "npm run build && wrangler dev",
+    "servir": "node scripts/servir-estatico.mjs build/client 8788",
     "deploy": "npm run build && wrangler deploy",
     "medios": "node scripts/optimizar-medios.mjs",
     "fuente": "python scripts/subconjunto-fuente.py"

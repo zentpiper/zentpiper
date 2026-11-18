@@ -1,10 +1,22 @@
 ---
 name: deploy
-description: Publicar zentpiper.com en Cloudflare Workers con wrangler, probar el Worker en local y gestionar los secretos de Telegram. Úsala solo cuando el dueño pida explícitamente desplegar o configurar el entorno.
+description: Publicar zentpiper.com en Vercel o Cloudflare Workers, probar la API en local y gestionar los secretos de Telegram. Úsala solo cuando el dueño pida explícitamente desplegar o configurar el entorno.
 disable-model-invocation: true
 ---
 
-# Deploy a Cloudflare
+# Deploy (Cloudflare o Vercel)
+
+El repo funciona en las dos plataformas. Antes de desplegar, confirma con el dueño
+cuál usa y que la cuenta es suya (ver `docs/ESQUEMA.md` §11).
+
+## Vercel
+
+- Importar el repo; `vercel.json` ya define build (`npm run build`), salida
+  (`build/client`), redirecciones y cabeceras. `framework: null` a propósito.
+- Variables de entorno: `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`.
+- Dominios: `zentpiper.com` como principal; `www.zentpiper.com` → 301 a `zentpiper.com`.
+
+## Cloudflare
 
 Producción = Worker `zentpiper` (`wrangler.jsonc`):
 - static assets desde `build/client` (HTML prerenderizado), `html_handling:
