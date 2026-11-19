@@ -196,7 +196,11 @@ Reglas que salieron de la auditoría visual (2026-11-18):
     estaba lenta (benchmarkIndex 500–870) y salieron entre 70 y 95.
   - Prueba A/B alternando la versión publicada y la nueva en esas condiciones: las dos
     caen igual (Contacto 85 y 85; Apps 77–80 y 71–78), así que no hay regresión.
-  - Pendiente: confirmarlas con la PC a ~1400 o con PageSpeed Insights tras publicar.
+  - Confirmado en producción con PageSpeed Insights (pagespeed.web.dev, 2026-11-18,
+    commit `2bf5839`): `/contacto`, `/mobile`, `/portafolio` y `/sobre-nosotros` dan
+    **100 · 100 · 100 · 100 en móvil y desktop**, TBT 0 ms, CLS 0, LCP 0,8–1,1 s.
+  - La API de PageSpeed sin clave puede responder 429 (cuota diaria agotada): usar la
+    web pagespeed.web.dev con el panel del navegador visible (oculto, no avanza).
 - Sin tests automatizados.
 
 ## 10. Pendientes del dueño
