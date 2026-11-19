@@ -205,10 +205,11 @@ Reglas que salieron de la auditoría visual (2026-11-18):
 
 ## 10. Pendientes del dueño
 
-1. Dar el RUC: va en `CONTACTO.ruc` (`src/data/precios.js`) y sale en la hoja del Libro
-   de Reclamaciones y en la política de privacidad. Vacío = no se muestra.
-2. Que un contador o abogado revise `src/content/legal.js` (privacidad y Libro de
+1. Que un contador o abogado revise `src/content/legal.js` (privacidad y Libro de
    Reclamaciones).
+
+RUC 10704506835 (persona natural con negocio) en `CONTACTO.ruc` desde el 2026-11-19: sale en
+el pie, en la hoja del Libro de Reclamaciones y en la política de privacidad.
 
 El 2026-11-18 el dueño confirmó los precios en rublos (§5) y el permiso para publicar
 los dos testimonios (Spanglish y Naim Marchionni).

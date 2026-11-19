@@ -70,7 +70,10 @@ export default function Footer() {
       </div>
 
       <div className="container ftr__base">
-        <p>© <span suppressHydrationWarning>{new Date().getFullYear()}</span> Zentpiper. Todos los derechos reservados.</p>
+        <p>
+          © <span suppressHydrationWarning>{new Date().getFullYear()}</span> Zentpiper
+          {CONTACTO.ruc && ` · RUC ${CONTACTO.ruc}`}. Todos los derechos reservados.
+        </p>
         <FichaTecnica titulo="¿Cómo está hecha esta web?" filas={ESTA_WEB} />
         {/* Asociado sin pasar autoridad SEO (nofollow): Zentpiper es la entidad principal. */}
         <p>

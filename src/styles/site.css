@@ -362,8 +362,8 @@ input:focus, textarea:focus { outline: none; border-color: var(--oro); box-shado
 .tipo input:checked + span { border-color: var(--oro); background: var(--oro-soft); }
 .tipo input:focus-visible + span { outline: 2px solid var(--oro-2); outline-offset: 2px; }
 .hoja .h2 { margin-bottom: 6px; }
-.hoja__codigo { font-size: 1.15rem; font-weight: 750; color: var(--oro-2); white-space: nowrap; }
-.hoja__fecha { color: var(--text-3); }
+.hoja .hoja__codigo { font-size: 1.15rem; font-weight: 750; color: var(--oro-2); white-space: nowrap; }
+.hoja .hoja__fecha { color: var(--text-3); }
 .hoja__datos { display: grid; grid-template-columns: fit-content(40%) 1fr; gap: 8px 16px; margin: 20px 0; padding-top: 16px; border-top: 1px solid var(--line); }
 .hoja__datos div { display: contents; }
 .hoja__datos dt { color: var(--text-3); }
