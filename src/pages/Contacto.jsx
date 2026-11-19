@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import BotonWhatsApp from "../components/BotonWhatsApp";
 import CamposDiferidos from "../components/CamposDiferidos";
 import Atienden from "../components/Atienden";
@@ -7,6 +7,7 @@ import Icono from "../components/Icono";
 import { svgHtml } from "../components/iconos";
 import { CONTACTO } from "../data/precios";
 import { enlaceWhatsApp, registrarLead } from "../lib/whatsapp";
+import { camposHtml } from "../lib/campos";
 import { seo } from "../lib/seo";
 import { migas } from "../lib/schema";
 
@@ -22,29 +23,12 @@ export const meta = () =>
 const SERVICIOS = ["Página web", "Tienda online", "App móvil", "Sistema a medida", "Otro"];
 
 // Campos de texto + envío como HTML: se activan con la primera interacción
-// (ver components/CamposDiferidos.jsx). `alto` = filas visibles.
+// (ver components/CamposDiferidos.jsx y lib/campos.js).
 const CAMPOS = [
   { id: "nombre", label: "Tu nombre", attrs: 'autocomplete="name" required maxlength="100"' },
-  { id: "mensaje", label: "Cuéntanos un poco", opcional: true, area: true, attrs: 'rows="3" maxlength="2000"', placeholder: "Rubro, qué quieres vender, fecha ideal…" },
+  { id: "mensaje", label: "Cuéntanos un poco", opcional: true, area: true, attrs: 'maxlength="2000"', placeholder: "Rubro, qué quieres vender, fecha ideal…" },
 ];
-const BOTON = `${svgHtml("whatsapp", 18)} Enviar por WhatsApp`;
-const etiqueta = (c) => `${c.label}${c.opcional ? ' <span class="opcional">(opcional)</span>' : ""}`;
-const ph = (c) => (c.placeholder ? ` placeholder="${c.placeholder}"` : "");
-
-const CAMPOS_REALES =
-  CAMPOS.map((c) =>
-    `<div class="campo"><label for="${c.id}">${etiqueta(c)}</label>` +
-    (c.area
-      ? `<textarea id="${c.id}" name="${c.id}" ${c.attrs}${ph(c)}></textarea>`
-      : `<input id="${c.id}" name="${c.id}" ${c.attrs}${ph(c)}>`) +
-    `</div>`,
-  ).join("") + `<button type="submit" class="btn btn--gold btn--lg btn--block">${BOTON}</button>`;
-
-const CAMPOS_FALSOS =
-  CAMPOS.map((c) =>
-    `<div class="campo"><span class="campo__l">${etiqueta(c)}</span>` +
-    `<span class="falso${c.area ? " falso--area" : ""}">${c.placeholder ?? ""}</span></div>`,
-  ).join("") + `<span class="btn btn--gold btn--lg btn--block">${BOTON}</span>`;
+const { real: CAMPOS_REALES, falso: CAMPOS_FALSOS } = camposHtml(CAMPOS, `${svgHtml("whatsapp", 18)} Enviar por WhatsApp`);
 
 export default function Contacto() {
   const navigate = useNavigate();
@@ -84,7 +68,8 @@ export default function Contacto() {
       <section className="page-hero page-hero--sm">
         <div className="container">
           <p className="eyebrow">Contacto</p>
-          <h1 className="h1">Cotiza gratis tu web o app.</h1>
+          {/* Espacios duros: "web o app." baja junto y no queda "app." sola en la línea. */}
+          <h1 className="h1">Cotiza gratis tu web{" "}o{" "}app.</h1>
           <p className="lead">Dos datos y seguimos por WhatsApp. Sin compromiso.</p>
           <Atienden texto="Te responden Patrick y Barclay, no un bot." />
         </div>
@@ -105,7 +90,9 @@ export default function Contacto() {
               </div>
             </fieldset>
             <CamposDiferidos className="form__campos" real={CAMPOS_REALES} falso={CAMPOS_FALSOS} />
-            <p className="nota">Te respondemos por WhatsApp. No compartimos tus datos.</p>
+            <p className="nota">
+              Te respondemos por WhatsApp. No compartimos tus datos (<Link to="/privacidad">privacidad</Link>).
+            </p>
           </form>
 
           <aside className="contacto__alt">

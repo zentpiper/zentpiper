@@ -7,6 +7,8 @@ export const RUTAS_PUBLICAS = [
   "/portafolio",
   "/sobre-nosotros",
   "/contacto",
+  "/privacidad",
+  "/libro-de-reclamaciones",
 ];
 
 export default {

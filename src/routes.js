@@ -9,5 +9,7 @@ export default [
   route("sobre-nosotros", "pages/SobreNosotros.jsx"),
   route("contacto", "pages/Contacto.jsx"),
   route("confirmacion", "pages/Confirmacion.jsx"),
+  route("privacidad", "pages/Privacidad.jsx"),
+  route("libro-de-reclamaciones", "pages/LibroReclamaciones.jsx"),
   route("*", "pages/NotFound.jsx"),
 ];

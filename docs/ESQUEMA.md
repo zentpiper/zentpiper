@@ -48,11 +48,13 @@ src/
     planes.js              planes web y apps (nombre, para quién, 3 puntos, ficha técnica)
     proyectos.js           portafolio + categorías + resultado confirmado
     textos.js              testimonios, FAQ, pasos de la home, cómo trabajamos, datos, equipo
+    legal.js               política de privacidad y textos del Libro de Reclamaciones
   contexts/                país seleccionado (PaisProvider + usePais)
   lib/
     seo.js                 meta por ruta (title, description, canonical, OG, JSON-LD)
     schema.js              schema.org: empresa, migas, catálogo de planes
     whatsapp.js            enlace wa.me + evento GA4
+    campos.js              campos de texto como HTML para CamposDiferidos (Contacto y Libro)
   components/              Header, Footer, BotonWhatsApp, WhatsAppFlotante, HeroVideo,
                            CamposDiferidos (campos de formulario sin costo de carga), iconos.js,
                            TarjetasPlanes (con ejemplo real), Incluido ("Todo es tuyo" + "En
@@ -73,13 +75,16 @@ assets-src/                originales de medios (no se publican)
 | `/mobile` | `Mobile.jsx` | Vender apps | Hero con precio y foto · 3 planes + "Empresa" (con ficha) · casos · FAQ apps · CTA |
 | `/portafolio` | `Portafolio.jsx` | Prueba social | Hero con mosaico · filtros por categoría · 13 proyectos · CTA |
 | `/sobre-nosotros` | `SobreNosotros.jsx` | Confianza | Hero con fotos del equipo + datos (`DATOS_EMPRESA`) · equipo · cómo trabajamos (`COMO_TRABAJAMOS`) + cita · CTA |
-| `/contacto` | `Contacto.jsx` | Captar lead | Formulario corto: primero "¿Qué necesitas?" (un toque), luego nombre y un mensaje opcional; arma el texto y abre WhatsApp · WhatsApp directo |
+| `/contacto` | `Contacto.jsx` | Captar lead | Formulario corto: primero "¿Qué necesitas?" (un toque), luego nombre y un mensaje opcional; arma el texto y abre WhatsApp · WhatsApp directo. Sin botón flotante |
 | `/confirmacion` | `Confirmacion.jsx` | Post-envío (noindex) | Reabrir WhatsApp · ver portafolio |
+| `/privacidad` | `Privacidad.jsx` | Legal (Ley 29733) | Qué datos se usan, para qué, con quién, derechos ARCO, cookies (`PRIVACIDAD`) |
+| `/libro-de-reclamaciones` | `LibroReclamaciones.jsx` | Legal (Código del Consumidor) | Hoja de reclamación en 3 bloques → constancia con número, imprimir/PDF, copia por correo, WhatsApp. Sin botón flotante |
 | `*` → `404.html` | `NotFound.jsx` | 404 real (noindex) | Ver precios · WhatsApp |
 | `/proyecto` | `_redirects` | 301 → `/sobre-nosotros` | — |
 
 Navegación: Páginas web · Apps · Portafolio · Nosotros · Contacto + selector PE/RU +
-"Cotizar gratis" (WhatsApp).
+"Cotizar gratis" (WhatsApp). Pie: "Política de privacidad" y "Libro de Reclamaciones"
+(con ícono de libro: es el aviso que exige la ley en la página de inicio).
 
 ## 5. Precios y planes
 
@@ -121,6 +126,17 @@ Cualquier CTA ──<a href="https://wa.me/51945935080?text=…">──▶ Whats
 
 Enlaces internos a `/contacto` pueden precargar el formulario: `?servicio=App%20móvil&plan=Negocio`.
 
+```
+/libro-de-reclamaciones (hoja de reclamación)
+  submit ─┬─ arma la hoja con número LR-AAAAMMDD-HHMMSS (en el navegador, sin servidor)
+          ├─ window.open(wa.me con la hoja completa)
+          └─ constancia en pantalla: imprimir / guardar PDF · copia por correo (mailto a
+             zentpiper@gmail.com con copia al cliente) · reabrir WhatsApp
+```
+
+Respuesta al cliente: máximo 15 días hábiles. Las hojas llegan por WhatsApp (y por correo
+si el cliente lo envía): guárdalas el tiempo que exige la ley.
+
 ## 7. SEO
 
 - HTML prerenderizado con `<title>`, description, canonical, OG y Twitter **por ruta**
@@ -131,8 +147,8 @@ Enlaces internos a `/contacto` pueden precargar el formulario: `?servicio=App%20
 - **Zentpiper es la entidad principal.** El footer dice "Asociado con Cernext" y el
   perfil de Barclay en Nosotros enlaza a su web; ambos enlaces llevan `rel="nofollow"`: no pasan autoridad ni aparecen en meta
   ni en schema. Los proyectos del portafolio se presentan como trabajo de Zentpiper.
-- `sitemap.xml` se genera en cada build desde `RUTAS_PUBLICAS`. `robots.txt` bloquea
-  `/confirmacion`.
+- `sitemap.xml` se genera en cada build desde `RUTAS_PUBLICAS` (8 URLs, incluidas las
+  legales). `robots.txt` bloquea `/confirmacion`.
 - 404 con status real. Barra final → 307 a la URL sin barra.
 
 ## 8. Sistema visual
@@ -154,7 +170,16 @@ Dirección (rediseño 2026-11-17, "verse profesional y cerrar ventas, menos cara
 
 Componentes de conversión: `.btn--gold` (CTA principal, siempre WhatsApp) ·
 `.btn--ghost` (secundario) · `.plan--top` (plan destacado) · `.ficha` (detalle técnico
-plegado) · `.cita` (testimonio) · `.wa-float` (botón flotante en todas las páginas).
+plegado) · `.cita` (testimonio) · `.wa` (botón flotante; oculto en `/contacto`,
+`/confirmacion` y `/libro-de-reclamaciones`, que tienen formulario propio).
+
+Reglas que salieron de la auditoría visual (2026-11-18):
+- Lo fijo no tapa nada al final de la página: el pie deja 96 px libres bajo la ficha
+  "¿Cómo está hecha esta web?" para el botón flotante.
+- Las fichas (`.ficha dl`, `.hoja__datos`) usan una sola grilla `fit-content(40%) 1fr`:
+  una etiqueta larga ("Confidencialidad") nunca se mete en su valor.
+- En columnas, `.plan__para` reserva dos líneas para que los precios queden alineados.
+- Titulares sin palabra suelta en la última línea (espacios duros donde haga falta).
 
 ## 9. Calidad
 
@@ -164,12 +189,25 @@ plegado) · `.cita` (testimonio) · `.wa-float` (botón flotante en todas las p�
   páginas públicas, en móvil y desktop**. Móvil: LCP 1,1–1,6 s, TBT 0–80 ms, CLS 0.
   La home en desktop oscila 89–100 por el arranque gráfico de Chrome sin GPU (ver
   `RENDIMIENTO.md`, "Cómo medir"); da 100 en las corridas sin esa espera.
+- Lighthouse móvil 2026-11-18 (noche), tras la auditoría visual y las páginas legales:
+  - Accesibilidad, buenas prácticas y SEO: 100 en las 8 páginas.
+  - Rendimiento 100 en `/`, `/planes`, `/privacidad` y `/libro-de-reclamaciones`.
+  - `/mobile`, `/portafolio`, `/sobre-nosotros` y `/contacto`: sin medición válida. La PC
+    estaba lenta (benchmarkIndex 500–870) y salieron entre 70 y 95.
+  - Prueba A/B alternando la versión publicada y la nueva en esas condiciones: las dos
+    caen igual (Contacto 85 y 85; Apps 77–80 y 71–78), así que no hay regresión.
+  - Pendiente: confirmarlas con la PC a ~1400 o con PageSpeed Insights tras publicar.
 - Sin tests automatizados.
 
 ## 10. Pendientes del dueño
 
-Ninguno. El 2026-11-18 el dueño confirmó los precios en rublos (§5) y el permiso para
-publicar los dos testimonios (Spanglish y Naim Marchionni).
+1. Dar el RUC: va en `CONTACTO.ruc` (`src/data/precios.js`) y sale en la hoja del Libro
+   de Reclamaciones y en la política de privacidad. Vacío = no se muestra.
+2. Que un contador o abogado revise `src/content/legal.js` (privacidad y Libro de
+   Reclamaciones).
+
+El 2026-11-18 el dueño confirmó los precios en rublos (§5) y el permiso para publicar
+los dos testimonios (Spanglish y Naim Marchionni).
 
 ## 11. Dominio, SEO y analítica (revisado 2026-11-18)
 

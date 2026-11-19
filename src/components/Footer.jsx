@@ -77,6 +77,13 @@ export default function Footer() {
           Asociado con{" "}
           <a href="https://cernextec.com/es" target="_blank" rel="nofollow noopener">Cernext</a>
         </p>
+        {/* Aviso del Libro de Reclamaciones con ícono: lo exige la ley en la página de inicio. */}
+        <nav className="ftr__legal" aria-label="Legal">
+          <Link to="/privacidad">Política de privacidad</Link>
+          <Link to="/libro-de-reclamaciones" className="libro-ico">
+            <Icono nombre="libro" size={18} /> Libro de Reclamaciones
+          </Link>
+        </nav>
       </div>
     </footer>
   );

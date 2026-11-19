@@ -28,8 +28,19 @@ terminar.
       `window.__reactRouterRouteModules`, el selector PE ↔ RU cambia precios y el texto
       del enlace de WhatsApp de cada plan, los filtros del portafolio funcionan.
 - [ ] Consola sin errores (en especial de hidratación).
-- [ ] El botón flotante de WhatsApp no tapa CTAs ni precios.
+- [ ] El botón flotante de WhatsApp no tapa CTAs, precios ni campos. **Revísalo con todo
+      abierto y al final de la página** (FAQ, fichas y "¿Cómo está hecha esta web?"
+      desplegadas, scroll hasta abajo): lo que tape ahí ya no se puede destapar.
+- [ ] Mira la página como un cliente, no solo los números: textos que se pisan o invaden
+      la columna de al lado, precios desalineados entre tarjetas, una palabra sola en la
+      última línea de un titular, bloques que usan medio ancho en móvil.
+- [ ] Prueba también con RU (precios más largos) en `/`, `/planes` y `/mobile`.
 - [ ] Home: el póster del hero se ve de inmediato y el video arranca a los pocos segundos.
+
+Capturas de página completa: `content-visibility: auto` deja sin pintar lo que está
+fuera de pantalla y las imágenes `lazy` no cargan. Para revisar, inyecta
+`*{content-visibility:visible!important}` y pasa las imágenes a `loading="eager"` (solo
+en la captura, nunca en el código).
 
 ## Formulario de contacto (sin enviar mensajes reales)
 
@@ -41,6 +52,10 @@ En la consola, intercepta antes de enviar:
 `window.open = (u) => console.log(u)`.
 Comprueba que el mensaje de WhatsApp lleva nombre, servicio y plan, que no sale ningún
 `fetch` con datos del cliente y que termina en `/confirmacion`.
+
+Libro de Reclamaciones: mismo método. Llena los campos obligatorios, envía y comprueba que
+el mensaje de WhatsApp lleva la hoja completa con su número `LR-…` y que la constancia
+muestra imprimir, copia por correo y WhatsApp.
 
 ## Lighthouse (objetivo: 100 · 100 · 100 · 100)
 

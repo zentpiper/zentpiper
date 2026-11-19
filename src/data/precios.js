@@ -9,6 +9,8 @@ export const CONTACTO = {
   telefono2: "+51 988 490 319",
   email: "zentpiper@gmail.com",
   ciudad: "Santiago de Surco, Lima",
+  // Va en la hoja del Libro de Reclamaciones y en la política de privacidad. Vacío = no se muestra.
+  ruc: "",
   redes: {
     instagram: "https://www.instagram.com/zentpiper",
     tiktok: "https://www.tiktok.com/@zentpiper",

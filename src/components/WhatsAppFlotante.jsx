@@ -1,10 +1,16 @@
+import { useLocation } from "react-router";
 import Icono from "./Icono";
 import { EQUIPO } from "../content/textos";
 import { enlaceWhatsApp, registrarLead } from "../lib/whatsapp";
 
+// Páginas con formulario propio: el botón taparía campos y ya tienen su WhatsApp.
+const SIN_FLOTANTE = ["/contacto", "/confirmacion", "/libro-de-reclamaciones"];
+
 // Botón flotante: caras reales + "¿Hablamos?" en vez del círculo verde genérico.
 // En celular queda compacto (caras + ícono); el texto vive en aria-label.
 export default function WhatsAppFlotante() {
+  const { pathname } = useLocation();
+  if (SIN_FLOTANTE.includes(pathname.replace(/\/$/, ""))) return null;
   return (
     <a
       className="wa"
